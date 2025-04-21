@@ -60,9 +60,8 @@ npm run dev
 
 ## 👨‍💻 Nhóm phát triển
 
-- Nguyễn Văn A – Backend
-- Trần Thị B – Frontend
-- Lê Văn C – UI/UX
+- SE190377 Phùng Lưu Hoàng Long
+- SE192024 Dương Quốc Thái
 
 ## 👉 Branch naming convention prefixes
 | Tiền tố     | Mục đích                                                                                  | Ví dụ                                 |
