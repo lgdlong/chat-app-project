@@ -74,3 +74,9 @@ npm run dev
 | `chore/`    | Thực hiện các công việc lặt vặt như cập nhật thư viện, cấu hình, dọn dẹp mã nguồn, v.v.     | `chore/update-dependencies`           |
 | `test/`     | Thử nghiệm hoặc kiểm tra các ý tưởng mới                                                    | `test/try-new-ui-layout`              |
 
+### 4. Run with Docker Compose
+
+Ensure you have Docker and Docker Compose installed on your system.
+
+```bash
+docker-compose up --build
