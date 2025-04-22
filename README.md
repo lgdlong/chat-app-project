@@ -83,7 +83,7 @@ docker-compose up --build
 
 ```
 
-### 5.Run Backend with Docker
+### 5. Run Backend with Docker
 
 ```bash
 docker-compose up --build backend
