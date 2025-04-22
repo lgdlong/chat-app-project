@@ -80,3 +80,11 @@ Ensure you have Docker and Docker Compose installed on your system.
 
 ```bash
 docker-compose up --build
+
+```
+
+### 5.Run Backend with Docker
+
+```bash
+docker-compose up --build backend
+```

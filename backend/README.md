@@ -76,18 +76,25 @@ Hệ thống cung cấp các API REST để frontend tương tác:
 
 -   Quản lý nhóm chat
 
+## 📚 Swagger API Documentation
 
-> Tài liệu API sẽ được tạo tự động qua Swagger / OpenAPI.
+Ứng dụng này sử dụng **Swagger UI** (OpenAPI 3) để tự động sinh tài liệu REST API.
 
+```
+http://localhost:8081/swagger-ui/index.html
+```
 ----------
 
 ## 📁 Cấu trúc thư mục
 
 ```
 src/main/java/com/lgdlong/backend
-├── entity       # Các class Entity (JPA)
-├── repo         # Giao diện Repository (Spring Data JPA)
 ├── controller   # Lớp điều khiển API
+├── dto          # Các lớp DTO (Data Transfer Object)
+├── entity       # Các class Entity (JPA)
+├── enums        # Các enum dùng trong ứng dụng
+├── id           # Các constraint về primary key
+├── repo         # Giao diện Repository (Spring Data JPA)
 ├── service      # Xử lý logic nghiệp vụ
 └── config       # Các lớp cấu hình
 
@@ -101,5 +108,14 @@ src/main/java/com/lgdlong/backend
 ./mvnw clean package
 
 ```
+## Sau khi sửa code, build lại image khi đứng ở ./backend
 
-Tạo file `.jar` sẵn sàng chạy trong thư mục `target/`.
+```bash
+docker build -t backend .
+
+```
+## Chạy container trên localhost://8080 sau khi build xong
+```bash
+docker run -p 8080:8080 backend
+
+```
