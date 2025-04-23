@@ -1,6 +1,5 @@
 package com.lgdlong.backend.dto;
 
-import com.lgdlong.backend.enums.*;
 import lombok.*;
 
 @Data
