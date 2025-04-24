@@ -1,4 +1,3 @@
-import React from "react";
 import "./AuthPage.css";
 import LoginHeader from "../components/LoginHeader";
 import LoginForm from "../components/LoginForm";

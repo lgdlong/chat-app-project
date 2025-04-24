@@ -1,5 +1,3 @@
-import React from "react";
-import { Button } from "react-bootstrap";
 import "./AuthHeader.css";
 
 export default function RegisterHeader() {
