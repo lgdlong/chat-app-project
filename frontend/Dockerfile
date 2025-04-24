@@ -1,33 +1,35 @@
-# Build stage
-FROM node:20-alpine as build
+# ===============================
+# Stage 1: Build with Node + Vite
+# ===============================
+FROM node:20-alpine AS build
 
-# Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package.json ./
-COPY package-lock.json* ./
-
-# Install dependencies
+# Install deps first (cache layer)
+COPY package.json package-lock.json* ./
 RUN npm ci
 
-# Copy all other files
+# Copy source code
 COPY . .
 
-# Build the application
+# Build production app (Vite outputs to /dist)
 RUN npm run build
 
-# Production stage
-FROM nginx:alpine
 
-# Copy built files to nginx
+# ===============================
+# Stage 2: Serve with NGINX
+# ===============================
+FROM nginx:stable-alpine
+
+# Remove default nginx static files
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy built files from previous stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy a custom nginx configuration if needed
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Add custom nginx config for SPA routing
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 80
 EXPOSE 80
 
-# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
