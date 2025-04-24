@@ -88,3 +88,9 @@ docker-compose up --build
 ```bash
 docker-compose up --build backend
 ```
+
+### 6. Dump database with terminal
+
+```bash
+docker exec -t postgres-db pg_dump -U postgres -d chat-app-project -F p > database/init.sql
+```

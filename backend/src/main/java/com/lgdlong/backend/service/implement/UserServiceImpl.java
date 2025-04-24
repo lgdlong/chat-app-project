@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
     public User createUser(UserDTO userDTO) {
         User user = new User(
                 userDTO.getUsername(),
-                userDTO.getEmail(),
                 userDTO.getPhone(),
+                userDTO.getEmail(),
                 userDTO.getPassword()
         );
         return userRepo.save(user);
