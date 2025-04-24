@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./AuthHeader.css";
 
 export default function LoginHeader() {

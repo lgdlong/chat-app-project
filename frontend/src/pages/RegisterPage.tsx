@@ -1,4 +1,3 @@
-import React from "react";
 import "./AuthPage.css";
 import RegisterHeader from "../components/RegisterHeader";
 import RegisterForm from "../components/RegisterForm";
