@@ -1,14 +1,13 @@
 package com.lgdlong.backend.dto;
 
+
 import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserDTO {
+public class UserResponseDTO {
+    private Long id;
     private String username;
-    private String phone;
     private String email;
-    private String password;
+    private String phone;
 }

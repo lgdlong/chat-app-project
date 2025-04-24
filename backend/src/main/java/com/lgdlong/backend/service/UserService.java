@@ -1,33 +1,25 @@
 package com.lgdlong.backend.service;
 
-import com.lgdlong.backend.dto.*;
-import com.lgdlong.backend.entity.*;
-import com.lgdlong.backend.repo.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import com.lgdlong.backend.dto.UserDTO;
+import com.lgdlong.backend.entity.User;
 
-import java.util.*;
+import java.util.List;
 
-@Service
+public interface UserService {
 
-public class UserService {
-    private final UserRepo userRepo;
+    User createUser(UserDTO userDTO);
 
-    @Autowired
-    public UserService(UserRepo userRepo) {
-        this.userRepo = userRepo;
-    }
+    List<User> getAllUsers();
 
-    public User addUser(UserDTO dto) {
-        User user = new User(dto.getUsername(), dto.getPhone(), dto.getEmail(), dto.getPassword());
-        return userRepo.save(user);
-    }
+    User getUserById(Long id);
 
-    public List<User> getAllUsers() {
-        return userRepo.findAll();
-    }
+    User updateUser(Long id, UserDTO userDTO);
 
-    public Optional<User> getUserById(Long id) {
-        return userRepo.findById(id);
-    }
+    void deleteUser(Long id);
+
+    User getUserByUsername(String username);
+
+    User getUserByPhone(String phone);
+
+
 }

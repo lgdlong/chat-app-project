@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class User {
-
     public static final String DEFAULT_AVATAR_URL = "https://picsum.photos/id/237/200/300";
 
     @Id
