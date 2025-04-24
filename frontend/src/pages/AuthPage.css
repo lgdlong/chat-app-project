@@ -1,0 +1,7 @@
+.auth-page {
+    margin: 0 5%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 30px); /* Account for the top margin */
+}
