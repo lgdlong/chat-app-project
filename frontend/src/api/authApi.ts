@@ -10,5 +10,5 @@ interface RegisterData {
 
 // Gọi API đăng ký người dùng
 export const registerUser = async (data: RegisterData) => {
-  return await axios.post("http://localhost:8081/api/users", data);
+  return await axios.post("http://localhost:8080/api/users", data);
 };
