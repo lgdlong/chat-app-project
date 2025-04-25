@@ -11,8 +11,9 @@ public class UserMapper {
         UserResponseDTO dto = new UserResponseDTO();
         dto.setId(user.getId());
         dto.setUsername(user.getUsername());
-        dto.setEmail(user.getEmail());
         dto.setPhone(user.getPhone());
+        dto.setEmail(user.getEmail());
+
         return dto;
     }
 }

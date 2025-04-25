@@ -1,5 +1,5 @@
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { registerUser } from "../api/authApi"; // Hàm gọi API backend
 
@@ -15,6 +15,9 @@ export default function RegisterForm() {
 
   // Thông báo trạng thái đăng ký
   const [message, setMessage] = useState("");
+
+  // For navigation
+  const navigate = useNavigate();
 
   // Cập nhật dữ liệu khi nhập input
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,9 +36,16 @@ export default function RegisterForm() {
 
     try {
       // Gọi API gửi dữ liệu lên backend
-      const { username, email, phone, password } = formData;
-      const response = await registerUser({ username, email, phone, password });
-      setMessage(response.data); // Trả về kết quả từ backend
+      const { username, phone, email, password } = formData;
+      const response = await registerUser({ username, phone, email, password });
+      
+      // Kiểm tra kết quả trả về từ backend
+      if (response.status === 201) {
+        // Redirect to the success page
+        navigate("/register-complete");
+      } else {
+        setMessage(response.data); // Trả về kết quả từ backend
+      }
     } catch (error: any) {
       if (error.response?.data) {
         setMessage(error.response.data);

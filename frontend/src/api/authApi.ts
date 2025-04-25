@@ -3,8 +3,8 @@ import axios from "axios";
 // Định nghĩa kiểu dữ liệu gửi đi
 interface RegisterData {
   username: string;
-  email: string;
   phone: string;
+  email: string;
   password: string;
 }
 

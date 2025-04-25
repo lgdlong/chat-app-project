@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
         String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
         User user = new User(
                 userDTO.getUsername(),
-                userDTO.getEmail(),
                 userDTO.getPhone(),
+                userDTO.getEmail(),
                 encodedPassword
         );
         return userRepo.save(user);
@@ -49,8 +49,8 @@ public class UserServiceImpl implements UserService {
     public User updateUser(Long id, UserDTO userDTO) {
         User existingUser = getUserById(id); // throws exception nếu không tìm thấy
         existingUser.setUsername(userDTO.getUsername());
-        existingUser.setEmail(userDTO.getEmail());
         existingUser.setPhone(userDTO.getPhone());
+        existingUser.setEmail(userDTO.getEmail());
         return userRepo.save(existingUser);
     }
 
