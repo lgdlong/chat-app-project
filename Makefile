@@ -10,6 +10,10 @@ project-restart:
 	docker-compose down -v
 	docker-compose up --build
 
+# Chạy project mỗi backend và db không cần frontend
+backend-only:
+	docker-compose up --build backend db pgadmin
+
 # Chạy project từ volume/data hiện tại (foreground log theo dõi)
 start:
 	docker-compose up
