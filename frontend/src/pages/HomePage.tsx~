@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> b19f6e25b647b905b874c5555985d618b678449e
-export default function HomePage() {
-  return <div>HomePage</div>;
-}
