@@ -146,7 +146,7 @@ Chỉ sử dụng theo đúng mục đích của từng bước trong quy trình
 | `chore/`    | Thực hiện các công việc lặt vặt như cập nhật thư viện, cấu hình, dọn dẹp mã nguồn, v.v.     | `chore/update-dependencies`           |
 | `test/`     | Thử nghiệm hoặc kiểm tra các ý tưởng mới                                                    | `test/try-new-ui-layout`              |
 
-Tuyệt! Dưới đây là phần bạn có thể **thêm vào `README.md`**, đặt ngay dưới phần **Branch naming convention prefixes**, để hướng dẫn cách viết commit message chuẩn theo [Conventional Commits](https://www.conventionalcommits.org/).
+Bên dưới là cách viết commit message chuẩn theo [Conventional Commits](https://www.conventionalcommits.org/).
 
 ----------
 
