@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
         String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
         User user = new User(
                 userDTO.getUsername(),
-                userDTO.getEmail(),
                 userDTO.getPhone(),
+                userDTO.getEmail(),
                 encodedPassword
         );
         return userRepo.save(user);

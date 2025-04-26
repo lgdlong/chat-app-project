@@ -1,4 +1,3 @@
-
 import "./AuthHeader.css";
 
 export default function LoginHeader() {
