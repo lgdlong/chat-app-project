@@ -1,10 +1,13 @@
 package com.lgdlong.backend.entity;
 
 
+import com.fasterxml.jackson.annotation.*;
 import com.lgdlong.backend.enums.UserStatus;
 import com.lgdlong.backend.enums.UserRole;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
+import org.springframework.security.crypto.password.*;
 
 import java.time.LocalDateTime;
 
@@ -32,7 +35,9 @@ public class User {
     private String email;
 
     @Column(name = "password_hash", nullable = false)
-    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.PUBLIC)
+    @Getter(AccessLevel.PUBLIC)
+    @JsonIgnore
     private String passwordHash;
 
     @Column(name = "display_name", length = 50)
@@ -64,6 +69,10 @@ public class User {
         this.status = UserStatus.ACTIVE;
         this.role = UserRole.USER;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public boolean checkPassword(String passwordHash, PasswordEncoder passwordEncoder) {
+        return passwordEncoder.matches(passwordHash, this.passwordHash);
     }
 
     @PrePersist
