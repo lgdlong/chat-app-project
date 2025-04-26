@@ -6,6 +6,7 @@ import com.lgdlong.backend.exception.*;
 import com.lgdlong.backend.repo.*;
 import com.lgdlong.backend.service.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.*;
 
 import java.util.*;
@@ -13,19 +14,22 @@ import java.util.*;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepo userRepo) {
+    public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public User createUser(UserDTO userDTO) {
+        String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
         User user = new User(
                 userDTO.getUsername(),
                 userDTO.getPhone(),
                 userDTO.getEmail(),
-                userDTO.getPassword()
+                encodedPassword
         );
         return userRepo.save(user);
     }

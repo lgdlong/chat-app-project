@@ -1,0 +1,4 @@
+package com.lgdlong.backend.config;
+
+public class SecurityConfig {
+}
