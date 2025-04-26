@@ -11,7 +11,7 @@ export default function AppRoutes() {
         - replace để không lưu / vào history (back sẽ không quay về /) */}
       <Route path="/" element={<Navigate to="/login" replace />} />
 
-      <Route path="/" element={<HomePage />} />
+      <Route path="/home" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
     </Routes>
