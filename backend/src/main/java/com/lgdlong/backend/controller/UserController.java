@@ -4,7 +4,6 @@ import com.lgdlong.backend.dto.*;
 import com.lgdlong.backend.entity.*;
 import com.lgdlong.backend.mapper.*;
 import com.lgdlong.backend.service.*;
-import com.lgdlong.backend.service.implement.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -69,5 +68,13 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // READ ONE BY USERNAME: GET /api/users/by-username?username=...
+    @PostMapping("/hash-by-username/{id}")
+    public ResponseEntity<Void> encryptPassword(@PathVariable Long id) {
+        userService.encryptPasswordForUser(id);
+
+        return ResponseEntity.ok().build();
     }
 }

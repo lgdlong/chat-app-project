@@ -21,5 +21,8 @@ public interface UserService {
 
     User getUserByPhone(String phone);
 
+    User getUserByUsernameOrPhone(String usernameOrPhone);
+
+    void encryptPasswordForUser(Long id);
 
 }
