@@ -3,7 +3,6 @@ package com.lgdlong.backend.repo;
 import com.lgdlong.backend.entity.*;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.*;
 
 import java.util.*;
 

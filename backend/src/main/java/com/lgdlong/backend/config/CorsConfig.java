@@ -15,7 +15,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(@NotNull CorsRegistry registry) {
                 registry.addMapping("/**") // tất cả API
-                        .allowedOrigins("http://localhost:3000") // cho phép React domain
+                        .allowedOrigins("http://localhost:3000", "http://localhost:8080") // cho phép React domain
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true); // nếu cần gửi cookie

@@ -42,7 +42,8 @@ export default function RegisterForm() {
       // Kiểm tra kết quả trả về từ backend
       if (response.status === 201) {
         // Redirect to the success page
-        navigate("/register-complete");
+        navigate("/home");      
+        alert("Đăng ký thành công!"); // Thông báo thành công
       } else {
         setMessage(response.data); // Trả về kết quả từ backend
       }

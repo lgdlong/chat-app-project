@@ -1,5 +1,6 @@
 package com.lgdlong.backend.service.implement;
 
+import com.lgdlong.backend.dto.*;
 import com.lgdlong.backend.entity.User;
 import com.lgdlong.backend.security.*;
 import com.lgdlong.backend.service.*;
@@ -23,5 +24,10 @@ public class AuthServiceImpl implements AuthService {
         }
 
         return jwtTokenProvider.generateToken(usernameOrPhone);
+    }
+
+    @Override
+    public User register(UserDTO userDTO) {
+        return userService.createUser(userDTO);
     }
 }

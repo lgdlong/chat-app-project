@@ -1,27 +1,22 @@
 package com.lgdlong.backend.service.implement;
 
 import com.lgdlong.backend.dto.*;
-import com.lgdlong.backend.entity.*;
 import com.lgdlong.backend.entity.User;
 import com.lgdlong.backend.exception.*;
 import com.lgdlong.backend.repo.*;
 import com.lgdlong.backend.service.*;
-import org.springframework.beans.factory.annotation.*;
+import lombok.*;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.*;
 
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder) {
-        this.userRepo = userRepo;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public User createUser(UserDTO userDTO) {

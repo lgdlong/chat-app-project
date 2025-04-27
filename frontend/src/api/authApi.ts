@@ -1,4 +1,3 @@
-import axios from "axios";
 import api from './axiosConfig';
 
 // Định nghĩa kiểu dữ liệu gửi đi
@@ -16,7 +15,7 @@ interface LoginData {
 
 // Gọi API đăng ký người dùng
 export const registerUser = async (data: RegisterData) => {
-  return await axios.post("http://localhost:8080/api/users", data);
+  return await api.post("/api/auth/register", data);
 };
 
 // Gọi API đăng nhập người dùng

@@ -1,6 +1,8 @@
 package com.lgdlong.backend.controller;
 
 import com.lgdlong.backend.dto.*;
+import com.lgdlong.backend.entity.*;
+import com.lgdlong.backend.mapper.*;
 import com.lgdlong.backend.service.implement.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +22,11 @@ public class AuthController {
         return ResponseEntity.ok(new LoginResponse(token));
     }
 
-//    @PostMapping("/register")
-//    public String register(@RequestBody RegisterRequest registerRequest) {
-//        // Implement registration logic
-//        return "Registration successful";
-//    }
+    @PostMapping("/register")
+    public ResponseEntity<UserResponseDTO> register(@RequestBody UserDTO userDTO) {
+        UserMapper userMapper = new UserMapper();
+        User user = authServiceImpl.register(userDTO);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(userMapper.toDTO(user));
+    }
 }
