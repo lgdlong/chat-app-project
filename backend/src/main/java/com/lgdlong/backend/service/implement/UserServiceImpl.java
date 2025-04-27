@@ -7,7 +7,6 @@ import com.lgdlong.backend.exception.*;
 import com.lgdlong.backend.repo.*;
 import com.lgdlong.backend.service.*;
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.*;
 
@@ -51,8 +50,8 @@ public class UserServiceImpl implements UserService {
     public User updateUser(Long id, UserDTO userDTO) {
         User existingUser = getUserById(id); // throws exception nếu không tìm thấy
         existingUser.setUsername(userDTO.getUsername());
-        existingUser.setEmail(userDTO.getEmail());
         existingUser.setPhone(userDTO.getPhone());
+        existingUser.setEmail(userDTO.getEmail());
         return userRepo.save(existingUser);
     }
 
