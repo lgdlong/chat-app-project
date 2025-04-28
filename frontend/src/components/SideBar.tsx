@@ -2,16 +2,11 @@
 import "../css/variables.css";
 import "./SideBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRightFromBracket,
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
-import { Button, Form } from "react-bootstrap";
-import { useState } from "react";
+import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import ContactSearch from "./ContactSearch";
+import ChatList from "./ChatList";
 
 export default function SideBar() {
-  const [inputValue, setInputValue] = useState("");
-  const [inputFocused, setInputFocused] = useState(false);
   interface User {
     id: number;
     displayName: string;
@@ -48,31 +43,9 @@ export default function SideBar() {
           />
         </div>
       </div>
-      <div className="chat-list-container d-flex flex-row ">
-        <div id="contact-search">
-          <div className="search-bar d-flex align-items-center">
-            <FontAwesomeIcon icon={faMagnifyingGlass} id="search-icon" />
-            <Form.Control
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onFocus={() => setInputFocused(true)}
-              onBlur={() => setInputFocused(false)}
-              placeholder="Search..."
-              id="contact-search-input"
-              className="no-border-input"
-            />
-          </div>
-          {(inputFocused || inputValue.length > 0) && (
-            <Button
-              id="close-list-btn"
-              className="d-flex justify-content-center align-items-center"
-              onClick={() => setInputValue("")}
-            >
-              Close
-            </Button>
-          )}
-        </div>
-        <div id="conversationListId"></div>
+      <div className="chat-list-container d-flex flex-column">
+        <ContactSearch />
+        <ChatList />
       </div>
     </nav>
   );

@@ -6,11 +6,9 @@ import ChatView from "../components/ChatView";
 
 export default function HomePage() {
   return (
-    <>
+    <div className="d-flex flex-row">
       <SideBar />
-      <main>
-        <ChatView />
-      </main>
-    </>
+      <ChatView />
+    </div>
   );
 }

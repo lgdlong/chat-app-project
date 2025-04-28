@@ -1,17 +1,6 @@
-import api from './axiosConfig';
-
-// Định nghĩa kiểu dữ liệu gửi đi
-interface RegisterData {
-  username: string;
-  phone: string;
-  email: string;
-  password: string;
-}
-
-interface LoginData {
-  username: string;
-  password: string;
-}
+import api from "./axiosConfig";
+import { LoginData } from "../interfaces/LoginData";
+import { RegisterData } from "../interfaces/RegisterData";
 
 // Gọi API đăng ký người dùng
 export const registerUser = async (data: RegisterData) => {
