@@ -1,0 +1,113 @@
+#sidebarNav {
+  height: 100vh;
+  width: var(--nav-width);
+  background-color: var();
+}
+
+#main-tab {
+  width: var(--main-tab-width);
+  flex: none;
+  box-sizing: border-box;
+  background-color: var(--layer-background-navbar-normal);
+  position: relative;
+}
+
+#user-info {
+  padding-top: 32px;
+}
+
+#user-info div h2 {
+  font-size: small;
+}
+
+#logout-btn {
+  font-size: 24px;
+}
+
+.profile-img {
+  width: var(--avt-width);
+  height: var(--avt-width);
+  border-radius: 50%;
+  border: 1px rgb(204, 204, 204) solid;
+  object-fit: cover;
+}
+
+.leftbar-tab {
+  width: 100%;
+  height: 56px;
+}
+
+.chat-list-container {
+  width: var(--right-side-width);
+  /* background-color: var(--layer-background); */
+  background-color: aqua;
+}
+
+#contact-search {
+  width: 344px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 0 16px;
+}
+
+.search-bar {
+  width: 230px;
+  height: 32px;
+  display: flex;
+  background-color: var(--input-field-bg-filled);
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+#search-icon {
+  font-weight: 100;
+}
+
+#close-list-btn {
+  width: auto;
+  font-size: 24px;
+  color: #000;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+#contact-search-input {
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  padding-left: 10px;
+}
+
+#contact-search-input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+#close-list-btn {
+  font-size: 1rem;
+  font-weight: 600;
+  width: auto;
+  height: 32px;
+  color: black;
+  margin-left: 10px;
+}
+
+#close-list-btn:hover {
+  background-color: var(--input-field-bg-filled);
+}
+
+#close-list-btn:active {
+  background-color: var(--input-field-bg-filled);
+}

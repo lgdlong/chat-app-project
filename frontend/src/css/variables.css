@@ -1,0 +1,10 @@
+:root {
+  --main-tab-width: 64px;
+  --right-side-width: 344px;
+  --nav-width: 408px;
+  --avt-width: 48px;
+
+  --layer-background: #fff;
+  --layer-background-navbar-normal: #005ae0;
+  --input-field-bg-filled: #ebecf0;
+}
