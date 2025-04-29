@@ -6,8 +6,8 @@ import MessageView from "./MessageView";
 import { Message } from "../interfaces/Message";
 
 export default function ChatView() {
+  const [role, setRole] = useState<"1" | "2">("1");
   const [messageSender, setMessageSender] = useState("");
-  const [messageOther, setMessageOther] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     { id: 1, sender: "2", content: "Hello!", createdAt: new Date() },
     { id: 2, sender: "1", content: "Hi!", createdAt: new Date() },
@@ -44,7 +44,7 @@ export default function ChatView() {
       createdAt: new Date(),
     };
     setMessages([...messages, newMessage]);
-    sender === "1" ? setMessageSender("") : setMessageOther("");
+    setMessageSender("");
   };
 
   const chat: Chat = {
@@ -74,35 +74,15 @@ export default function ChatView() {
           <MessageView messages={messages} currentUserId={1} />
 
           <div className="chat-input-area">
-            <Form className="p-2">
-              <Row className="align-items-end">
-                <Col xs={10}>
-                  <Form.Control
-                    as="textarea"
-                    rows={1}
-                    value={messageOther}
-                    onChange={(e) => setMessageOther(e.target.value)}
-                    placeholder="Type other message..."
-                    style={{ resize: "none", height: "40px" }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        handleSend("2", messageOther);
-                      }
-                    }}
-                  />
-                </Col>
-                <Col xs={2}>
-                  <Button
-                    variant="secondary"
-                    onClick={() => handleSend("2", messageOther)}
-                    className="w-100"
-                  >
-                    Send
-                  </Button>
-                </Col>
-              </Row>
-            </Form>
+            {/* Dùng để test nhắn 2 chiều */}
+            <Form.Select
+              aria-label="Sender"
+              style={{ width: "200px", marginLeft: "10px" }}
+              onChange={(e) => setRole(e.target.value as "1" | "2")}
+            >
+              <option value="1">Sender</option>
+              <option value="2">Receiver</option>
+            </Form.Select>
 
             <Form className="p-2">
               <Row className="align-items-end">
@@ -117,7 +97,7 @@ export default function ChatView() {
                     onKeyDown={(e) => {
                       if (e.key === "Enter" && !e.shiftKey) {
                         e.preventDefault();
-                        handleSend("1", messageSender);
+                        handleSend(role, messageSender);
                       }
                     }}
                   />
@@ -125,7 +105,7 @@ export default function ChatView() {
                 <Col xs={2}>
                   <Button
                     variant="primary"
-                    onClick={() => handleSend("1", messageSender)}
+                    onClick={() => handleSend(role, messageSender)}
                     className="w-100"
                   >
                     Send
