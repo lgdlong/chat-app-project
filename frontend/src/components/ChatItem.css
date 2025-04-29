@@ -1,0 +1,47 @@
+#chat-item {
+  width: 100%;
+  height: 74px;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.chat-item:not(.selected):hover {
+  background-color: var(--layer-background-chat-hover);
+}
+
+.chat-item.selected {
+  background-color: var(--layer-background-selected);
+}
+
+.chat-name,
+.chat-type,
+.chat-id {
+  font-size: 14px;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.chat-name {
+  font-weight: 600;
+  padding-top: 15px;
+}
+
+.chat-type {
+  padding-bottom: 15px;
+}
+
+.avatar {
+  width: var(--avt-width);
+  height: var(--avt-width);
+  border-radius: 50%;
+  border: 1px rgb(204, 204, 204) solid;
+  object-fit: cover;
+}
+
+.avt-container {
+  padding: 0;
+}

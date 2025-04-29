@@ -1,0 +1,68 @@
+#contact-search {
+  width: 344px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.search-bar {
+  width: 230px;
+  height: 32px;
+  display: flex;
+  background-color: var(--input-field-bg-filled);
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+#search-icon {
+  font-weight: 100;
+}
+
+#close-list-btn {
+  width: auto;
+  font-size: 24px;
+  color: #000;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+#contact-search-input {
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  padding-left: 10px;
+}
+
+#contact-search-input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+#close-list-btn {
+  font-size: 16px;
+  font-weight: 500;
+  width: auto;
+  height: 32px;
+  color: black;
+  margin-left: 10px;
+}
+
+#close-list-btn:hover {
+  background-color: #e5e7eb;
+}
+
+#close-list-btn:active {
+  background-color: #e5e7eb;
+}
