@@ -39,7 +39,6 @@ export default function SideBar() {
             icon={faArrowRightFromBracket}
             id="logout-btn"
             color="white"
-            // className="mb-4"
           />
         </div>
       </div>

@@ -1,6 +1,7 @@
-import { Container } from "react-bootstrap";
 import { useEffect, useRef } from "react";
 import { MessageViewProps } from "../interfaces/MessageViewProps";
+import { Container } from "react-bootstrap";
+import "./ChatView.css";
 
 export default function MessageView({
   messages,
@@ -9,43 +10,25 @@ export default function MessageView({
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Tự động scroll xuống dưới khi có tin nhắn mới
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (
     <Container
       fluid
-      className="p-3"
-      style={{ height: "100%", overflowY: "auto" }}
+      className="p-3 message-view-container"
     >
-      {messages.map((msg) => (
-        <div
-          key={msg.id}
-          className={`message-item ${
-            msg.sender === String(currentUserId) ? "me" : "other"
-          }`}
-          style={{
-            marginBottom: "10px",
-            textAlign: msg.sender === String(currentUserId) ? "right" : "left",
-          }}
-        >
+      {messages.map((msg) => {
+        const isMe = msg.sender === String(currentUserId);
+        return (
           <div
-            style={{
-              display: "inline-block",
-              backgroundColor:
-                msg.sender === String(currentUserId) ? "#007bff" : "#f0f0f0",
-              color: msg.sender === String(currentUserId) ? "white" : "black",
-              borderRadius: "20px",
-              padding: "10px 15px",
-              maxWidth: "70%",
-              wordBreak: "break-word",
-            }}
+            key={msg.id}
+            className={`message-item ${isMe ? "me" : "other"}`}
           >
-            {msg.content}
+            <div className="message-bubble">{msg.content}</div>
           </div>
-        </div>
-      ))}
+        );
+      })}
       <div ref={bottomRef} />
     </Container>
   );

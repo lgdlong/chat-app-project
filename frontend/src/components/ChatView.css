@@ -3,11 +3,20 @@ main {
   background-color: var(--input-field-bg-filled);
 }
 
+#chatViewContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-left: 1px solid var(--border-color);
+}
+
 header {
   height: 68px;
   padding: 0 16px;
   border-bottom: 1px solid var(--border-color);
   background-color: white;
+  display: flex;
+  align-items: center;
 }
 
 .avatar-header {
@@ -23,6 +32,53 @@ header {
   margin: 0;
 }
 
-.chat-input {
-  height: 50px;
+.message-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.message-view-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-item {
+  margin-bottom: 10px;
+}
+
+.message-item.me {
+  text-align: right;
+}
+
+.message-item.other {
+  text-align: left;
+}
+
+.message-bubble {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 70%;
+  word-break: break-word;
+}
+
+.message-item.me .message-bubble {
+  background-color: #007bff;
+  color: white;
+}
+
+.message-item.other .message-bubble {
+  background-color: #f0f0f0;
+  color: black;
+}
+
+.chat-input-area {
+  border-top: 1px solid var(--border-color);
+  background-color: white;
 }
