@@ -1,5 +1,5 @@
 import ChatItem from "./ChatItem";
-import { Chat } from "../interfaces/Chat";
+import { Chat } from "../../interfaces/Chat";
 import { useState } from "react";
 
 export default function ChatList() {

@@ -30,6 +30,7 @@
   border-radius: 50%;
   border: 1px rgb(204, 204, 204) solid;
   object-fit: cover;
+  cursor:pointer;
 }
 
 .leftbar-tab {
@@ -42,3 +43,4 @@
   background-color: var(--layer-background);
   border-right: 1px solid var(--border-color);
 }
+

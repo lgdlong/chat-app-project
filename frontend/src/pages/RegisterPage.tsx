@@ -1,6 +1,6 @@
 import "./AuthPage.css";
-import RegisterHeader from "../components/RegisterHeader";
-import RegisterForm from "../components/RegisterForm";
+import RegisterHeader from "../components/auth/RegisterHeader";
+import RegisterForm from "../components/auth/RegisterForm";
 
 export default function RegisterPage() {
   return (

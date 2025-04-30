@@ -1,9 +1,9 @@
 import "./ChatView.css";
-import { Chat } from "../interfaces/Chat";
+import { Chat } from "../../interfaces/Chat";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import MessageView from "./MessageView";
-import { Message } from "../interfaces/Message";
+import { Message } from "../../interfaces/Message";
 
 export default function ChatView() {
   const [role, setRole] = useState<"1" | "2">("1");

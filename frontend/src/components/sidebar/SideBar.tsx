@@ -1,28 +1,19 @@
 // import { Form, Button } from "react-bootstrap";
-import "../css/variables.css";
+import "../../css/variables.css";
 import "./SideBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import ContactSearch from "./ContactSearch";
-import ChatList from "./ChatList";
+import ContactSearch from "../search/ContactSearch";
+import ChatList from "../chat/ChatList";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext"; // ← thêm dòng này
 
 export default function SideBar() {
-  interface User {
-    id: number;
-    displayName: string;
-    username: string;
-    email: string;
-    phone: string;
-    picUrl: string;
-  }
+  const navigate = useNavigate();
+  const { user } = useUser(); // ← dùng user từ context
 
-  const user: User = {
-    id: 1,
-    displayName: "Phung Luu Hoang Long",
-    username: "lgdlong",
-    email: "phungluuhoanglong@gmail.com",
-    phone: "0123456789",
-    picUrl: "https://picsum.photos/id/237/200/300",
+  const goToProfile = () => {
+    navigate("/profile");
   };
 
   return (
@@ -32,7 +23,13 @@ export default function SideBar() {
         className="d-flex flex-column justify-content-between align-items-center"
       >
         <div id="user-info">
-          <img className="profile-img" src={user.picUrl} alt="User Avatar" />
+          <img
+            className="profile-img"
+            onClick={goToProfile}
+            src={user?.picUrl || "https://via.placeholder.com/150"}
+            alt="User Avatar"
+            style={{ cursor: "pointer" }}
+          />
         </div>
         <div className="leftbar-tab d-flex justify-content-center align-items-center">
           <FontAwesomeIcon

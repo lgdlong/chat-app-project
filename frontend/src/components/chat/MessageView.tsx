@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { MessageViewProps } from "../interfaces/MessageViewProps";
+import { MessageViewProps } from "../../interfaces/MessageViewProps";
 import { Container } from "react-bootstrap";
 import "./ChatView.css";
 

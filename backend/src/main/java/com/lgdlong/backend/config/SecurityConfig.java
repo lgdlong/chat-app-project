@@ -18,8 +18,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
-//                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(csrf -> csrf.disable()) // Tắt CSRF
+                .cors(cors -> cors.configure(http)) // Bật CORS
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 new AntPathRequestMatcher("/api/auth/login"),
@@ -30,7 +30,7 @@ public class SecurityConfig {
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(login -> login.disable());
+                .formLogin(login -> login.disable()); // Tắt login form mặc định
 
         return http.build();
     }

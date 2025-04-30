@@ -2,7 +2,7 @@ import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { loginUser } from "../api/authApi"; // Import your API function
+import { loginUser } from "../../api/authApi"; // Import your API function
 import "./AuthForm.css";
 
 export default function LoginForm() {
