@@ -1,0 +1,40 @@
+.auth-form {
+    width: 500px !important;
+    background-color: white !important;
+    padding: 2rem !important;
+    border-radius: 40px !important;
+    margin-top: 100px !important;
+
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.form-heading {
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    color: #000 !important;
+}
+
+.subheading {
+    padding: 0 2.5rem !important;
+    font-weight: 500 !important;
+}
+
+.input {
+    font-weight: 500 !important;
+    padding: 10px 0 10px 20px !important;
+}
+
+.submit-btn {
+    background-color: #FDC886 !important;
+    color: #2d2d2d !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem;
+    border: none !important;
+}
+
+.subtext-other-signin {
+    font-size: 0.8rem !important;
+    color: #000 !important;
+}

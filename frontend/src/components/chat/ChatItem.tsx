@@ -1,7 +1,7 @@
 import { Row, Col, Container } from "react-bootstrap";
-import { ChatItemProps } from "../interfaces/ChatItemProps";
+import { ChatItemProps } from "../../interfaces/ChatItemProps";
 import "./ChatItem.css";
-import "../css/variables.css";
+import "../../css/variables.css";
 
 export default function ChatItem({
   chat,

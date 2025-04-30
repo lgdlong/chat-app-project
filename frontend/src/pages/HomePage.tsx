@@ -1,8 +1,8 @@
 import "./HomePage.css";
 import "../css/variables.css";
 
-import SideBar from "../components/SideBar";
-import ChatView from "../components/ChatView";
+import SideBar from "../components/sidebar/SideBar";
+import ChatView from "../components/chat/ChatView";
 
 export default function HomePage() {
   return (
