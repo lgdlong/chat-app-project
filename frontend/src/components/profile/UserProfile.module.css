@@ -1,22 +1,62 @@
-.cover-photo {
-    background: url("https://media-hosting.imagekit.io/b033b794cbba4b35/490191769_1077625737737226_5317678520741036604_n.jpg?Expires=1840579515&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=zGKm8brxNl4XSyHUIvKbHlCYExx3o6ppffiYnHB1cl4muP7AQTsbGeSNBq21VpeO7g3RC7FsXFxwdjAJec3XKQ5hVghjgEhvrImCvNVjrqzYWmotDDdm7C1g7V3nNVJ-uT2sFe9x1z-XqTiaKYGqWHz7Vr8wqUgcylzh-Xa0924m9L0~Xk3eciVbQKrrfwYaFiih9VTdOsigOPjF9j14A2kAefQ11859edcOkbSx3Lge1~-hcfpP5r3s4McbSh1VwK8W-IMpA8CoRVeOCxL~X8vGJ~cph6e1ZQMvvy3VkzC6LC5uHKkfI4DDJ2~J919-Kg3P2e169JwUfX16DBRRBQ__") center/cover;
-    height: 250px;
-    border-radius: 3px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+.user-profile-modal .modal-content {
+  border-radius: 10px;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
 
-  .avatar {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid white;
-    margin-top: -50px;
-    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-  }
-  
-  .profile-header {
-    margin-top: -60px;
-    padding: 20px 0;
-  }
-  
+.user-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cover-image {
+  width: 100%;
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 24px;
+  border: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.avatar-section {
+  margin-top: -50px;
+  z-index: 2;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.info-section {
+  margin-top: 10px;
+}
+
+.username {
+  margin: 0;
+  font-weight: 600;
+}
+
+.email {
+  color: #666;
+  margin: 5px 0 10px;
+}
+
+.update-btn-wrapper {
+  margin-bottom: 10px;
+}
