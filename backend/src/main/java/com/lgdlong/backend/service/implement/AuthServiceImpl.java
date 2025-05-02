@@ -5,8 +5,11 @@ import com.lgdlong.backend.entity.User;
 import com.lgdlong.backend.security.*;
 import com.lgdlong.backend.service.*;
 import lombok.*;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
+
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -17,14 +20,15 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponse login(String usernameOrPhone, String password) {
-        User user = userService.getUserByUsernameOrPhone(usernameOrPhone);
+        User user = userService.getUserByUsernameOrPhone(usernameOrPhone)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + usernameOrPhone));
 
         if (!user.checkPassword(password, passwordEncoder)) {
             throw new IllegalArgumentException("Invalid password");
         }
 
         long iat = System.currentTimeMillis() / 1000;
-        long exp = iat + 3600; // 1 giờ
+        long exp = iat + 3600;
 
         JwtTokenPayload payload = new JwtTokenPayload(
                 user.getId(),
@@ -40,6 +44,7 @@ public class AuthServiceImpl implements AuthService {
 
         return new LoginResponse(token, user.getUsername(), user.getRole(), exp - iat);
     }
+
 
 
     @Override

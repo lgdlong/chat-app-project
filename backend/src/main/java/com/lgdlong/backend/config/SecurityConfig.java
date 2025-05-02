@@ -2,6 +2,7 @@ package com.lgdlong.backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.*;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,22 +19,36 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Tắt CSRF
-                .cors(cors -> cors.configure(http)) // Bật CORS
+                // ❌ Tắt CSRF vì bạn đang làm REST API (không dùng session, cookie)
+                .csrf(csrf -> csrf.disable())
+
+                // ✅ Bật CORS để dùng cấu hình trong CorsConfig (WebMvcConfigurer)
+                .cors(Customizer.withDefaults())
+
+                // ✅ Phân quyền route
                 .authorizeHttpRequests(auth -> auth
+                        // Các route public, không cần token
                         .requestMatchers(
-                                new AntPathRequestMatcher("/api/auth/login"),
-                                new AntPathRequestMatcher("/api/auth/register"),
-                                new AntPathRequestMatcher("/api/users/"),
-                                new AntPathRequestMatcher("/api/users/**")
-//                                new AntPathRequestMatcher("/api/**")
+                                "/api/auth/login",
+                                "/api/auth/register",
+                                "/api/users/search" // endpoint tìm user
                         ).permitAll()
+
+                        // Các route khác cần xác thực bằng JWT
                         .anyRequest().authenticated()
                 )
-                .formLogin(login -> login.disable()); // Tắt login form mặc định
+
+                // ✅ Dùng JWT để xác thực cho REST API
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(Customizer.withDefaults())
+                )
+
+                // ❌ Tắt login form mặc định của Spring Security
+                .formLogin(form -> form.disable());
 
         return http.build();
     }
+
 
 //    @Bean
 //    public CorsConfigurationSource corsConfigurationSource() {

@@ -77,4 +77,13 @@ public class UserController {
 
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<UserResponseDTO> searchUser(@RequestParam("query") String query) {
+        Optional<User> userOpt = userService.getUserByUsernameOrPhone(query);
+
+        return userOpt
+                .map(user -> ResponseEntity.ok(userMapper.toDTO(user)))
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

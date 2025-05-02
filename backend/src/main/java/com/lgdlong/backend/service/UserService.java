@@ -3,7 +3,7 @@ package com.lgdlong.backend.service;
 import com.lgdlong.backend.dto.UserDTO;
 import com.lgdlong.backend.entity.User;
 
-import java.util.List;
+import java.util.*;
 
 public interface UserService {
 
@@ -21,7 +21,7 @@ public interface UserService {
 
     User getUserByPhone(String phone);
 
-    User getUserByUsernameOrPhone(String usernameOrPhone);
+    Optional<User> getUserByUsernameOrPhone(String usernameOrPhone);
 
     void encryptPasswordForUser(Long id);
 

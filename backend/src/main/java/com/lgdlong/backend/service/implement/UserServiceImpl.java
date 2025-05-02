@@ -69,13 +69,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUsernameOrPhone(String usernameOrPhone) {
-        if (usernameOrPhone.matches("\\d{10,11}")) { // regex check phone
-            return userRepo.findByPhone(usernameOrPhone)
-                    .orElseThrow(() -> new UsernameNotFoundException("Phone not found"));
-        } else {
-            return userRepo.findByUsername(usernameOrPhone)
-                    .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+    public Optional<User> getUserByUsernameOrPhone(String usernameOrPhone) {
+        if (usernameOrPhone.matches("\\d{10,11}")) { // Nếu là số điện thoại
+            return userRepo.findByPhone(usernameOrPhone);
+        } else { // Ngược lại là username
+            return userRepo.findByUsername(usernameOrPhone);
         }
     }
 
