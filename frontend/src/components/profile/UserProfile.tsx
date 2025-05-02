@@ -11,13 +11,15 @@ export default function UserProfile({ user }: Props) {
       <div className="cover-photo" />
       <div className="profile-header">
         <img
-          className="avatar"
+          className="profile-avatar"
           src={user.picUrl || "https://via.placeholder.com/150"}
           alt="avatar"
         />
         <h2 className="mt-3">{user.username}</h2>
       </div>
-      <p><strong>Email:</strong> {user.email}</p>
+      <p>
+        <strong>Email:</strong> {user.email}
+      </p>
     </div>
   );
 }
