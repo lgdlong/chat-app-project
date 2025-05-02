@@ -4,7 +4,7 @@ import com.lgdlong.backend.dto.*;
 import com.lgdlong.backend.entity.*;
 
 public interface AuthService {
-    String login(String username, String password);
+    LoginResponse login(String username, String password);
 
     User register(UserDTO userDTO);
 
