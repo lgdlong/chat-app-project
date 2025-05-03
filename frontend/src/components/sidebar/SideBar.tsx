@@ -3,7 +3,7 @@ import "../../css/variables.css";
 import "./SideBar.css";
 import ContactSearch from "../search/ContactSearch";
 import ChatList from "../chat/ChatList";
-import { useUser } from "../../context/UserContext"; // ← thêm dòng này
+import { useUser } from "../../context/UserContext";
 import LogoutButton from "../LogoutButton";
 //import { useNavigate } from "react-router-dom";
 import { useState } from "react";
