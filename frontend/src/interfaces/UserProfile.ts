@@ -4,6 +4,7 @@ export interface UserProfile {
     email: string;
     displayName: string;
     picUrl?: string;
+    status: string; // từ "online" | "busy" | "offline" → string
     // bio?: string;
     // createdAt: string;
   }
