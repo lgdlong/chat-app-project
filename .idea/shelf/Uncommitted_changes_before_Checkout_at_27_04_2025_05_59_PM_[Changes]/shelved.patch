@@ -44,15 +44,14 @@ diff --git a/frontend/src/api/authApi.ts b/frontend/src/api/authApi.ts
 @@ -16,10 +16,10 @@
  
  // Gọi API đăng ký người dùng
- export const registerUser = async (data: RegisterData) => {
--  return await axios.post("/api/auth/users", data);
-+  return await axios.post("http://localhost:8080/api/users", data);
- };
- 
- // Gọi API đăng nhập người dùng
- export const loginUser = async (data: LoginData) => {
--  return await api.post("/api/auth/login", data);
-+  return await api.post("http://localhost:8080/api/auth/login", data);
+export const registerUser = async (data: RegisterData) => {
+  return await axios.post(import.meta.env.VITE_API_BASE_URL + "/api/users", data);
+};
+
+// Gọi API đăng nhập người dùng
+export const loginUser = async (data: LoginData) => {
+  return await api.post(import.meta.env.VITE_API_BASE_URL + "/api/auth/login", data);
+};
  };
 \ No newline at end of file
 Index: .idea/modules.xml
