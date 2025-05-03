@@ -1,12 +1,11 @@
 // import { Form, Button } from "react-bootstrap";
 import "../../css/variables.css";
 import "./SideBar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import ContactSearch from "../search/ContactSearch";
 import ChatList from "../chat/ChatList";
+import { useUser } from "../../context/UserContext"; // ← thêm dòng này
+import LogoutButton from "../LogoutButton";
 //import { useNavigate } from "react-router-dom";
-import { useUser } from "../../context/UserContext";
 import { useState } from "react";
 import UserProfile from "../profile/UserProfile";
 
@@ -34,13 +33,7 @@ export default function SideBar() {
               style={{ cursor: "pointer" }}
             />
           </div>
-          <div className="leftbar-tab d-flex justify-content-center align-items-center">
-            <FontAwesomeIcon
-              icon={faArrowRightFromBracket}
-              id="logout-btn"
-              color="white"
-            />
-          </div>
+          <LogoutButton />
         </div>
         <div className="chat-list-container d-flex flex-column">
           <ContactSearch />

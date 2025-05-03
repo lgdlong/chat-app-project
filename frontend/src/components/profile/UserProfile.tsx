@@ -26,7 +26,7 @@ export default function UserProfileModal({ user, show, onClose }: Props) {
         {/* button update rỗng  */}
         <div className={styles['update-btn-wrapper']}>
           <button className="btn btn-outline-primary">
-            ✎ Cập nhật  
+            ✎ Cập nhật
           </button>
         </div>
       </div>

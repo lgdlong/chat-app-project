@@ -2,8 +2,7 @@ package com.lgdlong.backend.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginRequest {
