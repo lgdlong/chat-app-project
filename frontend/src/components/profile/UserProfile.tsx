@@ -12,25 +12,36 @@ export default function UserProfileModal({ user, show, onClose }: Props) {
   return (
     <Modal show={show} onHide={onClose} centered dialogClassName={styles['user-profile-modal']}>
       <div className={styles['user-profile-container']}>
-        <div className={styles['cover-image']} style={{ backgroundImage: `url(${user.picUrl})` }}>
+
+        {/* Header */}
+        <div className={styles['header']}>
+          <div className={styles['header-left']}>
+            <span className={styles['title']}>Profile</span>
+          </div>
           <button className={styles['close-btn']} onClick={onClose}>×</button>
         </div>
+
+        {/* Avatar */}
         <div className={styles['avatar-section']}>
-          <img className={styles['avatar']} src={user.picUrl} alt="avatar" />
-        </div>
-        <div className={styles['info-section']}>
-          <h4 className={styles['username']}>{user.displayName}</h4>
-          <p className={styles['email']}>{user.email}</p>
+          <div className={styles['avatar-wrapper']}>
+            <img className={styles['avatar']} src={user.picUrl} alt="avatar" />
+            <span className={`${styles['status-indicator']} ${styles[user.status]}`} />
+          </div>
         </div>
 
-        {/* button update rỗng  */}
-        <div className={styles['update-btn-wrapper']}>
-          <button className="btn btn-outline-primary">
-            ✎ Cập nhật
-          </button>
+
+        {/* Info */}
+        <div className={styles['info-section']}>
+          <h3 className={styles['display-name']}>{user.displayName}</h3>
+          <p className={styles['username']}>@{user.username}</p>
         </div>
+
+        {/* Update Button */}
+        <div className={styles['update-btn-wrapper']}>
+          <button className="btn btn-outline-primary">✎ Cập nhật</button>
+        </div>
+
       </div>
     </Modal>
   );
 }
-

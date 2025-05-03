@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c13aa6c-a565-410a-99d8-68083637b347" name="Changes" comment="feat: almost done home page">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/chat-app-project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+    <list default="true" id="f9bbb269-601f-40fd-949c-ce35f3bb26fc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +16,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -34,523 +24,129 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feat/login" />
+        <entry key="$PROJECT_DIR$" value="ok" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {}
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;UGing265&quot;
+  }
 }</component>
-  <component name="GitHubPullRequestState">{
-  &quot;prStates&quot;: [
-    {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDOOdEraM6UBGIT&quot;,
-        &quot;number&quot;: 1
-      },
-      &quot;lastSeen&quot;: 1745681259009
-    },
-    {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDOOdEraM6UEHE7&quot;,
-        &quot;number&quot;: 3
-      },
-      &quot;lastSeen&quot;: 1745748029205
-    }
-  ]
-}</component>
-  <component name="GitToolBoxStore">
-    <option name="recentBranches">
-      <RecentBranches>
-        <option name="branchesForRepo">
-          <list>
-            <RecentBranchesForRepo>
-              <option name="branches">
-                <list>
-                  <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1746136582" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feat/login" />
-                    <option name="lastUsedInstant" value="1746136571" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feature/use-api-website" />
-                    <option name="lastUsedInstant" value="1745743863" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feature/update-security" />
-                    <option name="lastUsedInstant" value="1745680163" />
-                  </RecentBranch>
-                </list>
-              </option>
-              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
-            </RecentBranchesForRepo>
-          </list>
-        </option>
-      </RecentBranches>
-    </option>
-  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/lgdlong/chat-app-project.git&quot;,
-    &quot;accountId&quot;: &quot;3ddd1d69-161f-4eb8-b77c-38f6feca4a00&quot;
+    &quot;accountId&quot;: &quot;77475cd6-a4ba-4bbf-a78e-c28c35797aca&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence">{}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
-  <component name="MavenRunner">
-    <option name="environmentProperties">
-      <map>
-        <entry key="JAVA_HOME" value="C:\Program Files\Amazon Corretto\jdk21.0.7_6" />
-      </map>
-    </option>
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
+  &quot;associatedIndex&quot;: 2
 }</component>
-  <component name="ProjectId" id="2w3gf67ilG2Fm5uEPisuxPZv3sq" />
+  <component name="ProjectId" id="2w2HZGe0cNQBIoib8x72yRtvdU2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Docker.docker-compose.yml.db: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;Application.BackendApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MAIN.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/user-profile-modal&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Workspace/chat-app-project/backend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/AShiroru/Program/webAppChat/chat-app-project&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.50344825&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.2.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;settings.editor.splitter.proportion&quot;: &quot;0.25280327&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\HP\\AppData\\Local\\Programs\\IntelliJ IDEA Ultimate 2025.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
-    ]
   }
 }</component>
-  <component name="RunManager" selected="Spring Boot.BackendApplication">
-    <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\AShiroru\Program\webAppChat\chat-app-project\backend\src\main\java\com\lgdlong\backend\repo" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.lgdlong.backend.repo" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.BackendApplication">
+    <configuration name="BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lgdlong.backend.BackendApplication" />
       <module name="backend" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lgdlong.backend.BackendApplication" />
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lgdlong.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
       </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml">
-        <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile">
-        <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.db: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="db" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
+    <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lgdlong.backend.BackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yml.db: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.db: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.db: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.db: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.db: Compose Deployment" />
+        <item itemvalue="Application.BackendApplication" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7c13aa6c-a565-410a-99d8-68083637b347" name="Changes" comment="" />
-      <created>1745275771891</created>
+      <changelist id="f9bbb269-601f-40fd-949c-ce35f3bb26fc" name="Changes" comment="" />
+      <created>1745232802020</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1745275771891</updated>
-      <workItem from="1745275773504" duration="1686000" />
-      <workItem from="1745308209448" duration="5526000" />
-      <workItem from="1745314675736" duration="8667000" />
-      <workItem from="1745386425928" duration="4757000" />
-      <workItem from="1745391414595" duration="9790000" />
-      <workItem from="1745425318576" duration="10981000" />
-      <workItem from="1745491894489" duration="823000" />
-      <workItem from="1745492739678" duration="181000" />
-      <workItem from="1745504327897" duration="8230000" />
-      <workItem from="1745513554271" duration="4688000" />
-      <workItem from="1745583024107" duration="3832000" />
-      <workItem from="1745593580649" duration="16633000" />
-      <workItem from="1745679589723" duration="61000" />
-      <workItem from="1745679737628" duration="14517000" />
-      <workItem from="1745743839015" duration="1792000" />
-      <workItem from="1745746020811" duration="5957000" />
-      <workItem from="1745880519786" duration="101000" />
-      <workItem from="1745949394992" duration="321000" />
-      <workItem from="1746124375315" duration="623000" />
-      <workItem from="1746128649961" duration="1820000" />
-      <workItem from="1746136026892" duration="603000" />
-      <workItem from="1746136644330" duration="83000" />
-      <workItem from="1746136736046" duration="33000" />
-      <workItem from="1746136789710" duration="216000" />
-      <workItem from="1746180640212" duration="8000" />
-      <workItem from="1746180663699" duration="5000" />
+      <updated>1745232802020</updated>
+      <workItem from="1745498570859" duration="2766000" />
+      <workItem from="1745534694902" duration="184000" />
+      <workItem from="1745534893763" duration="3169000" />
+      <workItem from="1745538244152" duration="458000" />
+      <workItem from="1745588274846" duration="98000" />
+      <workItem from="1745589052709" duration="14796000" />
+      <workItem from="1745612153477" duration="1412000" />
+      <workItem from="1745614361570" duration="622000" />
+      <workItem from="1745714385347" duration="35000" />
+      <workItem from="1745715415562" duration="61000" />
+      <workItem from="1745742392457" duration="6359000" />
+      <workItem from="1745750636481" duration="417000" />
+      <workItem from="1745751075778" duration="1337000" />
+      <workItem from="1745961176798" duration="12015000" />
+      <workItem from="1746126565663" duration="3605000" />
+      <workItem from="1746288402296" duration="6418000" />
     </task>
-    <task id="LOCAL-00001" summary="chore/deo hieu gi ca, qua met moi">
-      <option name="closed" value="true" />
-      <created>1745276865651</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1745276865651</updated>
-    </task>
-    <task id="LOCAL-00002" summary="chore/update readme">
-      <option name="closed" value="true" />
-      <created>1745319818265</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1745319818265</updated>
-    </task>
-    <task id="LOCAL-00003" summary="feat/add enums">
-      <option name="closed" value="true" />
-      <created>1745319843742</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1745319843742</updated>
-    </task>
-    <task id="LOCAL-00004" summary="feat/add entities">
-      <option name="closed" value="true" />
-      <created>1745319868285</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1745319868285</updated>
-    </task>
-    <task id="LOCAL-00005" summary="feat/write 3 layers model for user">
-      <option name="closed" value="true" />
-      <created>1745319902190</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1745319902190</updated>
-    </task>
-    <task id="LOCAL-00006" summary="chore/add dependency swagger-ui, config docker-compose.yml and application.properties">
-      <option name="closed" value="true" />
-      <created>1745319979756</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1745319979756</updated>
-    </task>
-    <task id="LOCAL-00007" summary="chore/add stuff">
-      <option name="closed" value="true" />
-      <created>1745388221695</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1745388221695</updated>
-    </task>
-    <task id="LOCAL-00008" summary="chore/add stuff">
-      <option name="closed" value="true" />
-      <created>1745389100247</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1745389100247</updated>
-    </task>
-    <task id="LOCAL-00009" summary="feat/write repo">
-      <option name="closed" value="true" />
-      <created>1745392797930</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1745392797930</updated>
-    </task>
-    <task id="LOCAL-00010" summary="chore/fix db config">
-      <option name="closed" value="true" />
-      <created>1745392818133</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1745392818133</updated>
-    </task>
-    <task id="LOCAL-00011" summary="chore/test db backup">
-      <option name="closed" value="true" />
-      <created>1745397798234</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1745397798234</updated>
-    </task>
-    <task id="LOCAL-00012" summary="chore/test db data backup">
-      <option name="closed" value="true" />
-      <created>1745400250244</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1745400250244</updated>
-    </task>
-    <task id="LOCAL-00013" summary="chore/test db data2 backup">
-      <option name="closed" value="true" />
-      <created>1745400411905</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1745400411905</updated>
-    </task>
-    <task id="LOCAL-00014" summary="chore/test db data3 backup">
-      <option name="closed" value="true" />
-      <created>1745400847040</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1745400847040</updated>
-    </task>
-    <task id="LOCAL-00015" summary="chore/test db dat4 backup">
-      <option name="closed" value="true" />
-      <created>1745401152688</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1745401152688</updated>
-    </task>
-    <task id="LOCAL-00016" summary="chore/test db data5 backup">
-      <option name="closed" value="true" />
-      <created>1745401277795</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1745401277795</updated>
-    </task>
-    <task id="LOCAL-00017" summary="feat/done user workflow, curd">
-      <option name="closed" value="true" />
-      <created>1745492811566</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1745492811566</updated>
-    </task>
-    <task id="LOCAL-00018" summary="fix/change shadow in auth page">
-      <option name="closed" value="true" />
-      <created>1745504370073</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1745504370073</updated>
-    </task>
-    <task id="LOCAL-00019" summary="fixbug/fix create user can not save to db (because db in local and docker-compose are not the same)">
-      <option name="closed" value="true" />
-      <created>1745517667176</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1745517667176</updated>
-    </task>
-    <task id="LOCAL-00020" summary="docs/update README.md">
-      <option name="closed" value="true" />
-      <created>1745599831667</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1745599831667</updated>
-    </task>
-    <task id="LOCAL-00021" summary="chore: fix workflow project, fix frontend docker error">
-      <option name="closed" value="true" />
-      <created>1745599914798</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1745599914798</updated>
-    </task>
-    <task id="LOCAL-00022" summary="chore: add docker build just for backend workflow">
-      <option name="closed" value="true" />
-      <created>1745603906723</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1745603906723</updated>
-    </task>
-    <task id="LOCAL-00023" summary="chore: update readme">
-      <option name="closed" value="true" />
-      <created>1745604397929</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1745604397929</updated>
-    </task>
-    <task id="LOCAL-00024" summary="chore: update readme for db">
-      <option name="closed" value="true" />
-      <created>1745605263308</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1745605263308</updated>
-    </task>
-    <task id="LOCAL-00025" summary="chore: backup passwords not hash">
-      <option name="closed" value="true" />
-      <created>1745700297808</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1745700297809</updated>
-    </task>
-    <task id="LOCAL-00026" summary="chore: backup db">
-      <option name="closed" value="true" />
-      <created>1745700341691</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1745700341691</updated>
-    </task>
-    <task id="LOCAL-00027" summary="chore: add dependencies">
-      <option name="closed" value="true" />
-      <created>1745700356994</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1745700356994</updated>
-    </task>
-    <task id="LOCAL-00028" summary="feat: add dto to communicate between backend and frontend">
-      <option name="closed" value="true" />
-      <created>1745700418292</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1745700418292</updated>
-    </task>
-    <task id="LOCAL-00029" summary="feat: config spring security, allow a limit of api can pass.">
-      <option name="closed" value="true" />
-      <created>1745700538411</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1745700538411</updated>
-    </task>
-    <task id="LOCAL-00030" summary="feat: add method to hash password directly, change passwordHash getter adn setter to PUBLIC">
-      <option name="closed" value="true" />
-      <created>1745700622538</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1745700622539</updated>
-    </task>
-    <task id="LOCAL-00031" summary="feat: done login">
-      <option name="closed" value="true" />
-      <created>1745700657488</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1745700657488</updated>
-    </task>
-    <task id="LOCAL-00032" summary="chore: config">
-      <option name="closed" value="true" />
-      <created>1745745695385</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1745745695385</updated>
-    </task>
-    <task id="LOCAL-00033" summary="fix: fix register">
-      <option name="closed" value="true" />
-      <created>1745751358985</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1745751358985</updated>
-    </task>
-    <task id="LOCAL-00034" summary="feat: almost done home page">
-      <option name="closed" value="true" />
-      <created>1745880555951</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1745880555951</updated>
-    </task>
-    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="chore/fix db config" />
-    <MESSAGE value="chore/test db backup" />
-    <MESSAGE value="chore/test db data backup" />
-    <MESSAGE value="chore/test db data2 backup" />
-    <MESSAGE value="chore/test db data3 backup" />
-    <MESSAGE value="chore/test db dat4 backup" />
-    <MESSAGE value="chore/test db data5 backup" />
-    <MESSAGE value="feat/done user workflow, curd" />
-    <MESSAGE value="fix/change shadow in auth page" />
-    <MESSAGE value="fixbug/fix create user can not save to db (because db in local and docker-compose are not the same)" />
-    <MESSAGE value="docs/update README.md" />
-    <MESSAGE value="chore: fix workflow project, fix frontend docker error" />
-    <MESSAGE value="chore: add docker build just for backend workflow" />
-    <MESSAGE value="chore: update readme" />
-    <MESSAGE value="chore: update readme for db" />
-    <MESSAGE value="chore: backup passwords not hash" />
-    <MESSAGE value="chore: backup db" />
-    <MESSAGE value="chore: add dependencies" />
-    <MESSAGE value="feat: add dto to communicate between backend and frontend" />
-    <MESSAGE value="feat: config spring security, allow a limit of api can pass." />
-    <MESSAGE value="feat: add method to hash password directly, change passwordHash getter adn setter to PUBLIC" />
-    <MESSAGE value="feat: done login" />
-    <MESSAGE value="chore: config" />
-    <MESSAGE value="fix: fix register" />
-    <MESSAGE value="feat: almost done home page" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: almost done home page" />
   </component>
 </project>

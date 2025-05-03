@@ -8,6 +8,7 @@ import LogoutButton from "../LogoutButton";
 //import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import UserProfile from "../profile/UserProfile";
+import SettingButton from "./SettingsInfo";
 
 export default function SideBar() {
   //const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function SideBar() {
           id="main-tab"
           className="d-flex flex-column justify-content-between align-items-center"
         >
+
           <div id="user-info">
             <img
               className="profile-img"
@@ -33,7 +35,12 @@ export default function SideBar() {
               style={{ cursor: "pointer" }}
             />
           </div>
-          <LogoutButton />
+
+          <div className="d-flex flex-column align-items-start gap-3 mb-2 px-2">
+
+            <SettingButton />
+            <LogoutButton />
+          </div>
         </div>
         <div className="chat-list-container d-flex flex-column">
           <ContactSearch />
