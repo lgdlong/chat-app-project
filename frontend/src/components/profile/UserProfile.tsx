@@ -15,10 +15,10 @@ interface Props {
 export default function UserProfileModal({ user, show, onClose }: Props) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
 
-  const handleUpdate = (updatedData: any) => {
-    console.log("Dữ liệu cập nhật:", updatedData);
+  const handleUpdate = (updatedData: Pick<UserProfile, 'displayName' | 'username' | 'email'>) => {
+    // TODO: Implement API call to update user profile
     setShowUpdateModal(false);
-    //   // TODO: Gọi API cập nhật nếu cần
+    // TODO: Call API to update user profile
   };
 
   return (
