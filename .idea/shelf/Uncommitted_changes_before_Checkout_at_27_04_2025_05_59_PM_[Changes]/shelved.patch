@@ -1,0 +1,118 @@
+Index: backend/src/main/java/com/lgdlong/backend/config/SecurityConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.lgdlong.backend.config;\r\n\r\nimport org.springframework.context.annotation.Bean;\r\nimport org.springframework.context.annotation.Configuration;\r\nimport org.springframework.security.config.annotation.web.builders.*;\r\nimport org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;\r\nimport org.springframework.security.crypto.password.PasswordEncoder;\r\nimport org.springframework.security.web.*;\r\nimport org.springframework.security.web.util.matcher.*;\r\n\r\n@Configuration\r\npublic class SecurityConfig {\r\n\r\n    @Bean\r\n    public PasswordEncoder passwordEncoder() {\r\n        return new BCryptPasswordEncoder();\r\n    }\r\n\r\n    @Bean\r\n    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {\r\n        http\r\n                .csrf(csrf -> csrf.disable()) // Tắt CSRF\r\n                .cors(cors -> cors.configure(http)) // Bật CORS\r\n                .authorizeHttpRequests(auth -> auth\r\n                        .requestMatchers(\r\n                                new AntPathRequestMatcher(\"/api/auth/login\"), // <-- Phải cho phép\r\n                                new AntPathRequestMatcher(\"/api/auth/register\"),\r\n                                new AntPathRequestMatcher(\"/api/users\"),\r\n                                new AntPathRequestMatcher(\"/api/users/**\")\r\n                        ).permitAll()\r\n                        .anyRequest().authenticated()\r\n                )\r\n                .formLogin(login -> login.disable()); // Tắt login form mặc định\r\n\r\n        return http.build();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/src/main/java/com/lgdlong/backend/config/SecurityConfig.java b/backend/src/main/java/com/lgdlong/backend/config/SecurityConfig.java
+--- a/backend/src/main/java/com/lgdlong/backend/config/SecurityConfig.java	(revision 64791609298e0a1d0abd2a744acc000c086c00a4)
++++ b/backend/src/main/java/com/lgdlong/backend/config/SecurityConfig.java	(date 1745751551572)
+@@ -19,18 +19,18 @@
+     @Bean
+     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+         http
+-                .csrf(csrf -> csrf.disable()) // Tắt CSRF
+-                .cors(cors -> cors.configure(http)) // Bật CORS
++                .csrf(csrf -> csrf.disable())
++                .cors(Customizer.withDefaults())
+                 .authorizeHttpRequests(auth -> auth
+                         .requestMatchers(
+-                                new AntPathRequestMatcher("/api/auth/login"), // <-- Phải cho phép
++                                new AntPathRequestMatcher("/api/auth/login"),
+                                 new AntPathRequestMatcher("/api/auth/register"),
+                                 new AntPathRequestMatcher("/api/users"),
+                                 new AntPathRequestMatcher("/api/users/**")
+                         ).permitAll()
+                         .anyRequest().authenticated()
+                 )
+-                .formLogin(login -> login.disable()); // Tắt login form mặc định
++                .formLogin(form -> form.disable());
+ 
+         return http.build();
+     }
+Index: frontend/src/api/authApi.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import axios from \"axios\";\r\nimport api from './axiosConfig';\r\n\r\n// Định nghĩa kiểu dữ liệu gửi đi\r\ninterface RegisterData {\r\n  username: string;\r\n  email: string;\r\n  phone: string;\r\n  password: string;\r\n}\r\n\r\ninterface LoginData {\r\n  username: string;\r\n  password: string;\r\n}\r\n\r\n// Gọi API đăng ký người dùng\r\nexport const registerUser = async (data: RegisterData) => {\r\n  return await axios.post(\"/api/auth/users\", data);\r\n};\r\n\r\n// Gọi API đăng nhập người dùng\r\nexport const loginUser = async (data: LoginData) => {\r\n  return await api.post(\"/api/auth/login\", data);\r\n};
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/api/authApi.ts b/frontend/src/api/authApi.ts
+--- a/frontend/src/api/authApi.ts	(revision 64791609298e0a1d0abd2a744acc000c086c00a4)
++++ b/frontend/src/api/authApi.ts	(date 1745751551575)
+@@ -16,10 +16,10 @@
+ 
+ // Gọi API đăng ký người dùng
+export const registerUser = async (data: RegisterData) => {
+  return await axios.post(import.meta.env.VITE_API_BASE_URL + "/api/users", data);
+};
+
+// Gọi API đăng nhập người dùng
+export const loginUser = async (data: LoginData) => {
+  return await api.post(import.meta.env.VITE_API_BASE_URL + "/api/auth/login", data);
+};
+ };
+\ No newline at end of file
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision 64791609298e0a1d0abd2a744acc000c086c00a4)
++++ /dev/null	(revision 64791609298e0a1d0abd2a744acc000c086c00a4)
+@@ -1,9 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/backend/backend.iml" filepath="$PROJECT_DIR$/backend/backend.iml" />
+-      <module fileurl="file://$PROJECT_DIR$/.idea/chat-app-project.iml" filepath="$PROJECT_DIR$/.idea/chat-app-project.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <annotationProcessing>\r\n      <profile default=\"true\" name=\"Default\" enabled=\"true\" />\r\n      <profile name=\"Annotation profile for backend\" enabled=\"true\">\r\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\r\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\r\n        <outputRelativeToContentRoot value=\"true\" />\r\n        <processorPath useClasspath=\"false\">\r\n          <entry name=\"$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/3.4.4/spring-boot-configuration-processor-3.4.4.jar\" />\r\n          <entry name=\"$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar\" />\r\n        </processorPath>\r\n        <module name=\"backend\" />\r\n      </profile>\r\n    </annotationProcessing>\r\n  </component>\r\n  <component name=\"JavacSettings\">\r\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\r\n      <module name=\"backend\" options=\"-parameters\" />\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision 64791609298e0a1d0abd2a744acc000c086c00a4)
++++ b/.idea/compiler.xml	(date 1745751551570)
+@@ -11,9 +11,11 @@
+           <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/3.4.4/spring-boot-configuration-processor-3.4.4.jar" />
+           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+         </processorPath>
+-        <module name="backend" />
+       </profile>
+     </annotationProcessing>
++    <bytecodeTargetLevel>
++      <module name="backend" target="21" />
++    </bytecodeTargetLevel>
+   </component>
+   <component name="JavacSettings">
+     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/backend/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_22\" default=\"true\" project-jdk-name=\"corretto-22\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 64791609298e0a1d0abd2a744acc000c086c00a4)
++++ b/.idea/misc.xml	(date 1745751551571)
+@@ -7,6 +7,11 @@
+         <option value="$PROJECT_DIR$/backend/pom.xml" />
+       </list>
+     </option>
++    <option name="ignoredFiles">
++      <set>
++        <option value="$PROJECT_DIR$/backend/pom.xml" />
++      </set>
++    </option>
+   </component>
+   <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="corretto-22" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />

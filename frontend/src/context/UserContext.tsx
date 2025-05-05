@@ -11,6 +11,7 @@ export interface User {
   email: string;
   phone: string;
   picUrl: string;
+  status: string; // từ "online" | "busy" | "offline" → string
 }
 
 const defaultUser: User = {
@@ -20,6 +21,7 @@ const defaultUser: User = {
   email: "phungluuhoanglong@gmail.com",
   phone: "0123456789",
   picUrl: "https://picsum.photos/id/237/200/300",
+  status: "online",
 };
 
 const UserContext = createContext<{
