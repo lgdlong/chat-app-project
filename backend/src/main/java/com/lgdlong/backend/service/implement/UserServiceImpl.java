@@ -58,9 +58,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUsername(String username) {
-        return userRepo.findByUsername(username)
+        return userRepo.findByUsernameIgnoreCase(username) // 👈 use the new method
                 .orElseThrow(() -> new ResourceNotFoundException("User with username " + username + " not found"));
     }
+
 
     @Override
     public User getUserByPhone(String phone) {
@@ -70,12 +71,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> getUserByUsernameOrPhone(String usernameOrPhone) {
-        if (usernameOrPhone.matches("\\d{10,11}")) { // Nếu là số điện thoại
+        if (usernameOrPhone.matches("\\d{10,11}")) {
             return userRepo.findByPhone(usernameOrPhone);
-        } else { // Ngược lại là username
-            return userRepo.findByUsername(usernameOrPhone);
+        } else {
+            return userRepo.findByUsernameIgnoreCase(usernameOrPhone); // 👈 here too
         }
     }
+
 
     public void encryptPasswordForUser(Long id) {
         // 1. Tìm user theo username

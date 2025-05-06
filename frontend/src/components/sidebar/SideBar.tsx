@@ -1,4 +1,3 @@
-// import { Form, Button } from "react-bootstrap";
 import "../../css/variables.css";
 import "./SideBar.css";
 import ContactSearch from "../search/ContactSearch";
@@ -8,10 +7,15 @@ import LogoutButton from "../LogoutButton";
 import { useState } from "react";
 import UserProfile from "../profile/UserProfile";
 import SettingButton from "./SettingsInfo";
+import ContactResult from "../search/ContactResult";
+import { UserResponseDTO } from "../../interfaces/UserResponseDTO"; // hoặc bạn có Contact type riêng
 
 export default function SideBar() {
   const { user } = useUser();
   const [showModal, setShowModal] = useState(false);
+  const [selectedContact, setSelectedContact] =
+    useState<UserResponseDTO | null>(null);
+  const [isOnFocus, setIsOnFocus] = useState(false); // thêm state để theo dõi trạng thái focus của input
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
@@ -37,9 +41,23 @@ export default function SideBar() {
             <LogoutButton />
           </div>
         </div>
+
         <div className="chat-list-container d-flex flex-column">
-          <ContactSearch />
-          <ChatList />
+          <ContactSearch
+            onResult={setSelectedContact}
+            isOnFocus={setIsOnFocus}
+          />
+          {isOnFocus ? (
+            <ContactResult
+              contact={selectedContact}
+              isSelected={!!selectedContact}
+              onSelect={(id) => {
+                console.log("Start chat with", id);
+              }}
+            />
+          ) : (
+            <ChatList />
+          )}
         </div>
       </nav>
 
@@ -49,3 +67,5 @@ export default function SideBar() {
     </>
   );
 }
+// Chú ý: Đoạn mã này giả định rằng bạn đã có các component và hook cần thiết như useUser, UserProfile, ContactSearch, ChatList, LogoutButton, SettingButton
+// và các kiểu dữ liệu như UserResponseDTO. Bạn cần điều chỉnh lại cho phù hợp với cấu trúc dự án của bạn.

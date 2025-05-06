@@ -6,23 +6,29 @@ import { searchUser } from "../../api/apiUser";
 import { UserResponseDTO } from "../../interfaces/UserResponseDTO";
 import "./ContactSearch.css";
 
-export default function ContactSearch() {
+interface ContactSearchProps {
+  onResult: (user: UserResponseDTO | null) => void;
+  isOnFocus: (inputFocused: boolean) => void;
+}
+
+export default function ContactSearch({ onResult, isOnFocus }: ContactSearchProps) {
   const [inputValue, setInputValue] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
-  const [userResult, setUserResult] = useState<UserResponseDTO | null>(null);
 
-  // Debounce logic
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       if (inputValue.trim()) {
-        searchUser(inputValue).then(setUserResult);
+        searchUser(inputValue)
+          .then((user) => onResult(user))
+          .catch(() => onResult(null)); // nếu không tìm thấy hoặc lỗi → null
       } else {
-        setUserResult(null);
+        onResult(null);
       }
-    }, 300); // ⏳ 300ms chờ user dừng gõ
+    }, 300);
 
     return () => clearTimeout(delayDebounce);
-  }, [inputValue]);
+  }, [inputValue, onResult]);
+
 
   return (
     <div id="contact-search">
@@ -31,8 +37,14 @@ export default function ContactSearch() {
         <Form.Control
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          onFocus={() => setInputFocused(true)}
-          onBlur={() => setInputFocused(false)}
+          onFocus={() => {
+            setInputFocused(true);
+            isOnFocus(true); // 👈 thêm dòng này
+          }}
+          onBlur={() => {
+            setInputFocused(false);
+            isOnFocus(false); // 👈 thêm dòng này
+          }}
           placeholder="Search..."
           id="contact-search-input"
           className="no-border-input"
@@ -45,20 +57,11 @@ export default function ContactSearch() {
           className="d-flex justify-content-center align-items-center"
           onClick={() => {
             setInputValue("");
-            setUserResult(null);
+            onResult(null);
           }}
         >
           Close
         </Button>
-      )}
-
-      {/* Hiển thị kết quả tìm được (nếu có) */}
-      {userResult && (
-        <div className="search-result">
-          <p>
-            {userResult.username} ({userResult.phone})
-          </p>
-        </div>
       )}
     </div>
   );
