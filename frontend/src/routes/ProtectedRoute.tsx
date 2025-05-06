@@ -2,6 +2,7 @@
 
 import { Navigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
+import Spinner from "react-bootstrap/Spinner"; // Ensure this is the correct path or library
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -17,10 +18,14 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { user, loading } = useUser();
 
   if (loading) {
-    return <div>Đang kiểm tra đăng nhập...</div>; // Có thể thay bằng spinner
+    return (
+      <div className="loading-container">
+        <Spinner animation="border" /> Đang kiểm tra đăng nhập...
+      </div>
+    );
   }
 
-  if (user.id === -1) {
+  if (!user || user.id === -1) {
     console.warn("🔒 Chưa đăng nhập → chặn truy cập protected route");
     return <Navigate to="/login" replace />;
   }
