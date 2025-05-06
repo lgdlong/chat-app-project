@@ -24,7 +24,7 @@ export default function LoginForm() {
       // ✅ Gọi /me để lấy thông tin user sau khi login
       const user = await getCurrentUser();
       setUser(user); // ✅ Lưu vào context
-
+      
       navigate("/home");
     } catch (err: any) {
       if (err.response) {

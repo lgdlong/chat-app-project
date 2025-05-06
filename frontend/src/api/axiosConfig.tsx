@@ -38,7 +38,7 @@ api.interceptors.response.use(
       // 🔐 Token không hợp lệ hoặc đã hết hạn
       console.warn("🔒 Unauthorized! Token có thể đã hết hạn.");
       // Tùy bạn: redirect, xóa token, v.v.
-      // localStorage.removeItem("token");
+      // localStorage.removeItem(ACCESS_TOKEN_KEY);
       // window.location.href = "/login";
     }
     return Promise.reject(error);
