@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-import RegisterComplete from "../pages/RegisterCompletePage";
 import ProfilePage from "../pages/ProfilePage";
 import ProtectedRoute from "./ProtectedRoute"; // 👈 THÊM DÒNG NÀY
 
@@ -30,9 +29,17 @@ export default function AppRoutes() {
       />
 
       {/* Các route công khai */}
-      <Route path="/login" element={<LoginPage />} />
+      <Route
+        path="/login"
+        element={
+          // ⚠️ Gán key động để buộc React remount LoginPage mỗi lần truy cập,
+          // đảm bảo useEffect trong LoginPage (ví dụ như xóa accessToken) luôn được gọi,
+          // kể cả khi người dùng đã ở sẵn trong /login và bấm navigate("/login") lần nữa.
+          // Lưu ý: key động như Date.now() tạo component mới mỗi lần nên nên tránh nếu LoginPage rất nặng.
+          <LoginPage key={Date.now()} />
+        }
+      />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/register-complete" element={<RegisterComplete />} />
     </Routes>
   );
 }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ACCESS_TOKEN_KEY } from "../constants/storageKeys";
 
 // Tạo một axios instance dùng chung cho toàn bộ app
 const api = axios.create({
@@ -9,20 +10,24 @@ const api = axios.create({
 // Interceptor để tự động gắn token vào mọi request
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem(ACCESS_TOKEN_KEY); // Lấy token từ localStorage
 
-    // Kiểm tra headers tồn tại trước khi gán Authorization
-    config.headers = config.headers || {};
+    const skipAuthUrls = ["/api/auth/login", "/api/auth/register"];
+    const shouldSkip = skipAuthUrls.some((url) => config.url?.endsWith(url));
 
-    if (token) {
+    console.log("🔄 Gọi API:", config.url, "với token:", token);
+
+    if (!shouldSkip && token) {
+      config.headers = config.headers || {};
       config.headers.Authorization = `Bearer ${token}`;
+      console.log("✅ Gắn token vào request:", config.url);
+    } else {
+      console.log("⏭ Không gắn token vào request:", config.url);
     }
 
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 // (Tuỳ chọn) Interceptor cho response – xử lý lỗi toàn cục

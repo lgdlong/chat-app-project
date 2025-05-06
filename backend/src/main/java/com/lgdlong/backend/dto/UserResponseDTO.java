@@ -1,6 +1,7 @@
 package com.lgdlong.backend.dto;
 
 
+import com.lgdlong.backend.enums.*;
 import lombok.*;
 
 @Data
@@ -13,4 +14,5 @@ public class UserResponseDTO {
     private String email;
     private String displayName;
     private String avatarUrl;
+    private UserRole role;
 }

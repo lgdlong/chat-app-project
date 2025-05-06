@@ -4,17 +4,19 @@ import com.lgdlong.backend.dto.*;
 import com.lgdlong.backend.enums.*;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import lombok.*;
 import org.springframework.stereotype.Component;
+import javax.crypto.SecretKey;
 
-import java.security.Key;
 import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
-    private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    @Getter
+    private final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private final long validityInMilliseconds = 3600000; // 1 giờ
 
-    public String generateToken(JwtTokenPayload payload) {
+    public String generateToken(UserTokenInfo payload) {
         Date issuedAt = new Date(payload.getIat() * 1000);
         Date expiry = new Date(payload.getExp() * 1000);
 
@@ -30,14 +32,14 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    public JwtTokenPayload getPayload(String token) {
+    public UserTokenInfo getPayload(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(secretKey)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
 
-        return new JwtTokenPayload(
+        return new UserTokenInfo(
                 Long.valueOf(claims.getSubject()), // ✅ ép kiểu từ String sang Long
                 claims.get("username", String.class),
                 claims.get("phone", String.class),
@@ -47,8 +49,6 @@ public class JwtTokenProvider {
                 claims.getExpiration().getTime() / 1000
         );
     }
-
-
 
     public boolean validateToken(String token) {
         try {
@@ -70,4 +70,5 @@ public class JwtTokenProvider {
                 .getBody()
                 .getSubject();
     }
+
 }

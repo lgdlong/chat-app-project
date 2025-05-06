@@ -8,6 +8,8 @@ public interface AuthService {
 
     User register(UserDTO userDTO);
 
+    UserResponseDTO getCurrentUser();
+
 //    void logout(String token);
 //
 //    boolean isLoggedIn(String token);

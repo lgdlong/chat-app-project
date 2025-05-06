@@ -9,7 +9,7 @@ export default function Settings() {
       placement="right"
       overlay={<Tooltip id="tooltip-settings">Cài đặt</Tooltip>}
     >
-      <div className="settings-icon" style={{ cursor: "pointer", marginTop: "10px" }}>
+      <div className="settings-icon">
         <FontAwesomeIcon icon={faGear} size="lg" color="#ccc" />
       </div>
     </OverlayTrigger>
