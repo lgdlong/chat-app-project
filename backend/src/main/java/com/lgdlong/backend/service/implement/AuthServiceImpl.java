@@ -78,6 +78,5 @@ public class AuthServiceImpl implements AuthService {
         } else {
             throw new RuntimeException("Unauthorized");
         }
-
     }
 }
