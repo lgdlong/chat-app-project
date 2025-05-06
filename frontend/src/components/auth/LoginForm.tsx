@@ -2,12 +2,15 @@ import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { loginUser } from "../../api/authApi"; // Import your API function
+import { useUser } from "../../hooks/useUser"; // Import your context hook
+import { getCurrentUser, loginUser } from "../../api/authApi"; // Import your API function
 import "./AuthForm.css";
+import { ACCESS_TOKEN_KEY } from "../../constants/storageKeys";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setUser } = useUser(); // ✅ Lấy từ context
   const navigate = useNavigate(); // hook chuyển trang
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,11 +18,31 @@ export default function LoginForm() {
     try {
       const response = await loginUser({ username, password });
       const { token } = response.data;
-      localStorage.setItem("token", token);
+      
+      localStorage.setItem(ACCESS_TOKEN_KEY, token); // ✅ lưu đúng key
+
+      // ✅ Gọi /me để lấy thông tin user sau khi login
+      const user = await getCurrentUser();
+      setUser(user); // ✅ Lưu vào context
+
       navigate("/home");
-    } catch (err) {
-      console.error(err);
-      alert("Sai tài khoản hoặc mật khẩu!");
+    } catch (err: any) {
+      if (err.response) {
+        // 🔴 Lỗi từ backend trả về (ví dụ: 401, 400)
+        console.error("🛑 Login failed:", {
+          status: err.response.status,
+          data: err.response.data,
+        });
+        alert(err.response.data?.message || "Sai tài khoản hoặc mật khẩu!");
+      } else if (err.request) {
+        // 🔌 Không nhận được response (lỗi mạng)
+        console.error("🌐 Không thể kết nối đến server:", err.request);
+        alert("Không thể kết nối đến máy chủ. Vui lòng thử lại sau.");
+      } else {
+        // ❓ Lỗi không xác định
+        console.error("❗ Lỗi không xác định:", err.message);
+        alert("Đã xảy ra lỗi không xác định.");
+      }
     }
   };
 

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.stream.*;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -24,7 +23,10 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-    // CREATE: POST /api/users
+    /**
+     * Tạo người dùng mới.
+     * Endpoint: POST /api/users
+     */
     @PostMapping
     public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserDTO userDTO) {
         User createdUser = userService.createUser(userDTO);
@@ -32,7 +34,10 @@ public class UserController {
                 .body(userMapper.toDTO(createdUser));
     }
 
-    // READ ALL: GET /api/users
+    /**
+     * Lấy tất cả người dùng.
+     * Endpoint: GET /api/users
+     */
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
         List<UserResponseDTO> users = userService.getAllUsers().stream()
@@ -41,21 +46,33 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    // READ ONE BY ID: GET /api/users/{id}
+    /**
+     * Lấy người dùng theo ID.
+     * Endpoint: GET /api/users/{id}
+     * Ví dụ: /api/users/5
+     */
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id);
         return ResponseEntity.ok(userMapper.toDTO(user));
     }
 
-    // READ ONE BY PHONE: GET /api/users/by-phone?phone=...
+    /**
+     * Lấy người dùng theo số điện thoại.
+     * Endpoint: GET /api/users/by-phone?phone=...
+     * Ví dụ: /api/users/by-phone?phone=0987654321
+     */
     @GetMapping("/by-phone")
     public ResponseEntity<UserResponseDTO> getUserByPhone(@RequestParam("phone") String phone) {
         User user = userService.getUserByPhone(phone);
         return ResponseEntity.ok(userMapper.toDTO(user));
     }
 
-    // UPDATE: PUT /api/users/{id}
+    /**
+     * Cập nhật người dùng theo ID.
+     * Endpoint: PUT /api/users/{id}
+     * Ví dụ: /api/users/5
+     */
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(@PathVariable Long id,
                                                       @RequestBody UserDTO userDTO) {
@@ -63,18 +80,41 @@ public class UserController {
         return ResponseEntity.ok(userMapper.toDTO(updatedUser));
     }
 
-    // DELETE: DELETE /api/users/{id}
+    /**
+     * Xoá người dùng theo ID.
+     * Endpoint: DELETE /api/users/{id}
+     * Ví dụ: /api/users/5
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
-    // READ ONE BY USERNAME: GET /api/users/by-username?username=...
+
+    /**
+     * Mã hoá mật khẩu người dùng theo ID.
+     * Endpoint: POST /api/users/hash-by-username/{id}
+     * Ví dụ: /api/users/hash-by-username/5
+     */
     @PostMapping("/hash-by-username/{id}")
     public ResponseEntity<Void> encryptPassword(@PathVariable Long id) {
         userService.encryptPasswordForUser(id);
 
         return ResponseEntity.ok().build();
+    }
+
+    /**
+     * Tìm người dùng theo username hoặc số điện thoại.
+     * Endpoint: GET /api/users/search?query=...
+     * Ví dụ: /api/users/search?query=long123 hoặc /api/users/search?query=0987654321
+     */
+    @GetMapping("/search")
+    public ResponseEntity<UserResponseDTO> searchUser(@RequestParam("query") String query) {
+        Optional<User> userOpt = userService.getUserByUsernameOrPhone(query);
+
+        return userOpt
+                .map(user -> ResponseEntity.ok(userMapper.toDTO(user)))
+                .orElse(ResponseEntity.notFound().build());
     }
 }

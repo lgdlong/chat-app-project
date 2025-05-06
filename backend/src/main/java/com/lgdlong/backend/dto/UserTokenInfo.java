@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JwtTokenPayload {
+public class UserTokenInfo {
     private Long id;  // user ID
     private String username;
     private String phone;
