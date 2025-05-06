@@ -1,12 +1,10 @@
 import { UserProvider } from "./context/UserContext";
-import AppRoutes from "./routes/AppRoutes";
+import AppInner from "./AppInner";
 
-function App() {
+export default function App() {
   return (
     <UserProvider>
-      <AppRoutes />
+      <AppInner />
     </UserProvider>
   );
 }
-
-export default App;

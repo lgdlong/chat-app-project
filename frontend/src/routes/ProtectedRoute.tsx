@@ -1,37 +1,32 @@
+// ProtectedRoute.tsx
+
 import { Navigate } from "react-router-dom";
-import { useUser } from "../hooks/useUser"; // context chứa setUser
-import { ACCESS_TOKEN_KEY } from "../constants/storageKeys";
-import { useEffect } from "react";
-import { isTokenValid } from "../utils/auth.ts"; // hàm kiểm tra token hợp lệ
+import { useUser } from "../hooks/useUser";
+import Spinner from "react-bootstrap/Spinner"; // Ensure this is the correct path or library
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
+/**
+ * ProtectedRoute đảm bảo rằng người dùng phải đăng nhập mới được truy cập route này.
+ * Nếu đang loading → hiển thị "đang kiểm tra".
+ * Nếu chưa đăng nhập → điều hướng về /login.
+ * Nếu đã đăng nhập → cho hiển thị children (component được bảo vệ).
+ */
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const token = localStorage.getItem(ACCESS_TOKEN_KEY);
-  const { user, setUser } = useUser();
+  const { user, loading } = useUser();
 
-  const payload = isTokenValid(token);
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Spinner animation="border" /> Đang kiểm tra đăng nhập...
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    // Nếu user chưa set thì lấy từ token
-    if (payload && user.id === -1) {
-      setUser({
-        id: parseInt(payload.sub),
-        username: payload.username,
-        displayName: payload.displayName,
-        email: payload.email,
-        phone: payload.phone,
-        picUrl: payload.picUrl,
-        status: payload.status,
-      });
-    }
-  }, [payload, setUser, user.id]);
-
-  if (!payload) {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
-    console.warn("🔒 Token không hợp lệ hoặc đã hết hạn!");
+  if (!user || user.id === -1) {
+    console.warn("🔒 Chưa đăng nhập → chặn truy cập protected route");
     return <Navigate to="/login" replace />;
   }
 
