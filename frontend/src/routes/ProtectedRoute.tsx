@@ -1,36 +1,12 @@
 import { Navigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 import { useUser } from "../hooks/useUser"; // context chứa setUser
 import { ACCESS_TOKEN_KEY } from "../constants/storageKeys";
 import { useEffect } from "react";
+import { isTokenValid } from "../utils/auth.ts"; // hàm kiểm tra token hợp lệ
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
 }
-
-interface TokenPayload {
-  sub: string;
-  username: string;
-  displayName: string;
-  email: string;
-  phone: string;
-  picUrl: string;
-  status: string;
-  exp: number;
-  [key: string]: any;
-}
-
-const isTokenValid = (token: string | null): TokenPayload | null => {
-  if (!token) return null;
-
-  try {
-    const decoded = jwtDecode<TokenPayload>(token);
-    const now = Date.now() / 1000;
-    return decoded.exp > now ? decoded : null;
-  } catch {
-    return null;
-  }
-};
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -55,6 +31,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 
   if (!payload) {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
+    console.warn("🔒 Token không hợp lệ hoặc đã hết hạn!");
     return <Navigate to="/login" replace />;
   }
 
