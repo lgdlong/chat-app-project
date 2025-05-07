@@ -49,6 +49,7 @@ chat-app-project/
 ├── backend/ # Spring Boot service (REST API, DB) 
 ├── frontend/ # React + Vite client (UI) 
 ├── database/ # init.sql file (schema + seed data) 
+├── docs/
 ├── docker-compose.yml 
 ├── Makefile 
 └── README.md
