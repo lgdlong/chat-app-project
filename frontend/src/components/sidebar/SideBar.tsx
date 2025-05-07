@@ -8,7 +8,7 @@ import LogoutButton from "../LogoutButton";
 //import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import UserProfile from "../profile/UserProfile";
-import SettingButton from "./SettingsInfo";
+import SettingButton from "./SettingButton";
 
 export default function SideBar() {
   //const navigate = useNavigate();

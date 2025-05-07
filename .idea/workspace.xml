@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f9bbb269-601f-40fd-949c-ce35f3bb26fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/sidebar/SettingsInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/sidebar/SettingsInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UpdateProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UpdateProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/sidebar/SettingsInfo.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/sidebar/SideBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/sidebar/SideBar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +77,11 @@
     "settings.editor.splitter.proportion": "0.25280327",
     "ts.external.directory.path": "C:\\Users\\HP\\AppData\\Local\\Programs\\IntelliJ IDEA Ultimate 2025.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -145,6 +154,8 @@
       <workItem from="1746288402296" duration="8191000" />
       <workItem from="1746367434887" duration="293000" />
       <workItem from="1746380269859" duration="2889000" />
+      <workItem from="1746384494029" duration="1581000" />
+      <workItem from="1746621630794" duration="2654000" />
     </task>
     <servers />
   </component>
