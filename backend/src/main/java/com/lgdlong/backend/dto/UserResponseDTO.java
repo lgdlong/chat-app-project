@@ -17,4 +17,5 @@ public class UserResponseDTO {
     @JsonProperty("picUrl")
     private String avatarUrl;
     private UserRole role;
+    //private String status;
 }

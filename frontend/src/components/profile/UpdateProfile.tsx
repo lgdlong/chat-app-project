@@ -12,10 +12,10 @@ interface Props {
 export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) {
     const [displayName, setDisplayName] = useState(user.displayName);
     const [username, setUsername] = useState(user.username);
-    const [email] = useState(user.email); // disabled, nên không cần set lại
+    const [phone, setPhone] = useState(user.phone);
+    const [email] = useState(user.email); // giữ nguyên để không cho sửa
 
     const handleSubmit = () => {
-        // Basic validation
         if (!displayName.trim()) {
             alert('Display name cannot be empty');
             return;
@@ -24,7 +24,11 @@ export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) 
             alert('Username cannot be empty');
             return;
         }
-        onSubmit({ displayName, username, email });
+        if (!phone.trim()) {
+            alert('Phone number cannot be empty');
+            return;
+        }
+        onSubmit({ displayName, username, phone, email });
     };
 
     return (
@@ -50,6 +54,15 @@ export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) 
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Phone</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
                         />
                     </Form.Group>
 

@@ -17,7 +17,7 @@ export const defaultUser: User = {
   phone: "",
   picUrl: "https://picsum.photos/id/237/200/300",
   status: "online",
-  createdAt: "47:55.5"
+  createdAt: "2024-01-01T00:00:00Z"
   
 };
 

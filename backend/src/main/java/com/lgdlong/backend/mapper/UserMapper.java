@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-
+    // Status will be added later
     public UserResponseDTO toDTO(User user) {
         return new UserResponseDTO(
             user.getId(),
@@ -16,6 +16,7 @@ public class UserMapper {
             user.getDisplayName(),
             user.getAvatarUrl(),
             user.getRole()
+            //user.getStatus()
         );
     }
 }
