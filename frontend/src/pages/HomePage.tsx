@@ -1,4 +1,3 @@
-import "./HomePage.css";
 import "../css/variables.css";
 
 import SideBar from "../components/sidebar/SideBar";

@@ -2,6 +2,8 @@ import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { registerUser } from "../../api/authApi"; // Hàm gọi API backend
+import { loginUser } from "../../api/authApi"; // Hàm gọi API backend
+import { ACCESS_TOKEN_KEY } from "../../constants/storageKeys"; // Key lưu token
 
 export default function RegisterForm() {
   // State lưu dữ liệu nhập từ form
@@ -38,12 +40,20 @@ export default function RegisterForm() {
       // Gọi API gửi dữ liệu lên backend
       const { username, phone, email, password } = formData;
       const response = await registerUser({ username, phone, email, password });
-      
+
       // Kiểm tra kết quả trả về từ backend
       if (response.status === 201) {
-        // Redirect to the success page
-        navigate("/home");      
-        alert("Đăng ký thành công!"); // Thông báo thành công
+        try {
+          const { username, password } = formData;
+          const loginResponse = await loginUser({ username, password });
+          const { token } = loginResponse.data;
+
+          localStorage.setItem(ACCESS_TOKEN_KEY, token); // ✅ Lưu token
+          navigate("/home");
+        } catch (error) {
+          console.error("Đăng nhập tự động thất bại", error);
+          navigate("/login");
+        }
       } else {
         setMessage(response.data); // Trả về kết quả từ backend
       }

@@ -1,11 +1,12 @@
 package com.lgdlong.backend.controller;
 
 import com.lgdlong.backend.dto.*;
-import com.lgdlong.backend.entity.*;
-import com.lgdlong.backend.mapper.*;
 import com.lgdlong.backend.service.implement.*;
-import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import com.lgdlong.backend.mapper.UserMapper;
+import com.lgdlong.backend.entity.User;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -28,5 +29,11 @@ public class AuthController {
         User user = authServiceImpl.register(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userMapper.toDTO(user));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserResponseDTO> getCurrentUser() {
+        UserResponseDTO userDto = authServiceImpl.getCurrentUser();
+        return ResponseEntity.ok(userDto);
     }
 }

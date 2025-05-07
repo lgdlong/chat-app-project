@@ -5,12 +5,61 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9bbb269-601f-40fd-949c-ce35f3bb26fc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UpdateProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UpdateProfile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/config/JwtDecoderConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/diagrams/auto-login.drawio" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/AppInner.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/api/apiUser.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/search/ContactResult.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/search/ContactResult.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/sidebar/SettingsInfo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/constants/storageKeys.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/useUser.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/interfaces/Contact.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/interfaces/ContactResultProps.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/interfaces/TokenPayload.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/interfaces/User.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/interfaces/UserProfileProps.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/interfaces/UserResponseDTO.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/utils/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/dto/JwtTokenPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/dto/UserTokenInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/dto/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/dto/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/dto/UserResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/dto/UserResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/repo/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/repo/UserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/security/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/security/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/security/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/implement/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/implement/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/implement/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/implement/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/authApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/authApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/axiosConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/axiosConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/auth/AuthForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/auth/AuthForm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/auth/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/auth/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/auth/LoginHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/auth/LoginHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/auth/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/auth/RegisterForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/auth/RegisterHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/auth/RegisterHeader.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/sidebar/SettingsInfo.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/search/ContactSearch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/search/ContactSearch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/sidebar/SideBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/sidebar/SideBar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/sidebar/SideBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/sidebar/SideBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/UserContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/UserContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useAuth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/useAuth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/interfaces/UserProfile.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AuthPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AuthPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/HomePage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/RegisterCompletePage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes/AppRoutes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/AppRoutes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes/ProtectedRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/ProtectedRoute.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +109,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feat/Update-Profile-Design",
+    "git-widget-placeholder": "Merging feat/Update-Profile-Design",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/AShiroru/Program/webAppChat/chat-app-project",
@@ -75,7 +124,7 @@
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "advanced.settings",
     "settings.editor.splitter.proportion": "0.25280327",
-    "ts.external.directory.path": "C:\\Users\\HP\\AppData\\Local\\Programs\\IntelliJ IDEA Ultimate 2025.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "D:\\AShiroru\\Program\\webAppChat\\chat-app-project\\frontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -155,7 +204,7 @@
       <workItem from="1746367434887" duration="293000" />
       <workItem from="1746380269859" duration="2889000" />
       <workItem from="1746384494029" duration="1581000" />
-      <workItem from="1746621630794" duration="2654000" />
+      <workItem from="1746621630794" duration="3755000" />
     </task>
     <servers />
   </component>

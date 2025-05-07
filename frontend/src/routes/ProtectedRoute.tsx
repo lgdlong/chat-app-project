@@ -1,32 +1,32 @@
+// ProtectedRoute.tsx
+
 import { Navigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import { useUser } from "../hooks/useUser";
+import Spinner from "react-bootstrap/Spinner"; // Ensure this is the correct path or library
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
-interface TokenPayload {
-  exp: number;
-  [key: string]: any; // nếu cần thêm: userId, username, role,...
-}
-
-const isTokenValid = (token: string | null): boolean => {
-  if (!token) return false;
-
-  try {
-    const decoded = jwtDecode<TokenPayload>(token);
-    const now = Date.now() / 1000;
-    return decoded.exp > now;
-  } catch {
-    return false;
-  }
-};
-
+/**
+ * ProtectedRoute đảm bảo rằng người dùng phải đăng nhập mới được truy cập route này.
+ * Nếu đang loading → hiển thị "đang kiểm tra".
+ * Nếu chưa đăng nhập → điều hướng về /login.
+ * Nếu đã đăng nhập → cho hiển thị children (component được bảo vệ).
+ */
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const token = localStorage.getItem("token");
+  const { user, loading } = useUser();
 
-  if (!isTokenValid(token)) {
-    localStorage.removeItem("token");
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Spinner animation="border" /> Đang kiểm tra đăng nhập...
+      </div>
+    );
+  }
+
+  if (!user || user.id === -1) {
+    console.warn("🔒 Chưa đăng nhập → chặn truy cập protected route");
     return <Navigate to="/login" replace />;
   }
 

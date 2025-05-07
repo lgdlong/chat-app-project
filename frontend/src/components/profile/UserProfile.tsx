@@ -1,13 +1,11 @@
 import { Modal } from "react-bootstrap";
 import styles from "./UserProfile.module.css";
-import { UserProfile } from "../../interfaces/UserProfile";
 import UpdateProfile from "./UpdateProfile";
+import { UserProfileProps } from "../../interfaces/UserProfileProps";
 import { useState } from "react";
 
-
-
 interface Props {
-  user: UserProfile;
+  user: UserProfileProps;
   show: boolean;
   onClose: () => void;
 }

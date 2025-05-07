@@ -1,0 +1,5 @@
+.search-result-empty {
+  height: 100px;
+  border-top: 1px solid #eee;
+  font-size: 14px;
+}

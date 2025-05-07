@@ -1,44 +1,37 @@
-import { createContext, useContext, useState, ReactNode } from "react";
-//import { getProfile } from "../api/authApi"; // use api here 
-//this is global object if after login -> api -> home with right use
-// https://docs.google.com/document/d/1gRq5bOlCfL_8_YgUszfQ2A5soauqBSdPbg5rcOOqSzM/edit?fbclid=IwY2xjawJ-P95leHRuA2FlbQIxMABicmlkETFIZmNLM1I3Vk5jZGk0SnFxAR7bJocMdS1XSYbV8fxFgP8yHSibne_hGKzYkrnFjD_k7ylb0nPrdC25TEpFAQ_aem_VousFE37-bzmum-RdSHg9w&tab=t.s7a9vofjyfnh
-//this diagram 
+// UserContext.tsx
 
-export interface User {
-  id: number;
-  displayName: string;
-  username: string;
-  email: string;
-  phone: string;
-  picUrl: string;
-  status: string; // từ "online" | "busy" | "offline" → string
-}
+import { createContext, useState, ReactNode } from "react";
+import { User, defaultUser } from "../interfaces/User";
 
-const defaultUser: User = {
-  id: 1,
-  displayName: "Phung Luu Hoang Long",
-  username: "lgdlong",
-  email: "phungluuhoanglong@gmail.com",
-  phone: "0123456789",
-  picUrl: "https://picsum.photos/id/237/200/300",
-  status: "online",
-};
-
-const UserContext = createContext<{
+/**
+ * Định nghĩa kiểu dữ liệu cho context người dùng,
+ * bao gồm thông tin người dùng, setter, trạng thái loading và setter loading.
+ */
+interface UserContextType {
   user: User;
   setUser: (user: User) => void;
-}>({
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+}
+
+// ✅ Tạo context với giá trị mặc định để tránh lỗi null context
+export const UserContext = createContext<UserContextType>({
   user: defaultUser,
   setUser: () => {},
+  loading: true,
+  setLoading: () => {},
 });
 
-export const useUser = () => useContext(UserContext);
-
+/**
+ * Provider bọc toàn bộ app để cung cấp state người dùng cho các component bên trong.
+ * Không gọi API trong đây — logic kiểm tra đăng nhập nên đặt ở AppInner để kiểm soát routing.
+ */
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(defaultUser);
+  const [loading, setLoading] = useState<boolean>(true);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, loading, setLoading }}>
       {children}
     </UserContext.Provider>
   );

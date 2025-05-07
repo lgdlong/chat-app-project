@@ -10,12 +10,24 @@ export const registerUser = async (data: RegisterData) => {
 
 // Gọi API đăng nhập người dùng
 export const loginUser = async (data: LoginData) => {
-  return await api.post("http://localhost:8080/api/auth/login", data);
+  return await api.post("/api/auth/login", data);
+};
+
+// ✅ Gọi API lấy thông tin người dùng hiện tại từ token
+export const getCurrentUser = async () => {
+  try {
+    const res = await api.get("/api/auth/me");
+    console.log("✅ GET /me thành công:", res.data);
+    return res.data;
+  } catch (err) {
+    console.error("❌ Lỗi gọi /me:", err);
+    throw err;
+  }
 };
 
 export const getProfile = async () => {
   // Gọi API thật ở đây. Dưới đây là data mock:
-  
+
   return {
     id: "1",
     username: "nguyenvana",
