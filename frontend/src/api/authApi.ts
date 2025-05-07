@@ -35,5 +35,6 @@ export const getProfile = async () => {
     avatarUrl: "",
     bio: "Sinh viên CNTT năm 3.",
     createdAt: "2024-02-12T08:00:00Z",
+    status: "online"
   };
 };

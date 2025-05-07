@@ -18,6 +18,9 @@ export default function ProfilePage() {
     username: user.username,
     email: user.email,
     picUrl: user.picUrl,
+    phone: user.phone,            
+    createdAt: user.createdAt,   
+    status: user.status 
   });
 
   return (

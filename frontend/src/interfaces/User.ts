@@ -6,6 +6,7 @@ export interface User {
   phone: string;
   picUrl?: string;
   status?: string; // từ "online" | "busy" | "offline" → string
+  createdAt: string;
 }
 
 export const defaultUser: User = {
@@ -15,4 +16,8 @@ export const defaultUser: User = {
   email: "guest@example.com",
   phone: "",
   picUrl: "https://picsum.photos/id/237/200/300",
+  status: "online",
+  createdAt: "47:55.5"
+  
 };
+

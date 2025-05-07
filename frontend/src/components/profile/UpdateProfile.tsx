@@ -1,12 +1,12 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import { useState } from "react";
-import { UserProfile } from "../../interfaces/UserProfile";
+import { UserProfileProps } from "../../interfaces/UserProfileProps";
 
 interface Props {
     show: boolean;
     onClose: () => void;
     onSubmit: (updatedData: any) => void;
-    user: UserProfile;
+    user: UserProfileProps;
 }
 
 export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) {

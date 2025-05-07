@@ -33,10 +33,15 @@ export default function UserProfileModal({ user, show, onClose }: Props) {
           </div>
 
           {/* Avatar */}
+
           <div className={styles['avatar-section']}>
             <div className={styles['avatar-wrapper']}>
               <img className={styles['avatar']} src={user.picUrl} alt="avatar" />
-              <span className={`${styles['status-indicator']} ${styles[user.status]}`} />
+              <span
+                className={`${styles['status-indicator']} ${styles[user.status ?? 'offline']
+                  }`}
+                title={user.status ?? 'offline'}
+              />
             </div>
           </div>
 
@@ -45,6 +50,17 @@ export default function UserProfileModal({ user, show, onClose }: Props) {
           <div className={styles['info-section']}>
             <h3 className={styles['display-name']}>{user.displayName}</h3>
             <p className={styles['username']}>@{user.username}</p>
+          </div>
+
+          {/* Personal Info Section */}
+          <div className={styles['user-details']}>
+            <h5 className="fw-bold mb-3">Personal Information</h5>
+            <div><strong>Phone:</strong> {user.phone || 'Not provided'}</div>
+            <div><strong>Email:</strong> {user.email}</div>
+            <div><strong>Account Created:</strong> {user.createdAt
+              ? new Date(user.createdAt).toLocaleDateString('en-GB')
+              : 'Unknown'}
+            </div>
           </div>
 
           {/* Update Button */}
