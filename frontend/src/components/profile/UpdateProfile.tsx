@@ -20,12 +20,39 @@ export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) 
             alert('Display name cannot be empty');
             return;
         }
+
+        // Validate display name: maximum 5 words and 50 characters
+        const words = displayName.trim().split(/\s+/);
+        if (words.length > 5) {
+            alert('Display name cannot have more than 5 words');
+            return;
+        }
+
+        if (displayName.length > 50) {
+            alert('Display name cannot exceed 50 characters');
+            return;
+        }
+
+
         if (!username.trim()) {
             alert('Username cannot be empty');
             return;
         }
+
+        // Username format validation - example: alphanumeric with underscores only
+        if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+            alert('Username can only contain letters, numbers, and underscores');
+            return;
+        }
+
         if (!phone.trim()) {
             alert('Phone number cannot be empty');
+            return;
+        }
+
+        // Phone number format validation - adjust regex for your requirements
+        if (!/^\+?[0-9]{10,15}$/.test(phone.replace(/\s/g, ''))) {
+            alert('Please enter a valid phone number');
             return;
         }
         onSubmit({ displayName, username, phone, email });
