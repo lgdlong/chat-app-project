@@ -74,7 +74,7 @@ Hệ thống cung cấp các API REST để frontend tương tác:
 
 -   Gửi tin nhắn
 
--   Quản lý nhóm privateChat
+-   Quản lý nhóm Private Chat
 
 ## 📚 Swagger API Documentation
 
