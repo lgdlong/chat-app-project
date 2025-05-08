@@ -1,21 +1,38 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { UserProfileProps } from "../../interfaces/UserProfileProps";
+import { useEffect } from "react";
 
 interface Props {
     show: boolean;
     onClose: () => void;
-    onSubmit: (updatedData: any) => void;
+    onSubmit: (updatedData: {
+        displayName: string;
+        username: string;
+        phone: string; email:
+        string
+    }) => void;
+
     user: UserProfileProps;
 }
+
 
 export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) {
     const [displayName, setDisplayName] = useState(user.displayName);
     const [username, setUsername] = useState(user.username);
     const [phone, setPhone] = useState(user.phone);
     const [email] = useState(user.email); // giữ nguyên để không cho sửa
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
+    useEffect(() => {
+        if (show) {
+            setIsSubmitting(false);
+        }
+    }, [show]);
+    
     const handleSubmit = () => {
+        if (isSubmitting) return;
+
         if (!displayName.trim()) {
             alert('Display name cannot be empty');
             return;
@@ -55,7 +72,10 @@ export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) 
             alert('Please enter a valid phone number');
             return;
         }
+
+        setIsSubmitting(true);
         onSubmit({ displayName, username, phone, email });
+        // Reset state in the parent component after API call completes
     };
 
     return (
@@ -94,7 +114,7 @@ export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) 
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label>Email (30 days / 1 time)</Form.Label>
+                        <Form.Label>Email (can't change)</Form.Label>
                         <Form.Control type="email" value={email} disabled />
                     </Form.Group>
                 </Form>
@@ -104,8 +124,8 @@ export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) 
                 <Button variant="secondary" onClick={onClose}>
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={handleSubmit}>
-                    Update
+                <Button variant="primary" onClick={handleSubmit} disabled={isSubmitting}>
+                    {isSubmitting ? 'Updating...' : 'Update'}
                 </Button>
             </Modal.Footer>
         </Modal>

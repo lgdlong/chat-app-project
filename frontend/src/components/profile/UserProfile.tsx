@@ -13,7 +13,12 @@ interface Props {
 export default function UserProfileModal({ user, show, onClose }: Props) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
 
-  const handleUpdate = (updatedData: any) => {
+  const handleUpdate = (updatedData: {
+    displayName: string;
+    username: string;
+    phone: string;
+    email: string
+  }) => {
     console.log("Dữ liệu cập nhật:", updatedData);
     setShowUpdateModal(false);
     // TODO: Gọi API cập nhật nếu cần
