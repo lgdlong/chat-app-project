@@ -6,8 +6,8 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.*;
 import org.springframework.stereotype.Component;
-import javax.crypto.SecretKey;
 
+import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Component
@@ -21,11 +21,13 @@ public class JwtTokenProvider {
         Date expiry = new Date(payload.getExp() * 1000);
 
         return Jwts.builder()
-                .setSubject(payload.getId().toString()) // or use username if preferred
+                .setSubject(payload.getId().toString())
                 .claim("username", payload.getUsername())
                 .claim("email", payload.getEmail())
                 .claim("phone", payload.getPhone())
                 .claim("role", payload.getRole().name())
+                .claim("status", payload.getStatus().name())        // ✅ thêm status
+                .claim("createdAt", payload.getCreatedAt())         // ✅ thêm createdAt (epoch seconds)
                 .setIssuedAt(issuedAt)
                 .setExpiration(expiry)
                 .signWith(secretKey)
@@ -40,22 +42,24 @@ public class JwtTokenProvider {
                 .getBody();
 
         return new UserTokenInfo(
-                Long.valueOf(claims.getSubject()), // ✅ ép kiểu từ String sang Long
+                Long.valueOf(claims.getSubject()),
                 claims.get("username", String.class),
                 claims.get("phone", String.class),
                 claims.get("email", String.class),
-                UserRole.fromString(claims.get("role", String.class)), // ✅ enum
+                UserRole.fromString(claims.get("role", String.class)),
+                UserStatus.valueOf(claims.get("status", String.class)),       // ✅ parse status
                 claims.getIssuedAt().getTime() / 1000,
-                claims.getExpiration().getTime() / 1000
+                claims.getExpiration().getTime() / 1000,
+                claims.get("createdAt", Long.class)                          // ✅ parse createdAt
         );
     }
 
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()
-                .setSigningKey(secretKey)
-                .build()
-                .parseClaimsJws(token);
+                    .setSigningKey(secretKey)
+                    .build()
+                    .parseClaimsJws(token);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
             return false;
@@ -70,5 +74,4 @@ public class JwtTokenProvider {
                 .getBody()
                 .getSubject();
     }
-
 }

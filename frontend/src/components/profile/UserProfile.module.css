@@ -87,7 +87,7 @@
 }
 
 .display-name {
-  font-size: 22px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 4px;
 }
@@ -104,3 +104,12 @@
   justify-content: center;
 }
 
+.user-details {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}

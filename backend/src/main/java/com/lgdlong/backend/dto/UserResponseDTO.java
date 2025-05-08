@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.*;
 import com.lgdlong.backend.enums.*;
 import lombok.*;
 
+import java.time.*;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,4 +19,6 @@ public class UserResponseDTO {
     @JsonProperty("picUrl")
     private String avatarUrl;
     private UserRole role;
+    private LocalDateTime createdAt;
+    //private String status;
 }

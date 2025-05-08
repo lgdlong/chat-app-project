@@ -9,11 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserTokenInfo {
-    private Long id;  // user ID
+    private Long id;             // user ID
     private String username;
     private String phone;
     private String email;
     private UserRole role;
-    private long iat;  // issued at - epoch seconds
-    private long exp;  // expiration time - epoch seconds
+    private UserStatus status;   // ✅ trạng thái tài khoản (ACTIVE, BANNED, etc.)
+    private long iat;            // issued at - epoch seconds
+    private long exp;            // expiration time - epoch seconds
+    private long createdAt;      // ✅ thời điểm tạo tài khoản - epoch seconds
 }

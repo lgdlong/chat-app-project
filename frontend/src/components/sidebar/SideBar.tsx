@@ -6,9 +6,10 @@ import { useUser } from "../../hooks/useUser";
 import LogoutButton from "../LogoutButton";
 import { useState } from "react";
 import UserProfile from "../profile/UserProfile";
-import SettingButton from "./SettingsInfo";
 import ContactResult from "../search/ContactResult";
 import { UserResponseDTO } from "../../interfaces/UserResponseDTO"; // hoặc bạn có Contact type riêng
+import SettingButton from "./SettingButton";
+import { mapUserToUserProfileProps } from "../../mappers/userMapper";
 
 export default function SideBar({
   onSelectContact: onSelectContact,
@@ -71,8 +72,13 @@ export default function SideBar({
         </div>
       </nav>
 
+      {/* Modal hiển thị thông tin người dùng */}
       {user && (
-        <UserProfile show={showModal} onClose={closeModal} user={user} />
+        <UserProfile
+          show={showModal}
+          onClose={closeModal}
+          user={mapUserToUserProfileProps(user)}
+        />
       )}
     </>
   );
