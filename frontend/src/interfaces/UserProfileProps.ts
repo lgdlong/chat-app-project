@@ -6,8 +6,6 @@ export interface UserProfileProps {
   displayName: string;
   picUrl?: string;
   status?: string; // từ "online" | "busy" | "offline" → string
-  // bio?: string;
   phone: string;
   createdAt: string;
-  
 }

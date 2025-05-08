@@ -9,14 +9,14 @@ public class UserMapper {
     // Status will be added later
     public UserResponseDTO toDTO(User user) {
         return new UserResponseDTO(
-            user.getId(),
-            user.getUsername(),
-            user.getPhone(),
-            user.getEmail(),
-            user.getDisplayName(),
-            user.getAvatarUrl(),
-            user.getRole()
-            //user.getStatus()
+                user.getId(),
+                user.getUsername(),
+                user.getPhone(),
+                user.getEmail(),
+                user.getDisplayName(),
+                user.getAvatarUrl(),
+                user.getRole(),
+                user.getCreatedAt()
         );
     }
 }

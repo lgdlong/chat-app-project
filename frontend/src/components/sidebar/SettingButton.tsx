@@ -18,7 +18,6 @@ export default function Settings() {
         <div
           className="settings-icon"
           onClick={handleOpen}
-          style={{ cursor: "pointer", marginTop: "10px" }}
         >
           <FontAwesomeIcon icon={faGear} size="lg" color="#ccc" />
         </div>
