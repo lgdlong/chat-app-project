@@ -35,26 +35,34 @@ public class AuthServiceImpl implements AuthService {
             long iat = System.currentTimeMillis() / 1000;
             long exp = iat + 3600;
 
+            // ✅ Chuyển LocalDateTime → epoch seconds
+            long createdAtEpoch = user.getCreatedAt()
+                    .atZone(java.time.ZoneId.systemDefault())
+                    .toEpochSecond();
+
+            // ✅ Tạo UserTokenInfo đầy đủ
             UserTokenInfo userTokenInfo = new UserTokenInfo(
                     user.getId(),
                     user.getUsername(),
                     user.getPhone(),
                     user.getEmail(),
                     user.getRole(),
+                    user.getStatus(),       // ✅ thêm status
                     iat,
-                    exp
+                    exp,
+                    createdAtEpoch          // ✅ epoch của createdAt
             );
 
             String token = jwtTokenProvider.generateToken(userTokenInfo);
 
             return new LoginResponse(token, user.getUsername(), user.getRole(), exp - iat);
-        }catch (UsernameNotFoundException | IllegalArgumentException e) {
-            // Có thể log chi tiết lỗi ở đây nếu muốn
+        } catch (UsernameNotFoundException | IllegalArgumentException e) {
             throw new RuntimeException("Login failed: " + e.getMessage());
         } catch (Exception e) {
             throw new RuntimeException("Unexpected error during login", e);
         }
     }
+
 
     @Override
     public User register(UserDTO userDTO) {
