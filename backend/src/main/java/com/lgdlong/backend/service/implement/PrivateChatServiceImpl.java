@@ -10,20 +10,23 @@ import com.lgdlong.backend.service.MessageService;
 import com.lgdlong.backend.service.PrivateChatService;
 import com.lgdlong.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Service implementation cho xử lý logic liên quan đến private chat (chat 1-1).
- * - Đảm bảo không tạo trùng đoạn chat giữa 2 người.
- * - Trả về danh sách các đoạn chat của người dùng hiện tại (chat list).
+ * Service implementation để xử lý các chức năng liên quan đến private chat (chat 1-1).
+ *
+ * Chức năng chính:
+ * - Tạo đoạn chat mới giữa 2 user nếu chưa tồn tại
+ * - Trả về danh sách các đoạn chat của user hiện tại
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PrivateChatServiceImpl implements PrivateChatService {
 
     private final UserService userService;
@@ -32,12 +35,12 @@ public class PrivateChatServiceImpl implements PrivateChatService {
     private final ChatMapper chatMapper;
 
     /**
-     * Tạo mới hoặc trả về đoạn chat 1-1 giữa hai người dùng.
-     * Nếu đã tồn tại (user1-user2 hoặc user2-user1), sẽ không tạo mới.
+     * Tạo hoặc trả về đoạn chat 1-1 giữa hai người dùng.
+     * Đảm bảo luôn sắp xếp user theo thứ tự user1Id < user2Id để tránh trùng cặp (A–B và B–A).
      *
      * @param userId1 ID của người dùng thứ nhất
      * @param userId2 ID của người dùng thứ hai
-     * @return Đoạn chat đã tồn tại hoặc mới được tạo
+     * @return PrivateChat đã tồn tại hoặc mới tạo
      */
     @Override
     @Transactional
@@ -50,6 +53,7 @@ public class PrivateChatServiceImpl implements PrivateChatService {
             return existing.get();
         }
 
+        // Nếu chưa tồn tại thì tạo mới
         PrivateChat chat = PrivateChat.builder()
                 .user1Id(minId)
                 .user2Id(maxId)
@@ -59,11 +63,11 @@ public class PrivateChatServiceImpl implements PrivateChatService {
     }
 
     /**
-     * Lấy toàn bộ danh sách các đoạn chat 1-1 của người dùng hiện tại.
-     * Dùng để hiển thị chat list trong sidebar hoặc homepage.
+     * Trả về tất cả đoạn chat 1-1 mà người dùng hiện tại tham gia.
+     * Mỗi đoạn chat kèm theo thông tin người còn lại và tin nhắn cuối cùng.
      *
      * @param currentUserId ID người dùng hiện tại
-     * @return Danh sách các đoạn chat đã có, dưới dạng DTO để hiển thị
+     * @return Danh sách ChatListItemDTO để hiển thị trên UI
      */
     @Override
     @Transactional(readOnly = true)
@@ -71,9 +75,30 @@ public class PrivateChatServiceImpl implements PrivateChatService {
         List<PrivateChat> chats = privateChatRepo.findAllByUser1IdOrUser2Id(currentUserId, currentUserId);
 
         return chats.stream().map(chat -> {
+            // Xác định người còn lại trong cuộc trò chuyện
             Long targetId = chat.getUser1Id().equals(currentUserId) ? chat.getUser2Id() : chat.getUser1Id();
-            User targetUser = userService.getUserById(targetId);
-            Message lastMessage = messageService.getLastMessageForPrivateChat(chat.getId()).orElse(null);
+
+            // Lấy thông tin người còn lại, fallback nếu có lỗi
+            User targetUser;
+            try {
+                targetUser = userService.getUserById(targetId);
+            } catch (Exception e) {
+                log.error("❌ Không thể lấy user ID {}: {}", targetId, e.getMessage());
+                targetUser = User.builder()
+                        .username("Unknown User")
+                        .displayName("Không rõ")
+                        .build();
+            }
+
+            // Lấy tin nhắn cuối cùng nếu có
+            Message lastMessage = null;
+            try {
+                lastMessage = messageService.getLastMessageForPrivateChat(chat.getId()).orElse(null);
+            } catch (Exception e) {
+                log.error("❌ Không thể lấy tin nhắn cuối của chat ID {}: {}", chat.getId(), e.getMessage());
+            }
+
+            // Mapping sang DTO
             return chatMapper.toDTO(chat, targetUser, lastMessage);
         }).collect(Collectors.toList());
     }

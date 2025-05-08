@@ -1,15 +1,16 @@
 package com.lgdlong.backend.service;
 
 import com.lgdlong.backend.entity.*;
+import org.springframework.data.domain.*;
 
 import java.util.*;
 
 public interface MessageService {
-    Message createMessage(Long chatId, Long senderId, String message);
+    Message createMessage(Long privateChatId, Long senderId, String message);
 
     void deleteMessage(Long messageId);
 
-    List<Message> getMessages(Long chatId);
+    Page<Message> getMessages(Long privateChatId, Pageable pageable);
 
     Optional<Message> getLastMessageForPrivateChat(Long privateChatId);
 
