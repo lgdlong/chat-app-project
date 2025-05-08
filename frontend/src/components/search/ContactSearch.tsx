@@ -11,7 +11,10 @@ interface ContactSearchProps {
   isOnFocus: (inputFocused: boolean) => void;
 }
 
-export default function ContactSearch({ onResult, isOnFocus }: ContactSearchProps) {
+export default function ContactSearch({
+  onResult,
+  isOnFocus,
+}: ContactSearchProps) {
   const [inputValue, setInputValue] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
 
@@ -29,7 +32,6 @@ export default function ContactSearch({ onResult, isOnFocus }: ContactSearchProp
     return () => clearTimeout(delayDebounce);
   }, [inputValue, onResult]);
 
-
   return (
     <div id="contact-search">
       <div className="search-bar d-flex align-items-center">
@@ -39,11 +41,7 @@ export default function ContactSearch({ onResult, isOnFocus }: ContactSearchProp
           onChange={(e) => setInputValue(e.target.value)}
           onFocus={() => {
             setInputFocused(true);
-            isOnFocus(true); // 👈 thêm dòng này
-          }}
-          onBlur={() => {
-            setInputFocused(false);
-            isOnFocus(false); // 👈 thêm dòng này
+            isOnFocus(true); // ✅ focus vào thì show result
           }}
           placeholder="Search..."
           id="contact-search-input"
@@ -51,13 +49,16 @@ export default function ContactSearch({ onResult, isOnFocus }: ContactSearchProp
         />
       </div>
 
+      {/* CLOSE BUTTON */}
       {(inputFocused || inputValue.length > 0) && (
         <Button
           id="close-list-btn"
           className="d-flex justify-content-center align-items-center"
           onClick={() => {
             setInputValue("");
+            setInputFocused(false); // ✅ Reset cả state nội bộ
             onResult(null);
+            isOnFocus(false); // ✅ Chính thức tắt kết quả
           }}
         >
           Close

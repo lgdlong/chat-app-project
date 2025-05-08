@@ -6,5 +6,7 @@ import org.springframework.data.jpa.repository.*;
 import java.util.*;
 
 public interface MessageRepo extends JpaRepository<Message, Long> {
-    List<Message> findAllByChatId(Long chatId);
+    List<Message> getMessagesByPrivateChatId(Long privateChatId);
+
+    Optional<Message> findTopByPrivateChatIdOrderByCreatedAtDesc(Long privateChatId);
 }

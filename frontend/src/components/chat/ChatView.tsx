@@ -1,13 +1,13 @@
 import "./ChatView.css";
-import { Chat } from "../../interfaces/Chat";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import MessageView from "./MessageView";
 import { Message } from "../../interfaces/Message";
-
-export default function ChatView() {
-  const [role, setRole] = useState<"1" | "2">("1");
+import { ChatListItemDTO } from "../../interfaces/ChatListItemDTO";
+// export default function ChatView({chat, messages}: { chat: ChatResponseDTO; messages: Message[] }) {
+export default function ChatView({ chat }: { chat: ChatListItemDTO  }) {
   const [messageSender, setMessageSender] = useState("");
+  const [role, setRole] = useState<"1" | "2">("1"); // 1: Sender, 2: Receiver
   const [messages, setMessages] = useState<Message[]>([
     { id: 1, sender: "2", content: "Hello!", createdAt: new Date() },
     { id: 2, sender: "1", content: "Hi!", createdAt: new Date() },
@@ -47,25 +47,16 @@ export default function ChatView() {
     setMessageSender("");
   };
 
-  const chat: Chat = {
-    chatId: 1,
-    chatAvt: "https://picsum.photos/id/237/200/300",
-    chatType: "PRIVATE",
-    chatName: "Phung Luu Hoang Long",
-    createdBy: 1,
-    createdAt: new Date(),
-  };
-
   return (
     <main>
       <div id="chatViewContainer">
         <header className="d-flex align-items-center">
           <Row className="d-flex align-items-center w-100">
             <Col md={2}>
-              <img src={chat.chatAvt} alt="Img" className="avatar-header" />
+              <img src={chat.avatarUrl} alt="Img" className="avatar-header" />
             </Col>
             <Col md={10}>
-              <h2 className="chat-name-header">{chat.chatName}</h2>
+              <h2 className="chat-name-header">{chat.displayName}</h2>
             </Col>
           </Row>
         </header>

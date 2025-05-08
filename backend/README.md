@@ -45,7 +45,7 @@ docker-compose up --build
 Khai báo kết nối trong `application.properties`:
 
 ```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/chat-app-project
+spring.datasource.url=jdbc:postgresql://localhost:5432/privateChat-app-project
 spring.datasource.username=postgres
 spring.datasource.password=1234
 
@@ -74,7 +74,7 @@ Hệ thống cung cấp các API REST để frontend tương tác:
 
 -   Gửi tin nhắn
 
--   Quản lý nhóm chat
+-   Quản lý nhóm privateChat
 
 ## 📚 Swagger API Documentation
 
