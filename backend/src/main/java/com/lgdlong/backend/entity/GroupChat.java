@@ -33,7 +33,8 @@ public class GroupChat {
 //    @OneToMany(mappedBy = "groupChat", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Message> messages = new ArrayList<>();
 
-    @OneToMany(mappedBy = "chatId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "chat_id")
     private List<ChatParticipant> participants = new ArrayList<>();
 
     @PrePersist
