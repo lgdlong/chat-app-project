@@ -3,6 +3,7 @@ import api from "../../api/axiosConfig";
 import { useEffect } from "react";
 import { useState } from "react";
 import { ChatListItemDTO } from "../../interfaces/ChatListItemDTO";
+import "./ChatList.css";
 
 export default function ChatList() {
   const [chatList, setChatList] = useState<ChatListItemDTO[]>([]);

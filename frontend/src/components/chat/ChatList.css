@@ -1,0 +1,17 @@
+/* src/components/chat/ChatList.css */
+
+#chat-list {
+  overflow-y: auto;
+  flex-grow: 1;
+  max-height: calc(100vh - 64px); /* điều chỉnh theo chiều cao ContactSearch */
+  padding-right: 4px;
+}
+
+#chat-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chat-list::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
