@@ -11,15 +11,27 @@ import { UserResponseDTO } from "../../interfaces/UserResponseDTO"; // hoặc b�
 import SettingButton from "./SettingButton";
 import { mapUserToUserProfileProps } from "../../mappers/userMapper";
 
-export default function SideBar() {
+export default function SideBar({
+  onSelectContact: onSelectContact,
+}: {
+  onSelectContact: (user: UserResponseDTO) => void;
+}) {
   const { user } = useUser();
   const [showModal, setShowModal] = useState(false);
   const [selectedContact, setSelectedContact] =
-    useState<UserResponseDTO | null>(null);
+    useState<UserResponseDTO | null>(null); //
   const [isOnFocus, setIsOnFocus] = useState(false); // thêm state để theo dõi trạng thái focus của input
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
+  const handleSelect = (user: UserResponseDTO) => {
+    onSelectContact(user); // đẩy user về Homepage để xử lý logic API ở đó
+    setIsOnFocus(false);
+    setSelectedContact(null);
+  };
+  // const createChatByConactResult = (user: UserResponseDTO) => {
+  //   onSelectUser(user); // <- Gửi ra Homepage
+  // };
 
   return (
     <>
@@ -52,9 +64,7 @@ export default function SideBar() {
             <ContactResult
               contact={selectedContact}
               isSelected={!!selectedContact}
-              onSelect={(id) => {
-                console.log("Start chat with", id);
-              }}
+              onSelect={handleSelect} // Gọi hàm khi chọn người dùng
             />
           ) : (
             <ChatList />

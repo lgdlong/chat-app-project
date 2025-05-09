@@ -21,7 +21,7 @@ export default function ContactResult({
     <Container
       id="chat-item"
       className={`chat-item ${isSelected ? "selected" : ""}`}
-      onClick={() => onSelect(contact.id)}
+      onClick={() => onSelect(contact)} // user click mới gửi ra ngoài
     >
       <Row className="align-items-center">
         {/* Avatar */}

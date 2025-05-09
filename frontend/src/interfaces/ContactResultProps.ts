@@ -1,7 +1,7 @@
-import { Contact } from "./Contact";
+import { UserResponseDTO } from "./UserResponseDTO";
 
 export interface ContactResultProps {
-  contact: Contact | null;
-  onSelect: (contact: number) => void;
+  contact: UserResponseDTO | null;
+  onSelect: (contact: UserResponseDTO) => void;
   isSelected?: boolean;
 }

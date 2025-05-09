@@ -35,7 +35,7 @@ COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 
 # Set environment variables (optional: best for docker-compose or .env file)
-ENV SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/chat-app-project \
+ENV SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/privateChat-app-project \
     SPRING_DATASOURCE_USERNAME=postgres \
     SPRING_DATASOURCE_PASSWORD=1234
 

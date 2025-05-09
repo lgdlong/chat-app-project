@@ -9,10 +9,10 @@ import java.time.*;
 @Entity
 @Table(name = "chat_participants")
 @Data // Lombok: tự động tạo getter, setter, toString, equals, hashCode
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-@IdClass(ChatParticipantId.class) // Dùng composite key (chat_id, user_id)
+@IdClass(ChatParticipantId.class)
+@NoArgsConstructor
+@AllArgsConstructor // Dùng composite key (chat_id, user_id)
 public class ChatParticipant {
     @Id
     @Column(name = "chat_id", nullable = false)
@@ -26,5 +26,19 @@ public class ChatParticipant {
     private LocalDateTime joinedAt = LocalDateTime.now();
 
     @Column(name = "is_admin", nullable = false)
-    private Boolean isAdmin = false;
+    private Boolean isAdmin;
+
+    public ChatParticipant(Long chatId, Long userId, Boolean isAdmin) {
+        this.chatId = chatId;
+        this.userId = userId;
+        this.joinedAt = LocalDateTime.now();
+        this.isAdmin = isAdmin;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.joinedAt == null) {
+            this.joinedAt = LocalDateTime.now();
+        }
+    }
 }

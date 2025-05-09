@@ -38,4 +38,6 @@
   width: var(--right-side-width);
   background-color: var(--layer-background);
   border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
 }
