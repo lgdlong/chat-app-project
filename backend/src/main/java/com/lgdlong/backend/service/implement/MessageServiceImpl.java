@@ -1,18 +1,17 @@
 package com.lgdlong.backend.service.implement;
 
-import com.lgdlong.backend.entity.Message;
-import com.lgdlong.backend.exception.ResourceNotFoundException;
-import com.lgdlong.backend.repo.MessageRepo;
-import com.lgdlong.backend.repo.PrivateChatRepo;
-import com.lgdlong.backend.repo.UserRepo;
-import com.lgdlong.backend.service.MessageService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.lgdlong.backend.entity.*;
+import com.lgdlong.backend.exception.*;
+import com.lgdlong.backend.repo.*;
+import com.lgdlong.backend.service.*;
+import lombok.*;
+import org.springframework.data.domain.*;
+import org.springframework.http.*;
+import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
+import org.springframework.web.server.*;
 
-import java.util.Optional;
+import java.util.*;
 
 /**
  * MessageServiceImpl xử lý toàn bộ logic liên quan đến việc gửi, lấy và xoá tin nhắn
@@ -48,6 +47,11 @@ public class MessageServiceImpl implements MessageService {
             throw new ResourceNotFoundException("User not found with id: " + senderId);
         }
 
+        // Ensure sender participates in the chat
+        if (!privateChatRepo.isParticipant(privateChatId, senderId)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Sender does not belong to this chat");
+        }
+
         // Tạo và lưu tin nhắn mới
         Message mess = new Message(privateChatId, senderId, message);
         return messageRepo.save(mess);
@@ -58,8 +62,17 @@ public class MessageServiceImpl implements MessageService {
      *
      * @param messageId ID tin nhắn
      */
+    @Transactional
     @Override
-    public void deleteMessage(Long messageId) {
+    public void deleteMessage(Long messageId, Long currentUserId) {
+        Message message = messageRepo.findById(messageId)
+                .orElseThrow(() -> new ResourceNotFoundException("Message not found with id: " + messageId));
+
+        // Check if the current user is the sender of the message
+        if (!message.getSenderId().equals(currentUserId)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You are not authorized to delete this message");
+        }
+
         messageRepo.deleteById(messageId);
     }
 

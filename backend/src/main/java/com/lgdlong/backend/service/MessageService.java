@@ -8,7 +8,7 @@ import java.util.*;
 public interface MessageService {
     Message createMessage(Long privateChatId, Long senderId, String message);
 
-    void deleteMessage(Long messageId);
+    void deleteMessage(Long messageId, Long currentUserId);
 
     Page<Message> getMessages(Long privateChatId, Pageable pageable);
 
