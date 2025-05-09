@@ -22,7 +22,9 @@ export const connectMessageSocket = (
   onConnected?: () => void
 ) => {
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
-  const socket = new SockJS(`http://localhost:8080/ws?token=${token}`);
+-  const socket = new SockJS(`http://localhost:8080/ws?token=${token}`);
++  const WS_BASE_URL = process.env.REACT_APP_WS_URL || 'http://localhost:8080/ws';
++  const socket = new SockJS(`${WS_BASE_URL}?token=${token}`);
 
   stompClient = new Client({
     webSocketFactory: () => socket,
