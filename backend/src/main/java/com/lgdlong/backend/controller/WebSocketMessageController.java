@@ -26,13 +26,19 @@ public class WebSocketMessageController {
 
     @MessageMapping("/chat.acknowledge")
     public void acknowledgeStatus(@Payload MessageStatusUpdateDTO dto) {
-        messageStatusService.updateStatus(dto.getMessageId(), dto.getUserId(), dto.getStatus());
+        try {
+            messageStatusService.updateStatus(dto.getMessageId(), dto.getUserId(), dto.getStatus());
 
-        // Push ngược lại cho người gửi để cập nhật UI
-        messagingTemplate.convertAndSend(
-                "/chat-room/message-status." + dto.getMessageId(),
-                dto
-        );
+            // Push ngược lại cho người gửi để cập nhật UI
+            messagingTemplate.convertAndSend(
+                    "/chat-room/message-status." + dto.getMessageId(),
+                    dto
+            );
+            log.debug("Status updated for message: {}, status: {}", dto.getMessageId(), dto.getStatus());
+        } catch (Exception e) {
+            log.error("Failed to update message status: {}", e.getMessage(), e);
+            // Consider how to handle the error - maybe sending an error message back to the client
+        }
     }
 
 }
