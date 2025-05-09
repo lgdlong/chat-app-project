@@ -261,6 +261,9 @@ COPY public.messages (id, content, created_at, is_revoked, media_id, reply_to_id
 13	skibidi toilet	2025-05-09 21:52:26.7268	f	\N	\N	\N	3	TEXT	\N	1
 14	abcd	2025-05-09 21:52:30.823861	f	\N	\N	\N	3	TEXT	\N	1
 15	hi\nxin chào	2025-05-09 21:53:11.545555	f	\N	\N	\N	2	TEXT	\N	1
+16	hihihiihih	2025-05-09 23:05:33.829839	f	\N	\N	\N	3	TEXT	\N	1
+17	chào	2025-05-09 23:05:35.24689	f	\N	\N	\N	3	TEXT	\N	1
+18	test	2025-05-09 23:05:39.659255	f	\N	\N	\N	3	TEXT	\N	1
 \.
 
 
@@ -331,7 +334,7 @@ SELECT pg_catalog.setval('public.media_id_seq', 1, false);
 -- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.messages_id_seq', 15, true);
+SELECT pg_catalog.setval('public.messages_id_seq', 18, true);
 
 
 --
