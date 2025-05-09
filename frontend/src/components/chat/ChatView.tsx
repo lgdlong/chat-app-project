@@ -23,6 +23,7 @@ export default function ChatView({ chat }: { chat: ChatListItemDTO }) {
   const [wsConnected, setWsConnected] = useState(false);
 
   useEffect(() => {
+    setMessages([]);          // <-- clear immediately
     const loadMessages = async () => {
       try {
         const oldMessages = await getPrivateMessages(chat.chatId);
@@ -32,6 +33,12 @@ export default function ChatView({ chat }: { chat: ChatListItemDTO }) {
         );
         setMessages(oldMessages);
       } catch (err) {
+        // ...
+      }
+    };
+
+    loadMessages();
+  }, [chat.chatId]);
         console.error("❌ Lỗi khi load tin nhắn cũ:", err);
       }
     };
