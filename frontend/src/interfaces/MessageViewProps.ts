@@ -1,7 +1,7 @@
-import { Message } from "../interfaces/Message";
+import { AnyMessage } from "../interfaces/Message";
 
 // Props cho MessageList
 export interface MessageViewProps {
-  messages: Message[];
+  messages: AnyMessage[];
   currentUserId: number;
 }

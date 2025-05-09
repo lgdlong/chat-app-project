@@ -1,27 +1,28 @@
-import ChatItem from "./ChatItem";
-import api from "../../api/axiosConfig";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChatListItemDTO } from "../../interfaces/ChatListItemDTO";
+import { getChats } from "../../api/apiChat";
+import ChatItem from "./ChatItem";
 import "./ChatList.css";
 
-export default function ChatList() {
+export default function ChatList({
+  onSelectContact,
+  selectedChatId, // ✅ nhận từ SideBar để highlight chat tương ứng
+}: {
+  onSelectContact: (selectedChat: ChatListItemDTO) => void;
+  selectedChatId: number | null;
+}) {
   const [chatList, setChatList] = useState<ChatListItemDTO[]>([]);
-  const [selectedChatId, setSelectedChatId] = useState<number | null>(null);
 
   useEffect(() => {
-    api
-      .get<ChatListItemDTO[]>("/api/chats")
-      .then((res) => {
-        setChatList(res.data);
-      })
+    getChats()
+      .then(setChatList)
       .catch((err) => {
         console.error("❌ Lỗi lấy danh sách chat:", err);
       });
   }, []);
 
-  const handleSelectChat = (chatId: number) => {
-    setSelectedChatId(chatId);
+  const handleSelectChat = (chat: ChatListItemDTO) => {
+    onSelectContact(chat); // gửi chat ra ngoài
   };
 
   return (
@@ -33,12 +34,12 @@ export default function ChatList() {
             chatId: chat.chatId,
             chatName: chat.displayName,
             chatAvt: chat.avatarUrl || "https://picsum.photos/id/237/200/300",
-            chatType: "PRIVATE", // mặc định vì đây là private
+            chatType: "PRIVATE",
             createdBy: chat.targetUserId,
             createdAt: new Date(chat.lastMessageAt || Date.now()),
           }}
-          isSelected={chat.chatId === selectedChatId}
-          onSelect={handleSelectChat}
+          isSelected={chat.chatId === selectedChatId} // ✅ so sánh prop truyền xuống
+          onSelect={() => handleSelectChat(chat)}
         />
       ))}
     </div>

@@ -1,55 +1,41 @@
 import "../css/variables.css";
-
 import { useState } from "react";
 import SideBar from "../components/sidebar/SideBar";
 import ChatView from "../components/chat/ChatView";
-// import { useUser } from "../hooks/useUser";
-import { UserResponseDTO } from "../interfaces/UserResponseDTO";
 import { ChatListItemDTO } from "../interfaces/ChatListItemDTO";
-// import { MessageDTO } from "../interfaces/MessageDTO";
-import api from "../api/axiosConfig";
 
 export default function HomePage() {
-  // const { user } = useUser(); // Nếu cần lấy thông tin người dùng
-  // const [selectedUser, setSelectedUser] = useState<UserResponseDTO | null>(
-  //   null
-  // );
+  // Trạng thái lưu chat hiện được chọn
   const [selectedChat, setSelectedChat] = useState<ChatListItemDTO | null>(
     null
   );
-  // const [messages, setMessages] = useState<MessageDTO[]>([]);
 
+  // Trạng thái hiển thị loading khi chuyển chat (nếu sau này cần fetch messages)
   const [isLoading, setIsLoading] = useState(false);
 
   /**
-   * Hàm nhận user được chọn từ SideBar và tạo chat mới
-   * Gọi API để tạo chat mới
-   *
-   * @param selectedContact
-   *
+   * Hàm callback được gọi khi user chọn một chat
+   * - Có thể là chat sẵn có trong ChatList
+   * - Hoặc là chat vừa được tạo mới từ ContactResult
    */
-  const handleContactSelect = async (selectedContact: UserResponseDTO) => {
-    try {
-      setIsLoading(true);
-      const chatRes = await api.post("/api/chats/private", {
-        targetUserId: selectedContact.id,
-      });
+  const handleChatSelect = (chat: ChatListItemDTO) => {
+    setIsLoading(true); // có thể dùng cho hiển thị loading nếu cần load message sau này
 
-      const chat: ChatListItemDTO = chatRes.data;
+    // Gán chat được chọn
+    setSelectedChat(chat);
 
-      setSelectedChat(chat);
-    } catch (err) {
-      console.error("Error creating or fetching chat:", err);
-      // Optionally, display an error message to the user here
-    } finally {
-      setIsLoading(false);
-    }
+    // Nếu cần load message có thể thêm logic tại đây
+    // Ví dụ: fetchMessages(chat.chatId).then(...)
+
+    setIsLoading(false);
   };
 
   return (
     <div className="d-flex flex-row">
-      <SideBar onSelectContact={handleContactSelect} />
-      {/* {selectedChat && <ChatView chat={selectedChat} messages={messages} />} */}
+      {/* Sidebar bên trái chứa avatar, tìm kiếm và danh sách chat */}
+      <SideBar onSelectChat={handleChatSelect} />
+
+      {/* Khu vực hiển thị đoạn chat đã chọn */}
       {isLoading ? (
         <div className="chat-loading">Loading chat...</div>
       ) : (
