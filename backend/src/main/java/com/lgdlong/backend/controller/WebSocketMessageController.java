@@ -3,12 +3,14 @@ package com.lgdlong.backend.controller;
 import com.lgdlong.backend.dto.*;
 import com.lgdlong.backend.service.*;
 import lombok.*;
+import lombok.extern.slf4j.*;
 import org.springframework.messaging.handler.annotation.*;
 import org.springframework.messaging.simp.*;
 import org.springframework.stereotype.*;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class WebSocketMessageController {
 
     private final WebSocketMessageService webSocketMessageService;

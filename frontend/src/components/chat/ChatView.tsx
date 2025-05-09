@@ -23,7 +23,9 @@ export default function ChatView({ chat }: { chat: ChatListItemDTO }) {
   const [wsConnected, setWsConnected] = useState(false);
 
   useEffect(() => {
-    setMessages([]);          // <-- clear immediately
+    setMessages([]); // ✅ Clear tin nhắn cũ trước khi load mới
+
+    // ✅ Gọi API lấy tin nhắn
     const loadMessages = async () => {
       try {
         const oldMessages = await getPrivateMessages(chat.chatId);
@@ -33,24 +35,17 @@ export default function ChatView({ chat }: { chat: ChatListItemDTO }) {
         );
         setMessages(oldMessages);
       } catch (err) {
-        // ...
-      }
-    };
-
-    loadMessages();
-  }, [chat.chatId]);
         console.error("❌ Lỗi khi load tin nhắn cũ:", err);
       }
     };
 
     loadMessages();
 
+    // ✅ Mở kết nối WebSocket
     connectMessageSocket(
       (newMsg) => {
         setMessages((prev) => {
-          // ✅ Replace temp message nếu trùng nội dung và thời gian gần
           const updated = replaceTempMessageWithReal(prev, newMsg);
-
           const exists = updated.some((m) => m.id === newMsg.id);
           return exists ? updated : [...updated, newMsg];
         });
@@ -68,21 +63,9 @@ export default function ChatView({ chat }: { chat: ChatListItemDTO }) {
     };
   }, [chat.chatId]);
 
+  // ✅ Gửi tin nhắn thật, không tạo tin tạm
   const handleSend = (content: string) => {
     if (!content || !user) return;
-
-    // const tempId = `temp-${Date.now()}`;
-    // const tempMessage: AnyMessage = {
-    //   id: tempId,
-    //   privateChatId: chat.chatId,
-    //   senderId: user.id,
-    //   content,
-    //   createdAt: new Date().toISOString(),
-    //   type: "TEXT",
-    //   isRevoked: false,
-    // };
-
-    // setMessages((prev) => [...prev, tempMessage]);
 
     if (wsConnected) {
       sendMessageSocket({
