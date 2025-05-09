@@ -16,6 +16,7 @@ public class MessageController {
 
     private final MessageService messageService;
 
+
     /**
      * API lấy 20 tin nhắn mới nhất trong đoạn chat 1-1
      *
@@ -33,4 +34,14 @@ public class MessageController {
                     .body("❌ Chat not found or not accessible: " + e.getMessage());
         }
     }
+
+//    @GetMapping("/private/{privateChatId}")
+//public ResponseEntity<Page<MessageDto>> getPrivateChatMessages(
+//        @PathVariable Long privateChatId,
+//        @RequestParam(defaultValue = "0") int page,
+//        @RequestParam(defaultValue = "20") int size) {
+//            Page<MessageDto> messagePage = messageService
+//                           .getMessages(privateChatId, PageRequest.of(page, size))
+//                            .map(messageMapper::toDto);   // map entity → DTO
+//            return ResponseEntity.ok(messagePage);
 }
