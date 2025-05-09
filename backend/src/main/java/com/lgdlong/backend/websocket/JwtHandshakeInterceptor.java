@@ -50,6 +50,8 @@ public class JwtHandshakeInterceptor implements HandshakeInterceptor {
 
                 return true; // ✅ Cho phép kết nối
             } else {
+                System.out.println("❌ WebSocket Authentication failed: " + 
+                        (token == null ? "Missing token" : "Invalid token"));
                 return false; // ❌ Không hợp lệ → từ chối WebSocket
             }
         }
