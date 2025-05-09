@@ -43,7 +43,8 @@ CREATE TABLE public.group_chats (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     created_by bigint NOT NULL,
-    name character varying(100) NOT NULL
+    name character varying(100) NOT NULL,
+    updated_at timestamp(6) without time zone
 );
 
 
@@ -224,7 +225,7 @@ COPY public.chat_participants (chat_id, user_id, is_admin, joined_at) FROM stdin
 -- Data for Name: group_chats; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.group_chats (id, created_at, created_by, name) FROM stdin;
+COPY public.group_chats (id, created_at, created_by, name, updated_at) FROM stdin;
 \.
 
 
@@ -450,6 +451,14 @@ CREATE INDEX idx_messages_chat_createdat ON public.messages USING btree (chat_id
 --
 
 CREATE INDEX idx_messages_sender ON public.messages USING btree (sender_id);
+
+
+--
+-- Name: chat_participants fk2gqwgsymcdhtfe61q9i6bjgrb; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chat_participants
+    ADD CONSTRAINT fk2gqwgsymcdhtfe61q9i6bjgrb FOREIGN KEY (chat_id) REFERENCES public.group_chats(id);
 
 
 --
