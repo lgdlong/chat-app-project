@@ -1,49 +1,54 @@
 import "./ChatView.css";
 import { Row, Col, Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MessageView from "./MessageView";
 import { Message } from "../../interfaces/Message";
 import { ChatListItemDTO } from "../../interfaces/ChatListItemDTO";
-// export default function ChatView({chat, messages}: { chat: ChatResponseDTO; messages: Message[] }) {
-export default function ChatView({ chat }: { chat: ChatListItemDTO  }) {
-  const [messageSender, setMessageSender] = useState("");
-  const [role, setRole] = useState<"1" | "2">("1"); // 1: Sender, 2: Receiver
-  const [messages, setMessages] = useState<Message[]>([
-    { id: 1, sender: "2", content: "Hello!", createdAt: new Date() },
-    { id: 2, sender: "1", content: "Hi!", createdAt: new Date() },
-    { id: 3, sender: "2", content: "How are you?", createdAt: new Date() },
-    { id: 4, sender: "1", content: "I'm good, thanks!", createdAt: new Date() },
-    { id: 5, sender: "2", content: "Great to hear!", createdAt: new Date() },
-    { id: 6, sender: "1", content: "What about you?", createdAt: new Date() },
-    { id: 7, sender: "2", content: "Doing well too!", createdAt: new Date() },
-    {
-      id: 8,
-      sender: "1",
-      content: "Let's catch up soon.",
-      createdAt: new Date(),
-    },
-    { id: 9, sender: "2", content: "Definitely!", createdAt: new Date() },
-    { id: 10, sender: "1", content: "See you later!", createdAt: new Date() },
-    {
-      id: 11,
-      sender: "2",
-      content: "Talk to you later!",
-      createdAt: new Date(),
-    },
-    { id: 12, sender: "1", content: "See you soon!", createdAt: new Date() },
-    { id: 13, sender: "2", content: "See you soon!", createdAt: new Date() },
-    { id: 14, sender: "1", content: "See you soon!", createdAt: new Date() },
-  ]);
+import {
+  connectMessageSocket,
+  disconnectMessageSocket,
+  sendMessageSocket,
+} from "../../websocket/messageSocket";
+import { getPrivateMessages } from "../../api/apiMessage";
+import { useUser } from "../../hooks/useUser"; // ✅ dùng hook
 
-  const handleSend = (sender: "1" | "2", content: string) => {
-    if (!content.trim()) return;
-    const newMessage: Message = {
-      id: messages.length + 1,
-      sender,
-      content: content.trim(),
-      createdAt: new Date(),
+export default function ChatView({ chat }: { chat: ChatListItemDTO }) {
+  const { user } = useUser(); // ✅ lấy user từ context
+  const [messageSender, setMessageSender] = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    const loadMessages = async () => {
+      try {
+        const oldMessages = await getPrivateMessages(chat.chatId);
+        setMessages(oldMessages);
+      } catch (err) {
+        console.error("❌ Lỗi khi load tin nhắn:", err);
+      }
     };
-    setMessages([...messages, newMessage]);
+
+    loadMessages();
+
+    connectMessageSocket(
+      (newMsg) => setMessages((prev) => [...prev, newMsg]),
+      chat.chatId
+    );
+
+    return () => {
+      disconnectMessageSocket();
+    };
+  }, [chat.chatId]);
+
+  const handleSend = () => {
+    const content = messageSender.trim();
+    if (!content || !user) return;
+
+    sendMessageSocket({
+      privateChatId: chat.chatId,
+      senderId: user.id,
+      content,
+    });
+
     setMessageSender("");
   };
 
@@ -62,19 +67,9 @@ export default function ChatView({ chat }: { chat: ChatListItemDTO  }) {
         </header>
 
         <article className="message-area">
-          <MessageView messages={messages} currentUserId={1} />
+          <MessageView messages={messages} currentUserId={user?.id || -1} />
 
           <div className="chat-input-area">
-            {/* Dùng để test nhắn 2 chiều */}
-            <Form.Select
-              aria-label="Sender"
-              style={{ width: "200px", marginLeft: "10px" }}
-              onChange={(e) => setRole(e.target.value as "1" | "2")}
-            >
-              <option value="1">Sender</option>
-              <option value="2">Receiver</option>
-            </Form.Select>
-
             <Form className="p-2">
               <Row className="align-items-end">
                 <Col xs={10}>
@@ -88,7 +83,7 @@ export default function ChatView({ chat }: { chat: ChatListItemDTO  }) {
                     onKeyDown={(e) => {
                       if (e.key === "Enter" && !e.shiftKey) {
                         e.preventDefault();
-                        handleSend(role, messageSender);
+                        handleSend();
                       }
                     }}
                   />
@@ -96,7 +91,7 @@ export default function ChatView({ chat }: { chat: ChatListItemDTO  }) {
                 <Col xs={2}>
                   <Button
                     variant="primary"
-                    onClick={() => handleSend(role, messageSender)}
+                    onClick={handleSend}
                     className="w-100"
                   >
                     Send

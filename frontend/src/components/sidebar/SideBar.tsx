@@ -7,35 +7,50 @@ import LogoutButton from "../LogoutButton";
 import { useState } from "react";
 import UserProfile from "../profile/UserProfile";
 import ContactResult from "../search/ContactResult";
-import { UserResponseDTO } from "../../interfaces/UserResponseDTO"; // hoặc bạn có Contact type riêng
+import { UserResponseDTO } from "../../interfaces/UserResponseDTO";
+import { ChatListItemDTO } from "../../interfaces/ChatListItemDTO";
 import SettingButton from "./SettingButton";
 import { mapUserToUserProfileProps } from "../../mappers/userMapper";
+import { createOrGetPrivateChat } from "../../api/apiChat";
 
 export default function SideBar({
-  onSelectContact: onSelectContact,
+  onSelectChat, // Hàm callback để gửi chat đã chọn về HomePage
 }: {
-  onSelectContact: (user: UserResponseDTO) => void;
+  onSelectChat: (chat: ChatListItemDTO) => void;
 }) {
-  const { user } = useUser();
-  const [showModal, setShowModal] = useState(false);
+  const { user } = useUser(); // Lấy thông tin user đang đăng nhập
+  const [showModal, setShowModal] = useState(false); // Hiển thị modal profile
   const [selectedContact, setSelectedContact] =
-    useState<UserResponseDTO | null>(null); //
-  const [isOnFocus, setIsOnFocus] = useState(false); // thêm state để theo dõi trạng thái focus của input
+    useState<UserResponseDTO | null>(null); // Người dùng được chọn từ tìm kiếm
+  const [isOnFocus, setIsOnFocus] = useState(false); // Trạng thái focus ô tìm kiếm
+  const [selectedChatId, setSelectedChatId] = useState<number | null>(null);
 
+  // Mở modal user profile
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
-  const handleSelect = (user: UserResponseDTO) => {
-    onSelectContact(user); // đẩy user về Homepage để xử lý logic API ở đó
-    setIsOnFocus(false);
-    setSelectedContact(null);
+
+  /**
+   * ✅ Khi chọn một người dùng từ kết quả tìm kiếm:
+   * Gọi API tạo/lấy đoạn chat 1-1 tương ứng và trả về ChatListItemDTO cho HomePage
+   */
+  const handleSelectContact = async (user: UserResponseDTO) => {
+    try {
+      const chat = await createOrGetPrivateChat(user.id); // Gọi API backend tạo/lấy chat
+      setSelectedChatId(chat.chatId); // ✅ update ID để highlight
+      onSelectChat(chat); // Trả về ChatListItemDTO (dùng cho ChatView)
+    } catch (err) {
+      console.error("❌ Không thể tạo hoặc lấy chat:", err);
+    } finally {
+      // Reset trạng thái tìm kiếm
+      setIsOnFocus(false);
+      setSelectedContact(null);
+    }
   };
-  // const createChatByConactResult = (user: UserResponseDTO) => {
-  //   onSelectUser(user); // <- Gửi ra Homepage
-  // };
 
   return (
     <>
       <nav id="sidebarNav" className="d-flex flex-row">
+        {/* Cột trái: avatar user + các nút */}
         <div
           id="main-tab"
           className="d-flex flex-column justify-content-between align-items-center"
@@ -55,24 +70,34 @@ export default function SideBar({
           </div>
         </div>
 
+        {/* Cột phải: danh sách chat hoặc kết quả tìm kiếm */}
         <div className="chat-list-container d-flex flex-column">
+          {/* Ô tìm kiếm liên hệ */}
           <ContactSearch
-            onResult={setSelectedContact}
-            isOnFocus={setIsOnFocus}
+            onResult={setSelectedContact} // Gán kết quả tìm kiếm
+            isOnFocus={setIsOnFocus} // Theo dõi trạng thái focus
           />
+
+          {/* Nếu đang tìm thì hiển thị ContactResult, ngược lại hiển thị ChatList */}
           {isOnFocus ? (
             <ContactResult
               contact={selectedContact}
               isSelected={!!selectedContact}
-              onSelect={handleSelect} // Gọi hàm khi chọn người dùng
+              onSelect={handleSelectContact} // ✅ Gọi API tạo chat → trả về ChatListItemDTO
             />
           ) : (
-            <ChatList />
+            <ChatList
+              onSelectContact={(chat) => {
+                setSelectedChatId(chat.chatId);
+                onSelectChat(chat);
+              }}
+              selectedChatId={selectedChatId}
+            />
           )}
         </div>
       </nav>
 
-      {/* Modal hiển thị thông tin người dùng */}
+      {/* Modal hiển thị profile người dùng đang đăng nhập */}
       {user && (
         <UserProfile
           show={showModal}
@@ -83,5 +108,3 @@ export default function SideBar({
     </>
   );
 }
-// Chú ý: Đoạn mã này giả định rằng bạn đã có các component và hook cần thiết như useUser, UserProfile, ContactSearch, ChatList, LogoutButton, SettingButton
-// và các kiểu dữ liệu như UserResponseDTO. Bạn cần điều chỉnh lại cho phù hợp với cấu trúc dự án của bạn.
