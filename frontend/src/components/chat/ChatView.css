@@ -46,26 +46,29 @@ header {
   background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
+  gap: 10px; /* ✅ dùng gap thay vì margin */
 }
 
 .message-item {
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.3s ease; /* ✅ mượt khi ẩn/hiện */
 }
 
 .message-item.me {
-  text-align: right;
+  align-items: flex-end;
 }
 
 .message-item.other {
-  text-align: left;
+  align-items: flex-start;
 }
 
 .message-bubble {
-  display: inline-block;
   padding: 10px 15px;
   border-radius: 20px;
   max-width: 70%;
   word-break: break-word;
+  white-space: pre-line; /* ✅ đảm bảo xuống dòng */
 }
 
 .message-item.me .message-bubble {
@@ -78,7 +81,36 @@ header {
   color: black;
 }
 
-.chat-input-area {
-  border-top: 1px solid var(--border-color);
-  background-color: white;
+/* Tin nhắn đang gửi (temp) */
+.message-item.sending {
+  opacity: 0.5;
+}
+
+/* Dấu chấm hiệu ứng khi đang gửi */
+.sending-dots {
+  display: inline-block;
+  margin-left: 4px;
+  font-weight: bold;
+  animation: blink 1.2s infinite;
+}
+
+/* Tạm không dùng nếu không cần "đã gửi" hoặc "đã nhận" */
+.message-status {
+  font-size: 0.7rem;
+  color: #999;
+  margin-top: 4px;
+  margin-right: 6px;
+  text-align: right;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }

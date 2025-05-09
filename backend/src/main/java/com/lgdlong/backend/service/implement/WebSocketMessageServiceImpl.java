@@ -27,5 +27,8 @@ public class WebSocketMessageServiceImpl implements WebSocketMessageService {
                 "/chat-room/private." + payload.getPrivateChatId(),
                 saved
         );
+
+        // Debug log
+        System.out.println("✅ Message saved: " + saved.getId() + " by user " + saved.getSenderId());
     }
 }

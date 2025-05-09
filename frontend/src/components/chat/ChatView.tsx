@@ -1,60 +1,97 @@
 import "./ChatView.css";
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import MessageView from "./MessageView";
-import { Message } from "../../interfaces/Message";
+import MessageInput from "./MessageInput";
 import { ChatListItemDTO } from "../../interfaces/ChatListItemDTO";
+import { AnyMessage } from "../../interfaces/Message";
 import {
   connectMessageSocket,
   disconnectMessageSocket,
   sendMessageSocket,
 } from "../../websocket/messageSocket";
+import { useUser } from "../../hooks/useUser";
+import {
+  replaceTempMessageWithReal,
+  updateMessageStatusInState,
+} from "../../utils/messageUtils";
 import { getPrivateMessages } from "../../api/apiMessage";
-import { useUser } from "../../hooks/useUser"; // ✅ dùng hook
 
 export default function ChatView({ chat }: { chat: ChatListItemDTO }) {
-  const { user } = useUser(); // ✅ lấy user từ context
-  const [messageSender, setMessageSender] = useState("");
-  const [messages, setMessages] = useState<Message[]>([]);
+  const { user } = useUser();
+  const [messages, setMessages] = useState<AnyMessage[]>([]);
+  const [wsConnected, setWsConnected] = useState(false);
 
   useEffect(() => {
     const loadMessages = async () => {
       try {
         const oldMessages = await getPrivateMessages(chat.chatId);
+        oldMessages.sort(
+          (a, b) =>
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        );
         setMessages(oldMessages);
       } catch (err) {
-        console.error("❌ Lỗi khi load tin nhắn:", err);
+        console.error("❌ Lỗi khi load tin nhắn cũ:", err);
       }
     };
 
     loadMessages();
 
     connectMessageSocket(
-      (newMsg) => setMessages((prev) => [...prev, newMsg]),
-      chat.chatId
+      (newMsg) => {
+        setMessages((prev) => {
+          // ✅ Replace temp message nếu trùng nội dung và thời gian gần
+          const updated = replaceTempMessageWithReal(prev, newMsg);
+
+          const exists = updated.some((m) => m.id === newMsg.id);
+          return exists ? updated : [...updated, newMsg];
+        });
+      },
+      chat.chatId,
+      (statusUpdate) => {
+        setMessages((prev) => updateMessageStatusInState(prev, statusUpdate));
+      },
+      () => setWsConnected(true)
     );
 
     return () => {
       disconnectMessageSocket();
+      setWsConnected(false);
     };
   }, [chat.chatId]);
 
-  const handleSend = () => {
-    const content = messageSender.trim();
+  const handleSend = (content: string) => {
     if (!content || !user) return;
 
-    sendMessageSocket({
-      privateChatId: chat.chatId,
-      senderId: user.id,
-      content,
-    });
+    // const tempId = `temp-${Date.now()}`;
+    // const tempMessage: AnyMessage = {
+    //   id: tempId,
+    //   privateChatId: chat.chatId,
+    //   senderId: user.id,
+    //   content,
+    //   createdAt: new Date().toISOString(),
+    //   type: "TEXT",
+    //   isRevoked: false,
+    // };
 
-    setMessageSender("");
+    // setMessages((prev) => [...prev, tempMessage]);
+
+    if (wsConnected) {
+      sendMessageSocket({
+        privateChatId: chat.chatId,
+        senderId: user.id,
+        content,
+      });
+    } else {
+      console.warn("⚠️ Không thể gửi vì WebSocket chưa sẵn sàng");
+    }
   };
 
   return (
     <main>
       <div id="chatViewContainer">
+        {/* Header hiển thị tên + avatar */}
         <header className="d-flex align-items-center">
           <Row className="d-flex align-items-center w-100">
             <Col md={2}>
@@ -66,40 +103,10 @@ export default function ChatView({ chat }: { chat: ChatListItemDTO }) {
           </Row>
         </header>
 
+        {/* Khung hiển thị và nhập tin nhắn */}
         <article className="message-area">
           <MessageView messages={messages} currentUserId={user?.id || -1} />
-
-          <div className="chat-input-area">
-            <Form className="p-2">
-              <Row className="align-items-end">
-                <Col xs={10}>
-                  <Form.Control
-                    as="textarea"
-                    rows={1}
-                    value={messageSender}
-                    onChange={(e) => setMessageSender(e.target.value)}
-                    placeholder="Type your message..."
-                    style={{ resize: "none", height: "40px" }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        handleSend();
-                      }
-                    }}
-                  />
-                </Col>
-                <Col xs={2}>
-                  <Button
-                    variant="primary"
-                    onClick={handleSend}
-                    className="w-100"
-                  >
-                    Send
-                  </Button>
-                </Col>
-              </Row>
-            </Form>
-          </div>
+          <MessageInput onSend={handleSend} />
         </article>
       </div>
     </main>
