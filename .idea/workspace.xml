@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9bbb269-601f-40fd-949c-ce35f3bb26fc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/dto/UpdateUserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/implement/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/implement/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UpdateProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UpdateProfile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/sidebar/SideBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/sidebar/SideBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/interfaces/UserResponseDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/interfaces/UserResponseDTO.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/interfaces/UserUpdateDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/interfaces/UserUpdateDTO.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +58,7 @@
     "Application.MAIN.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.BackendApplication.executor": "Run",
     "com.codeium.enabled": "true",
     "git-widget-placeholder": "F15-Not-Exit",
     "ignore.virus.scanning.warn.message": "true",
@@ -71,11 +69,11 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "advanced.settings",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "settings.editor.splitter.proportion": "0.25280327",
     "ts.external.directory.path": "D:\\AShiroru\\Program\\webAppChat\\chat-app-project\\frontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
@@ -94,7 +92,7 @@
       <recent name="com.lgdlong.backend.repo" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BackendApplication">
+  <component name="RunManager">
     <configuration name="BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.lgdlong.backend.BackendApplication" />
       <module name="backend" />
@@ -109,8 +107,10 @@
       </method>
     </configuration>
     <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-22" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="backend" />
+      <module name="main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.lgdlong.backend.BackendApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -160,7 +160,7 @@
       <workItem from="1746384494029" duration="1581000" />
       <workItem from="1746621630794" duration="3755000" />
       <workItem from="1746721761298" duration="8893000" />
-      <workItem from="1746815669595" duration="20321000" />
+      <workItem from="1746815669595" duration="22205000" />
     </task>
     <servers />
   </component>

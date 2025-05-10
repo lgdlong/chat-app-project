@@ -18,8 +18,8 @@ export default function UserProfileModal({ user, show, onClose, onUserUpdated }:
   const handleUpdate = async (updatedData: {
     displayName: string;
     username: string;
-    phone: string;
-    email: string
+    //phone: string;
+    //email: string
   }) => {
     try {
       // 1) Gọi API

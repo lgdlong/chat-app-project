@@ -124,11 +124,10 @@ export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) 
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label>Phone</Form.Label>
+                        <Form.Label>Phone (can't change)</Form.Label>
                         <Form.Control
                             type="text"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            value={phone} disabled
                         />
                     </Form.Group>
 
