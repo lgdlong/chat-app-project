@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f9bbb269-601f-40fd-949c-ce35f3bb26fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UpdateProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UpdateProfile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/apiUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/apiUser.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,37 +49,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.BackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MAIN.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/expand-profile-details&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/AShiroru/Program/webAppChat/chat-app-project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;settings.editor.splitter.proportion&quot;: &quot;0.25280327&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\AShiroru\\Program\\webAppChat\\chat-app-project\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BackendApplication.executor": "Run",
+    "Application.MAIN.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "F15-Not-Exit",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/AShiroru/Program/webAppChat/chat-app-project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "settings.editor.splitter.proportion": "0.25280327",
+    "ts.external.directory.path": "D:\\AShiroru\\Program\\webAppChat\\chat-app-project\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\AShiroru\Program\webAppChat\chat-app-project\backend\src\main\java\com\lgdlong\backend\repo" />
@@ -154,7 +153,8 @@
       <workItem from="1746380269859" duration="2889000" />
       <workItem from="1746384494029" duration="1581000" />
       <workItem from="1746621630794" duration="3755000" />
-      <workItem from="1746721761298" duration="2068000" />
+      <workItem from="1746721761298" duration="8893000" />
+      <workItem from="1746815669595" duration="6256000" />
     </task>
     <servers />
   </component>
