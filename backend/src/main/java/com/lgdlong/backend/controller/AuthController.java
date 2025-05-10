@@ -7,10 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.lgdlong.backend.mapper.UserMapper;
 import com.lgdlong.backend.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.lgdlong.backend.service.UserService;
+
 
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+    @Autowired private UserService userSvc;
+    @Autowired private UserMapper mapper;
     private final AuthServiceImpl authServiceImpl;
 
     public AuthController(AuthServiceImpl authServiceImpl) {

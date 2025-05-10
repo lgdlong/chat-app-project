@@ -6,6 +6,7 @@ export interface UserResponseDTO {
   displayName: string;
   picUrl: string; // ánh xạ từ @JsonProperty("picUrl")
   role: UserRole;
+  createdAt: string;
 }
 
 export type UserRole = "USER" | "ADMIN"; // tuỳ enum bên backend

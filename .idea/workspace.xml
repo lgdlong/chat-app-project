@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f9bbb269-601f-40fd-949c-ce35f3bb26fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/apiUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/apiUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/implement/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/lgdlong/backend/service/implement/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UpdateProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UpdateProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profile/UserProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/sidebar/SideBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/sidebar/SideBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/interfaces/UserResponseDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/interfaces/UserResponseDTO.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/interfaces/UserUpdateDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/interfaces/UserUpdateDTO.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +160,7 @@
       <workItem from="1746384494029" duration="1581000" />
       <workItem from="1746621630794" duration="3755000" />
       <workItem from="1746721761298" duration="8893000" />
-      <workItem from="1746815669595" duration="6256000" />
+      <workItem from="1746815669595" duration="20321000" />
     </task>
     <servers />
   </component>

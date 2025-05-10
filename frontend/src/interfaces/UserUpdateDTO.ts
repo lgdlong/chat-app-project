@@ -3,6 +3,6 @@ export interface UserUpdateDTO {
     displayName: string;
     email: string;
     phone: string;
-    picUrl: string;
-    role: "USER" | "ADMIN";
+    picUrl?: string;             // ← made optional
+    role?: "USER" | "ADMIN";    // ← made optional
   }

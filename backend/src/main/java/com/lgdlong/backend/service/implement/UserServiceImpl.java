@@ -47,6 +47,8 @@ public class UserServiceImpl implements UserService {
         existingUser.setUsername(userDTO.getUsername());
         existingUser.setPhone(userDTO.getPhone());
         existingUser.setEmail(userDTO.getEmail());
+        existingUser.setPhone(userDTO.getPhone());
+        // nếu dto có thêm picUrl hoặc status thì set ở đây
         return userRepo.save(existingUser);
     }
 

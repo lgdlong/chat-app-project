@@ -18,7 +18,7 @@ export default function SideBar({
 }: {
   onSelectChat: (chat: ChatListItemDTO) => void;
 }) {
-  const { user } = useUser(); // Lấy thông tin user đang đăng nhập
+  const { user, setUser  } = useUser(); // Lấy thông tin user đang đăng nhập
   const [showModal, setShowModal] = useState(false); // Hiển thị modal profile
   const [selectedContact, setSelectedContact] =
     useState<UserResponseDTO | null>(null); // Người dùng được chọn từ tìm kiếm
@@ -103,6 +103,13 @@ export default function SideBar({
           show={showModal}
           onClose={closeModal}
           user={mapUserToUserProfileProps(user)}
+          onUserUpdated={(updatedProfile) => {
+            // cập nhật lại context, UI sẽ tự re-render
+            setUser({
+              ...user,
+              ...updatedProfile
+            });
+          }}
         />
       )}
     </>

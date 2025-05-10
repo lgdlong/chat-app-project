@@ -3,25 +3,35 @@ import styles from "./UserProfile.module.css";
 import UpdateProfile from "./UpdateProfile";
 import { UserProfileProps } from "../../interfaces/UserProfileProps";
 import { useState } from "react";
+import { updateMyProfile } from "../../api/apiUser";
 
 interface Props {
   user: UserProfileProps;
   show: boolean;
   onClose: () => void;
+  onUserUpdated: (updated: UserProfileProps) => void;
 }
 
-export default function UserProfileModal({ user, show, onClose }: Props) {
+export default function UserProfileModal({ user, show, onClose, onUserUpdated }: Props) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
 
-  const handleUpdate = (updatedData: {
+  const handleUpdate = async (updatedData: {
     displayName: string;
     username: string;
     phone: string;
     email: string
   }) => {
-    console.log("Dữ liệu cập nhật:", updatedData);
-    setShowUpdateModal(false);
-    // TODO: Gọi API cập nhật nếu cần
+    try {
+      // 1) Gọi API
+      const updatedUser = await updateMyProfile(updatedData);
+      // 2) Đẩy kết quả về parent để cập nhật UI
+      onUserUpdated(updatedUser);
+    } catch (err) {
+      alert("Failed to update profile");
+      console.error(err);
+    } finally {
+      setShowUpdateModal(false);
+    }
   };
 
   return (
@@ -84,7 +94,7 @@ export default function UserProfileModal({ user, show, onClose }: Props) {
       <UpdateProfile
         show={showUpdateModal}
         onClose={() => setShowUpdateModal(false)}
-        onSubmit={handleUpdate}
+        onSubmit={handleUpdate} // ← handleUpdate chứa API call + onUserUpdated
         user={user}
       />
 
