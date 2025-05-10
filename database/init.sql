@@ -117,7 +117,6 @@ ALTER TABLE public.message_statuses OWNER TO postgres;
 
 CREATE TABLE public.messages (
     id bigint NOT NULL,
-    chat_id bigint NOT NULL,
     content text,
     created_at timestamp(6) without time zone NOT NULL,
     is_revoked boolean NOT NULL,
@@ -249,7 +248,22 @@ COPY public.message_statuses (message_id, user_id, status, updated_at) FROM stdi
 -- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.messages (id, chat_id, content, created_at, is_revoked, media_id, reply_to_id, revoked_at, sender_id, type, group_chat_id, private_chat_id) FROM stdin;
+COPY public.messages (id, content, created_at, is_revoked, media_id, reply_to_id, revoked_at, sender_id, type, group_chat_id, private_chat_id) FROM stdin;
+4	hi	2025-05-09 21:23:06.42735	f	\N	\N	\N	3	TEXT	\N	1
+5	hello	2025-05-09 21:23:14.532619	f	\N	\N	\N	3	TEXT	\N	1
+6	hiiii	2025-05-09 21:23:41.610991	f	\N	\N	\N	2	TEXT	\N	1
+7	chào cậu	2025-05-09 21:51:39.507051	f	\N	\N	\N	3	TEXT	\N	1
+8	mình là trang	2025-05-09 21:51:43.312538	f	\N	\N	\N	3	TEXT	\N	1
+9	hellooo	2025-05-09 21:51:57.73061	f	\N	\N	\N	3	TEXT	\N	1
+10	hi	2025-05-09 21:51:58.97404	f	\N	\N	\N	3	TEXT	\N	1
+11	fuck you	2025-05-09 21:52:04.406725	f	\N	\N	\N	3	TEXT	\N	1
+12	tung tung tung shahur	2025-05-09 21:52:18.609568	f	\N	\N	\N	3	TEXT	\N	1
+13	skibidi toilet	2025-05-09 21:52:26.7268	f	\N	\N	\N	3	TEXT	\N	1
+14	abcd	2025-05-09 21:52:30.823861	f	\N	\N	\N	3	TEXT	\N	1
+15	hi\nxin chào	2025-05-09 21:53:11.545555	f	\N	\N	\N	2	TEXT	\N	1
+16	hihihiihih	2025-05-09 23:05:33.829839	f	\N	\N	\N	3	TEXT	\N	1
+17	chào	2025-05-09 23:05:35.24689	f	\N	\N	\N	3	TEXT	\N	1
+18	test	2025-05-09 23:05:39.659255	f	\N	\N	\N	3	TEXT	\N	1
 \.
 
 
@@ -320,7 +334,7 @@ SELECT pg_catalog.setval('public.media_id_seq', 1, false);
 -- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.messages_id_seq', 1, false);
+SELECT pg_catalog.setval('public.messages_id_seq', 18, true);
 
 
 --
@@ -437,13 +451,6 @@ CREATE INDEX idx_chat_participants_chat_user ON public.chat_participants USING b
 --
 
 CREATE INDEX idx_chat_participants_user ON public.chat_participants USING btree (user_id);
-
-
---
--- Name: idx_messages_chat_createdat; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX idx_messages_chat_createdat ON public.messages USING btree (chat_id, created_at DESC);
 
 
 --
