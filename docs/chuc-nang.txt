@@ -1,0 +1,18 @@
+- [x] client: Chat 1-1 qua username/số điện thoại
+- [ ] client: Thu hồi tin nhắn
+- [ ] client: Xem thời gian gửi tin nhắn
+- [ ] client: Xem trạng thái tin nhắn (Đã gửi, Đã nhận, Đã xem)
+- [ ] client: Gửi hình kèm tin nhắn (không nén)
+- [ ] client: Tạo nhóm (tuỳ chọn)
+- [ ] client: Nhắn tin 1 - n
+- [ ] client: Tin nhắn lưu vĩnh viễn
+- [ ] client: Kết bạn / Hủy kết bạn
+- [x] client: Xem profile bạn
+- [ ] client: Thêm/thay avatar
+- [x] client: Xem/sửa thông tin cá nhân (tên, email)
+- [x] client: Xem số điện thoại, ngày tạo, trạng thái tài khoản
+- [x] client: Đăng nhập / Đăng ký / Đăng xuất
+- [ ] admin: Xem danh sách users
+- [ ] admin: Ban / Active tài khoản
+- [ ] admin: Đếm số lượng tài khoản
+- [ ] admin: Lọc danh sách người dùng bị ban
