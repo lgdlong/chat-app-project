@@ -2,10 +2,10 @@
 
 export interface UserProfileProps {
   username: string;
-  email: string;
   displayName: string;
+  email: string;
+  phone: string;
   picUrl?: string;
   status?: string; // từ "online" | "busy" | "offline" → string
-  phone: string;
   createdAt: string;
 }

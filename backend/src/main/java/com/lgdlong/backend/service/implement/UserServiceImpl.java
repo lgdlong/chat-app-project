@@ -42,11 +42,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long id, UserDTO userDTO) {
+    public User updateUser(Long id, UserUpdateDTO userDTO) {
         User existingUser = getUserById(id); // throws exception nếu không tìm thấy
         existingUser.setUsername(userDTO.getUsername());
-        existingUser.setPhone(userDTO.getPhone());
+        existingUser.setDisplayName(userDTO.getDisplayName());
         existingUser.setEmail(userDTO.getEmail());
+        existingUser.setPhone(userDTO.getPhone());
+        // nếu dto có thêm picUrl hoặc status thì set ở đây
         return userRepo.save(existingUser);
     }
 

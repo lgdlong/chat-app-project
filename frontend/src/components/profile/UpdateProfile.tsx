@@ -2,17 +2,14 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { UserProfileProps } from "../../interfaces/UserProfileProps";
 import { useEffect } from "react";
+import { updateMyProfile } from "../../api/apiUser";
 
 interface Props {
     show: boolean;
     onClose: () => void;
-    onSubmit: (updatedData: {
-        displayName: string;
-        username: string;
-        phone: string; email:
-        string
-    }) => void;
-
+    // giờ chỉ nhận 4 field, 2 field kia (picUrl, role) để sau bổ sung
+    // giờ onSubmit nhận về toàn bộ UserProfileProps sau khi update thành công
+    onSubmit: (updatedData: UserProfileProps) => void;
     user: UserProfileProps;
 }
 
@@ -27,10 +24,15 @@ export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) 
     useEffect(() => {
         if (show) {
             setIsSubmitting(false);
+            // reset form fields khi mở lại
+            setDisplayName(user.displayName);
+            setUsername(user.username);
+            setPhone(user.phone);
         }
-    }, [show]);
-    
-    const handleSubmit = () => {
+    }, [show, user]);
+
+
+    const handleSubmit = async () => {
         if (isSubmitting) return;
 
         if (!displayName.trim()) {
@@ -74,8 +76,25 @@ export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) 
         }
 
         setIsSubmitting(true);
-        onSubmit({ displayName, username, phone, email });
-        // Reset state in the parent component after API call completes
+        try {
+            // 🆕 Gọi API PUT /api/users/{id}
+            const updated = await updateMyProfile({
+                displayName,
+                username,
+                phone,
+                email,
+            });
+            // 🆕 Thông báo thành công
+            alert("Profile updated successfully");
+            // 🆕 Trả dữ liệu mới về parent để cập nhật UI
+            onSubmit(updated);
+            onClose();
+        } catch (err) {
+            console.error("Error updating profile:", err);
+            alert("Failed to update profile. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -105,11 +124,10 @@ export default function UpdateProfile({ show, onClose, onSubmit, user }: Props) 
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label>Phone</Form.Label>
+                        <Form.Label>Phone (can't change)</Form.Label>
                         <Form.Control
                             type="text"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            value={phone} disabled
                         />
                     </Form.Group>
 
