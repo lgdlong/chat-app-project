@@ -8,8 +8,13 @@ import api from "./axiosConfig";
  * Lấy profile của user đang đăng nhập từ /api/auth/me
  */
 export const getMyProfile = async (): Promise<UserResponseDTO> => {
-  const res = await api.get<UserResponseDTO>("/api/auth/me");
-  return res.data;
+  try {
+    const res = await api.get<UserResponseDTO>("/api/auth/me");
+    return res.data;
+  } catch (error) {
+    console.error("Failed to fetch profile:", error);
+    throw error;
+  }
 };
 
 export const updateMyProfile = async (
