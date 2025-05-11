@@ -90,3 +90,13 @@ export const searchUser = async (
     return null;
   }
 };
+
+export const getOnlineUserCount = async (): Promise<number> => {
+  try {
+    const res = await api.get("/api/online/count");
+    return res.data;
+  } catch (error) {
+    console.error("❌ Failed to fetch online count:", error);
+    return 0;
+  }
+};

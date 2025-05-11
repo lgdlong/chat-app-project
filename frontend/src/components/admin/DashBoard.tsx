@@ -1,25 +1,32 @@
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../../api/apiUser";
+import { getAllUsers, getOnlineUserCount } from "../../api/apiUser";
 import { UserFullProps } from "../../interfaces/UserFullProps";
-import { Card, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
+import OnlineUserList from "./OnlineUserList";
+import AccountStatsCards from "./AccountStatsCards";
 
-export default function DashBoard() {
+export default function Dashboard() {
   const [users, setUsers] = useState<UserFullProps[]>([]);
+  const [online, setOnline] = useState<number>(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchData = async () => {
       try {
-        const res = await getAllUsers();
-        setUsers(res);
+        const [userRes, onlineCount] = await Promise.all([
+          getAllUsers(),
+          getOnlineUserCount(),
+        ]);
+        setUsers(userRes);
+        setOnline(onlineCount);
       } catch (error) {
-        console.error("❌ Failed to load users:", error);
+        console.error("❌ Failed to load dashboard data:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUsers();
+    fetchData();
   }, []);
 
   const total = users.length;
@@ -29,35 +36,21 @@ export default function DashBoard() {
   if (loading) {
     return (
       <div className="text-center mt-5">
-        <Spinner animation="border" />
+        <Spinner animation="border" variant="primary" />
       </div>
     );
   }
 
   return (
-    <div className="d-flex gap-4 flex-wrap">
-      <Card bg="light" className="shadow-sm flex-fill text-center p-3">
-        <h5>Total Users</h5>
-        <h2>{total}</h2>
-      </Card>
-
-      <Card
-        bg="success"
-        text="white"
-        className="shadow-sm flex-fill text-center p-3"
-      >
-        <h5>Active Users</h5>
-        <h2>{active}</h2>
-      </Card>
-
-      <Card
-        bg="danger"
-        text="white"
-        className="shadow-sm flex-fill text-center p-3"
-      >
-        <h5>Banned Users</h5>
-        <h2>{banned}</h2>
-      </Card>
+    <div>
+      <h3 className="mb-4">Admin Dashboard</h3>
+      <OnlineUserList />
+      <AccountStatsCards
+        total={total}
+        active={active}
+        banned={banned}
+        online={online}
+      />
     </div>
   );
 }
