@@ -1,13 +1,12 @@
 package com.lgdlong.backend.service.implement;
 
 import com.lgdlong.backend.dto.*;
-import com.lgdlong.backend.entity.User;
+import com.lgdlong.backend.entity.*;
 import com.lgdlong.backend.exception.*;
 import com.lgdlong.backend.repo.*;
 import com.lgdlong.backend.service.*;
 import lombok.*;
-import org.springframework.security.core.userdetails.*;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
 import java.util.*;
@@ -41,16 +40,92 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
     }
 
+//    @Override
+//    public User updateUser(Long id, UserUpdateDTO userDTO) {
+//        User existingUser = getUserById(id); // throws exception nếu không tìm thấy
+//
+//        // Kiểm tra trùng email (nếu đổi)
+//        Optional<User> userByEmail = userRepo.findByEmail(userDTO.getEmail());
+//        if (userByEmail.isPresent() && !userByEmail.get().getId().equals(id)) {
+//            throw new IllegalArgumentException("Email is already in use by another user.");
+//        }
+//
+//        // Kiểm tra trùng phone (nếu đổi)
+//        Optional<User> userByPhone = userRepo.findByPhone(userDTO.getPhone());
+//        if (userByPhone.isPresent() && !userByPhone.get().getId().equals(id)) {
+//            throw new IllegalArgumentException("Phone is already in use by another user.");
+//        }
+//
+//        existingUser.setUsername(userDTO.getUsername());
+//        existingUser.setDisplayName(userDTO.getDisplayName());
+//        existingUser.setEmail(userDTO.getEmail());
+//        existingUser.setPhone(userDTO.getPhone());
+//
+//        // nếu dto có thêm picUrl hoặc status thì set ở đây
+//        return userRepo.save(existingUser);
+//    }
+
     @Override
-    public User updateUser(Long id, UserUpdateDTO userDTO) {
-        User existingUser = getUserById(id); // throws exception nếu không tìm thấy
-        existingUser.setUsername(userDTO.getUsername());
-        existingUser.setDisplayName(userDTO.getDisplayName());
-        existingUser.setEmail(userDTO.getEmail());
-        existingUser.setPhone(userDTO.getPhone());
-        // nếu dto có thêm picUrl hoặc status thì set ở đây
-        return userRepo.save(existingUser);
+    public User updateUser(Long id, UserUpdateDTO dto) {
+        User user = getUserById(id);
+
+        checkDuplicateEmailAndPhone(dto.getEmail(), dto.getPhone(), id);
+        applyBasicUserUpdates(user, dto.getUsername(), dto.getDisplayName(), dto.getEmail(), dto.getPhone());
+
+        return userRepo.save(user);
     }
+
+
+//    @Override
+//    public User adminUpdateUser(Long id, AdminUserUpdate dto) {
+//        User existingUserr = getUserById(id);
+//
+//        // Check email trùng
+//        Optional<User> userByEmail = userRepo.findByEmail(dto.getEmail());
+//        if (userByEmail.isPresent() && !userByEmail.get().getId().equals(id)) {
+//            throw new IllegalArgumentException("Email is already in use by another user.");
+//        }
+//
+//        // Check phone trùng
+//        Optional<User> userByPhone = userRepo.findByPhone(dto.getPhone());
+//        if (userByPhone.isPresent() && !userByPhone.get().getId().equals(id)) {
+//            throw new IllegalArgumentException("Phone is already in use by another user.");
+//        }
+//
+//        existingUserr.setUsername(dto.getUsername());
+//        existingUserr.setDisplayName(dto.getDisplayName());
+//        existingUserr.setEmail(dto.getEmail());
+//        existingUserr.setPhone(dto.getPhone());
+//
+//        if (dto.getStatus() != null) {
+//            existingUserr.setStatus(dto.getStatus());
+//        }
+//
+//        if (dto.getPicUrl() != null) {
+//            existingUserr.setAvatarUrl(dto.getPicUrl());
+//        }
+//
+//        return userRepo.save(existingUserr);
+//    }
+
+    @Override
+    public User adminUpdateUser(Long id, AdminUserUpdate dto) {
+        User user = getUserById(id);
+
+        checkDuplicateEmailAndPhone(dto.getEmail(), dto.getPhone(), id);
+        applyBasicUserUpdates(user, dto.getUsername(), dto.getDisplayName(), dto.getEmail(), dto.getPhone());
+
+        if (dto.getStatus() != null) {
+            user.setStatus(dto.getStatus());
+        }
+
+        if (dto.getPicUrl() != null) {
+            user.setAvatarUrl(dto.getPicUrl());
+        }
+
+        return userRepo.save(user);
+    }
+
 
     @Override
     public void deleteUser(Long id) {
@@ -101,4 +176,26 @@ public class UserServiceImpl implements UserService {
             userRepo.save(user);
         }
     }
+
+    private void checkDuplicateEmailAndPhone(String email, String phone, Long currentId) {
+        userRepo.findByEmail(email).ifPresent(user -> {
+            if (!user.getId().equals(currentId)) {
+                throw new IllegalArgumentException("Email is already in use.");
+            }
+        });
+
+        userRepo.findByPhone(phone).ifPresent(user -> {
+            if (!user.getId().equals(currentId)) {
+                throw new IllegalArgumentException("Phone is already in use.");
+            }
+        });
+    }
+
+    private void applyBasicUserUpdates(User user, String username, String displayName, String email, String phone) {
+        user.setUsername(username);
+        user.setDisplayName(displayName);
+        user.setEmail(email);
+        user.setPhone(phone);
+    }
+
 }

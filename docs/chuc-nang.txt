@@ -12,7 +12,7 @@
 - [x] client: Xem/sửa thông tin cá nhân (tên, email)
 - [x] client: Xem số điện thoại, ngày tạo, trạng thái tài khoản
 - [x] client: Đăng nhập / Đăng ký / Đăng xuất
-- [ ] admin: Xem danh sách users
-- [ ] admin: Ban / Active tài khoản
-- [ ] admin: Đếm số lượng tài khoản
-- [ ] admin: Lọc danh sách người dùng bị ban
+- [x] admin: Xem danh sách users
+- [x] admin: Ban / Active tài khoản
+- [x] admin: Đếm số lượng tài khoản
+- [x] admin: Lọc danh sách người dùng bị ban

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { isTokenValid } from "./utils/auth";
 import { getCurrentUser } from "./api/authApi";
 import AppRoutes from "./routes/AppRoutes";
+import { UserRole } from "./enums/UserEnums";
 
 /**
  * AppInner là component trung tâm của ứng dụng (bên trong UserProvider).
@@ -62,8 +63,14 @@ export default function AppInner() {
         setUser(user);
 
         if (window.location.pathname === "/") {
-          console.log("➡️ Redirect / → /home");
-          navigate("/home", { replace: true });
+          if (user.role === UserRole.ADMIN) {
+            console.log("➡️ Redirect / → /admin");
+            navigate("/admin", { replace: true });
+          } else {
+            // role === UserRole.USER
+            console.log("➡️ Redirect / → /home");
+            navigate("/home", { replace: true });
+          }
         }
       } catch (err) {
         console.error("❌ Lỗi xác thực token với server:", err);

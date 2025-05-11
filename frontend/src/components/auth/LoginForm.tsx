@@ -18,14 +18,19 @@ export default function LoginForm() {
     try {
       const response = await loginUser({ username, password });
       const { token } = response.data;
-      
+
       localStorage.setItem(ACCESS_TOKEN_KEY, token); // ✅ lưu đúng key
 
       // ✅ Gọi /me để lấy thông tin user sau khi login
       const user = await getCurrentUser();
       setUser(user); // ✅ Lưu vào context
-      
-      navigate("/home");
+
+      if (user.role === "ADMIN") {
+        navigate("/admin");
+      } else { // role === "USER"
+        navigate("/home");
+      }
+
     } catch (err: any) {
       if (err.response) {
         // 🔴 Lỗi từ backend trả về (ví dụ: 401, 400)

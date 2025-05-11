@@ -2,14 +2,12 @@ package com.lgdlong.backend.entity;
 
 
 import com.fasterxml.jackson.annotation.*;
-import com.lgdlong.backend.enums.UserStatus;
-import com.lgdlong.backend.enums.UserRole;
+import com.lgdlong.backend.enums.*;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.security.crypto.password.*;
 
-import java.time.LocalDateTime;
+import java.time.*;
 
 @Entity
 @Table(name = "users")
@@ -57,16 +55,13 @@ public class User {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-//    @Column(name = "status") nếu cần làm status
-//    private String status;
-
     // Constructor cho việc tạo người dùng mới
     public User(String username, String phone, String email, String password) {
         this.username = username;
         this.phone = phone;
         this.email = email;
         this.passwordHash = password;
-        this.displayName = "Default Display Name";
+        this.displayName = this.username.substring(0, 1).toUpperCase() + this.username.substring(1);
 //        this.avatarUrl = avatarUrl != null ? avatarUrl : DEFAULT_AVATAR_URL;
         this.avatarUrl = DEFAULT_AVATAR_URL; // gắn avatar mặc định để test
         this.status = UserStatus.ACTIVE;

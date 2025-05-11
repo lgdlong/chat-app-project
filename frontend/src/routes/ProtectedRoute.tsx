@@ -3,9 +3,11 @@
 import { Navigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import Spinner from "react-bootstrap/Spinner"; // Ensure this is the correct path or library
+import { UserRole } from "../enums/UserEnums";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
+  requiredRole?: UserRole;
 }
 
 /**
@@ -14,7 +16,10 @@ interface ProtectedRouteProps {
  * Nếu chưa đăng nhập → điều hướng về /login.
  * Nếu đã đăng nhập → cho hiển thị children (component được bảo vệ).
  */
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+  children,
+  requiredRole,
+}: ProtectedRouteProps) => {
   const { user, loading } = useUser();
 
   if (loading) {
@@ -27,7 +32,11 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 
   if (!user || user.id === -1) {
     console.warn("🔒 Chưa đăng nhập → chặn truy cập protected route");
-    return <Navigate to="/login" replace />;
+  }
+
+  if (requiredRole && user.role !== requiredRole) {
+    console.warn(`🚫 Role mismatch – needs ${requiredRole}, got ${user.role}`);
+    return <Navigate to="/home" replace />;
   }
 
   return <>{children}</>;
