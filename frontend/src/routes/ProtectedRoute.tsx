@@ -28,12 +28,16 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 
   if (!user || user.id === -1) {
     console.warn("🔒 Chưa đăng nhập → chặn truy cập protected route");
+if (!user || user.id === -1) {
+  console.warn("🔒 Chưa đăng nhập → chặn truy cập protected route");
 
-    if (user.role === UserRole.ADMIN) {
-      // Nếu là admin nhưng chưa đăng nhập, điều hướng về trang admin
-      return <Navigate to="/admin" replace />;
-    }
+  if (user && user.role === UserRole.ADMIN) {
+    // Nếu là admin nhưng chưa đăng nhập, điều hướng về trang admin
+    return <Navigate to="/admin" replace />;
+  }
 
+  // …other redirection logic
+}
     return <Navigate to="/login" replace />;
   }
 
