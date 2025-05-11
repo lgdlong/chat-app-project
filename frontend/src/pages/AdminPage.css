@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+.admin-layout {
+  font-family: "Inter", sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.admin-content {
+  font-size: 16px;
+  padding: 20px;
+  height: 100vh;
+  overflow: auto; /* ✅ cho phép cuộn cả dọc lẫn ngang */
+  flex: 1;
+  background-color: #f8f9fa;
+  box-sizing: border-box; /* đảm bảo padding không làm tràn layout */
+}
+
+.user-edit-form {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+}
+
+.user-edit-overlay {
+  position: fixed;
+  inset: 0; /* shorthand cho top, right, bottom, left = 0 */
+  background-color: rgba(0, 0, 0, 0.5); /* làm tối nền */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}

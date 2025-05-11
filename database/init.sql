@@ -308,11 +308,12 @@ COPY public.users (id, avatar_url, created_at, display_name, email, last_active_
 9	https://picsum.photos/id/16/200/300	2025-04-23 15:42:00.255308	Sunshine	sunny@example.com	\N	$2a$10$0kH8OxzPG9dMNfgcfQHDzeT2Zge9a4GaKd8FmdnrE51ClIwb53cXO	0909090909	USER	ACTIVE	sunshine
 10	https://picsum.photos/id/17/200/300	2025-04-23 15:42:22.789643	Night Owl	owl@example.com	\N	$2a$10$YuMFiv.FPw/m1egT.7sFW.CERiudzJsV3/crFwUL3zciuUiwiyf16	0933444555	USER	ACTIVE	nightowl
 11	https://picsum.photos/id/18/200/300	2025-04-25 15:53:00.077151	Sunrise	sunrise1188@example.com	\N	$2a$10$cc5gVM008G0.PeJxa8u02.gaNVM62YU7Y5eZ28kQG/ejxUmrV6ody	0911342333	USER	ACTIVE	sunris1288
-12	https://picsum.photos/id/19/200/300	2025-04-25 15:53:41.371074	Sun	sunre1188@example.com	\N	$2a$10$CVlfpQF/HnAVY1CR4rVVUeAfKdmnLgCSdt.IL1SPBieZZf7BkOjAm	0924342333	USER	ACTIVE	sun1288
 13	https://picsum.photos/id/20/200/300	2025-04-25 15:54:05.874168	Tung Tung Tung Sahur	sunr188@example.com	\N	$2a$10$H7lnqWL72CqklSl7mWeUAegJ78SRre.KxAknaYUeASYkd1TFNwXaK	0924348583	USER	ACTIVE	tungtungtungsahur1288
 16	https://picsum.photos/id/21/200/300	2025-04-25 19:04:25.233595	Tui La Gay	gay@example.com	\N	$2a$10$ooylX9JrObH1LP0uLtE2wOYDpbccxF   CrCYiwCvIEO7//RfDJfKt2O	9093456699	USER	ACTIVE	tuiLaGay
 17	https://picsum.photos/id/22/200/300	2025-04-25 19:09:20.107165	Vitamin D	VitaminD@example.com	\N	$2a$10$PzQb7OrhWVSEg8hsYOteoOtHZIQ3DEZcL4RbcRbVOtrkeY5/UUMTG	9093432399	USER	ACTIVE	VitaminD
 19	https://picsum.photos/id/23/200/300	2025-04-25 19:09:39.919344	Con Meo	Meowwww@example.com	\N	$2a$10$eNitChimr6UGax7Pmp/Kr.N.BadWwjJKj2Wts2fS.z5DbKxNUAu8.	9093442399	USER	ACTIVE	Meowwww
+1	https://picsum.photos/id/237/200/300	2025-04-22 17:47:55.466392	SuperAdmin	admin@admin.com	\N	$2a$12$BJVVRio4eo.TFLlTdo7Em.eTtxo03mxSSAeR/xX6UiJSlNsKbJrTe	0776506822	ADMIN	ACTIVE	admin
+12	https://picsum.photos/id/19/200/300	2025-04-25 15:53:41.371074	Sun	sunre1188@example.com	\N	$2a$10$CVlfpQF/HnAVY1CR4rVVUeAfKdmnLgCSdt.IL1SPBieZZf7BkOjAm	0924342333	USER	BANNED	sun1288
 \.
 
 

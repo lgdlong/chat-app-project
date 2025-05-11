@@ -1,12 +1,11 @@
 package com.lgdlong.backend.mapper;
 
-import com.lgdlong.backend.dto.UserResponseDTO;
-import com.lgdlong.backend.entity.User;
-import org.springframework.stereotype.Component;
+import com.lgdlong.backend.dto.*;
+import com.lgdlong.backend.entity.*;
+import org.springframework.stereotype.*;
 
 @Component
 public class UserMapper {
-    // Status will be added later
     public UserResponseDTO toDTO(User user) {
         return new UserResponseDTO(
                 user.getId(),
@@ -15,6 +14,20 @@ public class UserMapper {
                 user.getEmail(),
                 user.getDisplayName(),
                 user.getAvatarUrl(),
+                user.getRole(),
+                user.getCreatedAt()
+        );
+    }
+
+    public UserFullProps toFullProps(User user) {
+        return new UserFullProps(
+                user.getId(),
+                user.getUsername(),
+                user.getPhone(),
+                user.getEmail(),
+                user.getDisplayName(),
+                user.getAvatarUrl(),
+                user.getStatus(),
                 user.getRole(),
                 user.getCreatedAt()
         );

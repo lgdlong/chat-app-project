@@ -4,8 +4,9 @@ import com.lgdlong.backend.dto.*;
 import com.lgdlong.backend.entity.*;
 import com.lgdlong.backend.mapper.*;
 import com.lgdlong.backend.service.*;
-import org.springframework.beans.factory.annotation.*;
+import lombok.*;
 import org.springframework.http.*;
+import org.springframework.security.access.prepost.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -13,15 +14,10 @@ import java.util.stream.*;
 
 @RestController
 @RequestMapping("/api/users")
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
-
-    @Autowired
-    public UserController(UserService userService, UserMapper userMapper) {
-        this.userService = userService;
-        this.userMapper = userMapper;
-    }
 
     /**
      * Tạo người dùng mới.
@@ -39,9 +35,9 @@ public class UserController {
      * Endpoint: GET /api/users
      */
     @GetMapping
-    public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
-        List<UserResponseDTO> users = userService.getAllUsers().stream()
-                .map(userMapper::toDTO)
+    public ResponseEntity<List<UserFullProps>> getAllUsers() {
+        List<UserFullProps> users = userService.getAllUsers().stream()
+                .map(userMapper::toFullProps)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(users);
     }
@@ -81,11 +77,27 @@ public class UserController {
     }
 
     /**
+     * Admin cập nhật thông tin người dùng bất kỳ.
+     * Endpoint: PUT /api/users/admin/{id}
+     * Body: AdminUserUpdate
+     */
+    @PutMapping("/admin/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserResponseDTO> adminUpdateUser(
+            @PathVariable Long id,
+            @RequestBody AdminUserUpdate dto
+    ) {
+        User updated = userService.adminUpdateUser(id, dto);
+        return ResponseEntity.ok(userMapper.toDTO(updated));
+    }
+
+    /**
      * Xoá người dùng theo ID.
      * Endpoint: DELETE /api/users/{id}
      * Ví dụ: /api/users/5
      */
     @DeleteMapping("/{id}")
+//    @PreAuthorize("hasRole('ADMIN')") --- chỉ dùng nếu user không có quyền tự xóa tài khoản mình
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();

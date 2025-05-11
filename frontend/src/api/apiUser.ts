@@ -1,46 +1,81 @@
+import { AdminUserUpdate } from "../interfaces/AdminUserUpdate";
+import { UserFullProps } from "../interfaces/UserFullProps";
 import { UserResponseDTO } from "../interfaces/UserResponseDTO";
 import { UserUpdateDTO } from "../interfaces/UserUpdateDTO";
 import api from "./axiosConfig";
 
-
+/**
+ * Lấy danh sách tất cả người dùng (chỉ dùng cho admin).
+ */
+export const getAllUsers = async (): Promise<UserFullProps[]> => {
+  try {
+    const res = await api.get<UserFullProps[]>("/api/users");
+    return res.data;
+  } catch (error) {
+    console.error("❌ Failed to fetch all users:", error);
+    throw error;
+  }
+};
 
 /**
- * Lấy profile của user đang đăng nhập từ /api/auth/me
+ * Lấy profile của user đang đăng nhập.
  */
 export const getMyProfile = async (): Promise<UserResponseDTO> => {
   try {
     const res = await api.get<UserResponseDTO>("/api/auth/me");
     return res.data;
   } catch (error) {
-    console.error("Failed to fetch profile:", error);
+    console.error("❌ Failed to fetch profile:", error);
     throw error;
   }
 };
 
+/**
+ * Người dùng tự cập nhật profile cá nhân.
+ */
 export const updateMyProfile = async (
   data: UserUpdateDTO
 ): Promise<UserResponseDTO> => {
   try {
-    // 1) Lấy thông tin hiện tại để có ID
     const me = await getMyProfile();
-    
-    // 2) Gọi API update
-    const res = await api.put<UserResponseDTO>(
-      `/api/users/${me.id}`,
-      data
-    );
+    const res = await api.put<UserResponseDTO>(`/api/users/${me.id}`, data);
     return res.data;
   } catch (error) {
-    console.error("Failed to update profile:", error);
+    console.error("❌ Failed to update profile:", error);
     throw error;
   }
 };
 
+/**
+ * Admin cập nhật thông tin của một người dùng bất kỳ.
+ */
+export const updateUserByAdmin = async (
+  id: number,
+  data: AdminUserUpdate
+): Promise<UserFullProps> => {
+  try {
+    const res = await api.put<UserFullProps>(`/api/users/admin/${id}`, data); // 👈 lưu ý path dành riêng cho admin
+    return res.data;
+  } catch (error) {
+    console.error("❌ Failed to update user by admin:", error);
+    throw error;
+  }
+};
 
 /**
- * Tìm kiếm người dùng theo username hoặc số điện thoại
- * @param query - chuỗi tìm kiếm (username hoặc số điện thoại)
- * @returns Thông tin user hoặc null nếu không tìm thấy
+ * Admin xoá người dùng bất kỳ theo ID.
+ */
+export const deleteUserByAdmin = async (id: number): Promise<void> => {
+  try {
+    await api.delete(`/api/users/${id}`);
+  } catch (error) {
+    console.error(`❌ Failed to delete user with ID ${id}:`, error);
+    throw error;
+  }
+};
+
+/**
+ * Tìm kiếm người dùng theo username hoặc số điện thoại.
  */
 export const searchUser = async (
   query: string
@@ -51,6 +86,7 @@ export const searchUser = async (
     });
     return response.data;
   } catch (error) {
-    return null; // nếu không tìm thấy hoặc lỗi server
+    console.warn("⚠️ User not found or search failed:", error);
+    return null;
   }
 };
