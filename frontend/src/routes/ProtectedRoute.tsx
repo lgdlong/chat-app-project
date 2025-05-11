@@ -19,7 +19,7 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   children,
   requiredRole,
-}) => {
+}: ProtectedRouteProps) => {
   const { user, loading } = useUser();
 
   if (loading) {
@@ -32,7 +32,11 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 
   if (!user || user.id === -1) {
     console.warn("🔒 Chưa đăng nhập → chặn truy cập protected route");
-    return <Navigate to="/login" replace />;
+  }
+
+  if (user && user.role === UserRole.ADMIN) {
+    // Nếu là admin nhưng chưa đăng nhập, điều hướng về trang admin
+    return <Navigate to="/admin" replace />;
   }
 
   if (requiredRole && user.role !== requiredRole) {
