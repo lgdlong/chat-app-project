@@ -34,11 +34,6 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     console.warn("🔒 Chưa đăng nhập → chặn truy cập protected route");
   }
 
-  if (user && user.role === UserRole.ADMIN) {
-    // Nếu là admin nhưng chưa đăng nhập, điều hướng về trang admin
-    return <Navigate to="/admin" replace />;
-  }
-
   if (requiredRole && user.role !== requiredRole) {
     console.warn(`🚫 Role mismatch – needs ${requiredRole}, got ${user.role}`);
     return <Navigate to="/home" replace />;

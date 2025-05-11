@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllUsers, getOnlineUserCount } from "../../api/apiUser";
 import { UserFullProps } from "../../interfaces/UserFullProps";
-import { Spinner } from "react-bootstrap";
-import OnlineUserList from "./OnlineUserList";
-import AccountStatsCards from "./AccountStatsCards";
-
-import { useEffect, useState } from "react";
-import { getAllUsers, getOnlineUserCount } from "../../api/apiUser";
-import { UserFullProps } from "../../interfaces/UserFullProps";
 import { Alert, Button, Spinner } from "react-bootstrap";
 import OnlineUserList from "./OnlineUserList";
 import AccountStatsCards from "./AccountStatsCards";
