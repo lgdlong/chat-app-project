@@ -7,6 +7,7 @@ import Loading from "../components/Loading";
 import AdminPage from "../pages/AdminPage";
 import ManageUsers from "../components/admin/ManageUsers";
 import DashBoard from "../components/admin/DashBoard";
+import { UserRole } from "../enums/UserEnums";
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -30,7 +31,14 @@ export default function AppRoutes() {
       />
 
       {/* ✅ Admin routes */}
-      <Route path="/admin" element={<AdminPage />}>
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute requiredRole={UserRole.ADMIN}>
+            <AdminPage />
+          </ProtectedRoute>
+        }
+      >
         <Route index element={<DashBoard />} />{" "}
         {/* 👈 đây là route mặc định khi vào /admin */}
         <Route path="dashboard" element={<DashBoard />} />

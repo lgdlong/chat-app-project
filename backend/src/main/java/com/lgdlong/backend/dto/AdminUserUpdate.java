@@ -11,7 +11,9 @@ import lombok.*;
 public class AdminUserUpdate {
     private String username;
     private String displayName;
+    // Email cannot be changed by admin
     private String email;
+    // Phone cannot be changed by admin
     private String phone;
     private String picUrl; // avatarUrl
     private UserStatus status;

@@ -1,7 +1,7 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { UserFullProps } from "../../interfaces/UserFullProps";
 import { AdminUserUpdate } from "../../interfaces/AdminUserUpdate";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import { UserStatus } from "../../enums/UserEnums";
 
 interface UserEditFormProps {
@@ -16,18 +16,35 @@ export default function UserEditForm({
   onSave,
 }: UserEditFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [pendingUpdateData, setPendingUpdateData] =
+    useState<AdminUserUpdate | null>(null);
 
   const handleSubmit = () => {
     const data = new FormData(formRef.current!);
     const updateData: AdminUserUpdate = {
-      username: user.username, // giữ nguyên username
+      username: user.username,
       displayName: data.get("displayName") as string,
-      email: user.email, // giữ nguyên email
-      phone: user.phone, // giữ nguyên phone
+      email: user.email,
+      phone: user.phone,
       picUrl: (data.get("avatarUrl") as string) || undefined,
-      status: (data.get("status") as UserStatus) || undefined,
+      status: data.get("status") as UserStatus,
     };
+
+    if (updateData.status === "BANNED" && user.status !== "BANNED") {
+      setPendingUpdateData(updateData);
+      setShowConfirmModal(true);
+      return;
+    }
+
     onSave(updateData);
+  };
+
+  const handleConfirmStatusChange = () => {
+    if (pendingUpdateData) {
+      onSave(pendingUpdateData);
+    }
+    setShowConfirmModal(false);
   };
 
   return (
@@ -73,6 +90,25 @@ export default function UserEditForm({
           </div>
         </Form>
       </div>
+
+      {/* Modal xác nhận ban user */}
+      <Modal show={showConfirmModal} onHide={() => setShowConfirmModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm User Ban</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to ban user <strong>{user.username}</strong>?{" "}
+          This will prevent them from using the application.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowConfirmModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleConfirmStatusChange}>
+            Yes, Ban User
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
