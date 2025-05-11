@@ -8,6 +8,16 @@ interface UserTableProps {
 
 export default function UserTable({ users, onRowDoubleClick }: UserTableProps) {
   return (
+export default function UserTable({ users, onRowDoubleClick }: UserTableProps) {
+  if (users.length === 0) {
+    return (
+      <div className="text-center p-4">
+        <p className="text-muted">No users found</p>
+      </div>
+    );
+  }
+
+  return (
     <Table
       striped
       bordered
