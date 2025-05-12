@@ -17,8 +17,9 @@ let stompClient: Client | null = null;
  */
 export const connectMessageSocket = (
   onChatMessage: (msg: Message) => void,
-  chatId: number,
+  chatId: number, 
   onNotification?: (noti: MessageStatusDTO) => void,
+  onRevokeMessage?: (data: { messageId: number; revokedAt: string }) => void,
   onConnected?: () => void
 ) => {
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -30,6 +31,7 @@ export const connectMessageSocket = (
     webSocketFactory: () => socket,
     reconnectDelay: 5000,
     debug: (str) => console.log(str),
+
   });
 
   stompClient.onConnect = (frame: Frame) => {
@@ -64,6 +66,19 @@ export const connectMessageSocket = (
         console.error("❌ Lỗi parse message status:", err);
       }
     });
+
+    /**
+ * 👇 trong onConnect của stompClient
+ */
+    stompClient?.subscribe(
+      `/topic/chat.revoke.${chatId}`,   // hoặc kênh mà backend broadcast sự kiện revoke
+      (message: IMessage) => {
+        const body = JSON.parse(message.body) as { messageId: number; revokedAt: string };
+        console.log("📥 Revoke event:", body);
+        onRevokeMessage?.(body);  // new callback
+      }
+    );
+
 
     onConnected?.();
   };
@@ -116,3 +131,5 @@ export const sendMessageStatusSocket = (payload: {
     console.warn("⚠️ Không thể gửi status vì WebSocket chưa kết nối");
   }
 };
+
+

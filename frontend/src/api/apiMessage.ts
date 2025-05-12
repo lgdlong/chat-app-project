@@ -39,3 +39,24 @@ export const sendMessageWs = (
     console.warn("⚠️ WebSocket chưa kết nối");
   }
 };
+
+
+/**
+ * ✅ REST: Thu hồi (recall) 1 tin nhắn
+ * Endpoint: PATCH /api/messages/{messageId}/revoke
+ * Trả về { id, isRevoked, revokedAt }
+ */
+export interface RecallResponse {
+  id: number;
+  isRevoked: true;
+  revokedAt: string;
+}
+
+export const recallMessage = async (
+  messageId: number
+): Promise<RecallResponse> => {
+  const res = await api.patch<RecallResponse>(
+    `/api/messages/${messageId}/revoke`
+  );
+  return res.data;
+};

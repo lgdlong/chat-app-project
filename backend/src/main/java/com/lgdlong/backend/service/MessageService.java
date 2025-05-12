@@ -19,4 +19,13 @@ public interface MessageService {
 //    void markMessageAsRead(Long messageId);
 //
 //    void markMessageAsUnread(Long messageId);
+
+
+    /**
+     * Đánh dấu 1 tin nhắn là đã thu hồi (isRevoked=true, revokedAt=now).
+     * @param messageId ID tin nhắn cần thu hồi
+     * @param currentUserId ID người dùng đang thực hiện thu hồi
+     * @return Message đã được cập nhật trường isRevoked, revokedAt
+     */
+    Message revokeMessage(Long messageId, Long currentUserId);
 }

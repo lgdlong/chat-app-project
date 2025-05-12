@@ -11,6 +11,7 @@ import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 import org.springframework.web.server.*;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -98,5 +99,25 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public Optional<Message> getLastMessageForPrivateChat(Long privateChatId) {
         return messageRepo.findTopByPrivateChatIdOrderByCreatedAtDesc(privateChatId);
+    }
+
+
+
+    @Override
+    @Transactional
+    public Message revokeMessage(Long messageId, Long currentUserId) {
+        Message message = messageRepo.findById(messageId)
+                .orElseThrow(() -> new ResourceNotFoundException("Message not found with id: " + messageId));
+
+        // Chỉ sender mới được thu hồi
+        if (!message.getSenderId().equals(currentUserId)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+                    "You are not authorized to revoke this message");
+        }
+
+        // Đánh dấu thu hồi
+        message.setIsRevoked(true);
+        message.setRevokedAt(LocalDateTime.now());
+        return messageRepo.save(message);
     }
 }
