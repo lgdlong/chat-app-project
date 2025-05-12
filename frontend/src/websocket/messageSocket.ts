@@ -67,18 +67,18 @@ export const connectMessageSocket = (
       }
     });
 
-    /**
- * 👇 trong onConnect của stompClient
- */
     stompClient?.subscribe(
       `/topic/chat.revoke.${chatId}`,   // hoặc kênh mà backend broadcast sự kiện revoke
       (message: IMessage) => {
-        const body = JSON.parse(message.body) as { messageId: number; revokedAt: string };
-        console.log("📥 Revoke event:", body);
-        onRevokeMessage?.(body);  // new callback
+        try {
+          const body = JSON.parse(message.body) as { messageId: number; revokedAt: string };
+          console.log("📥 Revoke event:", body);
+          onRevokeMessage?.(body);  // new callback
+        } catch (err) {
+          console.error("❌ Lỗi parse revoke message:", err);
+        }
       }
     );
-
 
     onConnected?.();
   };
