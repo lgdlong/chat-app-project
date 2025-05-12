@@ -6,8 +6,10 @@
 
   --layer-background: #fff;
   --layer-background-selected: #dbebff;
-  --layer-background-chat-hover: #F1F2F4;
+  --layer-background-chat-hover: #f1f2f4;
   --layer-background-navbar-normal: #005ae0;
   --input-field-bg-filled: #ebecf0;
   --border-color: #e6e6e6;
+  --shadow-bubble: 0px 0px 1px 0px rgba(21, 39, 71, 0.25),
+    0px 1px 1px 0px rgba(21, 39, 71, 0.25);
 }

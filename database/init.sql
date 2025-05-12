@@ -264,6 +264,18 @@ COPY public.messages (id, content, created_at, is_revoked, media_id, reply_to_id
 16	hihihiihih	2025-05-09 23:05:33.829839	f	\N	\N	\N	3	TEXT	\N	1
 17	chào	2025-05-09 23:05:35.24689	f	\N	\N	\N	3	TEXT	\N	1
 18	test	2025-05-09 23:05:39.659255	f	\N	\N	\N	3	TEXT	\N	1
+19	chào	2025-05-12 17:52:31.236354	f	\N	\N	\N	2	TEXT	\N	1
+21	chào	2025-05-12 17:52:33.183835	f	\N	\N	\N	2	TEXT	\N	1
+22	chào	2025-05-12 17:52:33.963603	f	\N	\N	\N	2	TEXT	\N	1
+23	hello	2025-05-12 17:52:35.583457	f	\N	\N	\N	2	TEXT	\N	1
+24	xin chào	2025-05-12 17:52:37.290222	f	\N	\N	\N	2	TEXT	\N	1
+25	test	2025-05-12 17:52:38.789823	f	\N	\N	\N	2	TEXT	\N	1
+26	ádasd\niayweoiyaioweyuda	2025-05-12 17:52:43.326445	f	\N	\N	\N	2	TEXT	\N	1
+27	ăpduawpdaw	2025-05-12 17:52:44.971585	f	\N	\N	\N	2	TEXT	\N	1
+20	chào	2025-05-12 17:52:32.312296	t	\N	\N	2025-05-12 17:52:47.814689	2	TEXT	\N	1
+28	chào	2025-05-12 18:01:14.614558	f	\N	\N	\N	2	TEXT	\N	2
+29	mình là long	2025-05-12 18:01:17.45539	f	\N	\N	\N	2	TEXT	\N	2
+30	cậu là vinh à	2025-05-12 18:01:23.79182	f	\N	\N	\N	2	TEXT	\N	2
 \.
 
 
@@ -335,7 +347,7 @@ SELECT pg_catalog.setval('public.media_id_seq', 1, false);
 -- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.messages_id_seq', 18, true);
+SELECT pg_catalog.setval('public.messages_id_seq', 30, true);
 
 
 --
