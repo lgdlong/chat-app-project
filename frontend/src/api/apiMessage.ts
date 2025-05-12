@@ -55,8 +55,13 @@ export interface RecallResponse {
 export const recallMessage = async (
   messageId: number
 ): Promise<RecallResponse> => {
-  const res = await api.patch<RecallResponse>(
-    `/api/messages/${messageId}/revoke`
-  );
-  return res.data;
+  try {
+    const res = await api.patch<RecallResponse>(
+      `/api/messages/${messageId}/revoke`
+    );
+    return res.data;
+  } catch (error) {
+    console.error('Failed to recall message:', error);
+    throw error;
+  }
 };
