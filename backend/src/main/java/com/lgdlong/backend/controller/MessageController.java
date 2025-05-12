@@ -1,5 +1,6 @@
 package com.lgdlong.backend.controller;
 
+import com.lgdlong.backend.dto.RecallResponse;
 import com.lgdlong.backend.entity.*;
 import com.lgdlong.backend.service.*;
 import lombok.*;
@@ -7,10 +8,12 @@ import org.springframework.data.domain.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.*;
 
 @RestController
 @RequestMapping("/api/messages")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class MessageController {
 
@@ -34,6 +37,26 @@ public class MessageController {
                     .body("❌ Chat not found or not accessible: " + e.getMessage());
         }
     }
+
+    @PatchMapping("/{messageId}/revoke")
+    public ResponseEntity<?> revokeMessage(
+            @PathVariable Long messageId,
+            Principal principal  // giả sử bạn cấu hình Spring Security, principal.getName() trả về userId
+    ) {
+        try {
+            Long currentUserId = Long.valueOf(principal.getName());
+            Message revoked = messageService.revokeMessage(messageId, currentUserId);
+            return ResponseEntity.ok(new RecallResponse(
+                    revoked.getId(),
+                    revoked.getIsRevoked(),
+                    revoked.getRevokedAt()
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.status(403)
+                    .body("❌ Cannot revoke message: " + e.getMessage());
+        }
+    }
+
 
 //    @GetMapping("/private/{privateChatId}")
 //public ResponseEntity<Page<MessageDto>> getPrivateChatMessages(

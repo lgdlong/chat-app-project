@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "@types/sockjs-client": "^1.5.4"
+  },
+  "dependencies": {
+    "@stomp/stompjs": "^7.1.1",
+    "react-bootstrap-icons": "^1.11.5",
+    "sockjs-client": "^1.6.1"
+  }
+}
