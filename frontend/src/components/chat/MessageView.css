@@ -4,7 +4,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 12px;
-  background-color: #f8f9fa;
+  background-color: #ebecf0;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -23,11 +23,11 @@
 
 /* gom bubble + button vào cùng 1 hàng */
 .message-header-row {
-  display: flex;         /* dùng flex thông thường */
-  flex-wrap: nowrap;     /* không cho xuống dòng */
+  display: flex; /* dùng flex thông thường */
+  flex-wrap: nowrap; /* không cho xuống dòng */
   align-items: center;
   gap: 8px;
-  width: 100%;  /* <------QUAN TRỌNG NHẤT MẤT NÓ LÀ TIN NHẮN NHẢY TỪA LƯA */
+  width: 100%; /* <------QUAN TRỌNG NHẤT MẤT NÓ LÀ TIN NHẮN NHẢY TỪA LƯA */
 }
 
 /* Với tin mình, đảo thứ tự */
@@ -35,32 +35,30 @@
   flex-direction: row-reverse;
 }
 
-
 /* --- giới hạn wrap ở 70% chiều rộng khung chat --- */
 .message-bubble {
   padding: 10px 15px;
   border-radius: 20px;
-  max-width: 70%;            /* ← từ 70% → 50% tin nhắn dài chiếm 70% khung */ 
-  white-space: pre-wrap;     /* giữ newline của user, vẫn wrap khi quá dài */
+  max-width: 70%; /* ← từ 70% → 50% tin nhắn dài chiếm 70% khung */
+  white-space: pre-wrap; /* giữ newline của user, vẫn wrap khi quá dài */
 }
-
 
 .message-item.me .message-bubble {
   background-color: #007bff;
-  color: #fff;
+  color: white;
+  box-shadow: var(--shadow-bubble);
 }
 .message-item.other .message-bubble {
-  background-color: #f0f0f0;
+  background-color: white;
   color: #000;
+  box-shadow: var(--shadow-bubble);
 }
-
 
 /* --- wrapper cho nút và menu --- */
 .message-action-wrapper {
-  position: relative;        /* để menu con position:absolute dựa vào đây */
+  position: relative; /* để menu con position:absolute dựa vào đây */
   display: inline-block;
 }
-
 
 /* nút ⋮ mặc định ẩn, chỉ show khi hover .message-item */
 .message-actions-btn {
@@ -81,20 +79,19 @@
 /* --- menu xuất ngay cạnh nút --- */
 .message-action-wrapper .message-action-menu {
   position: absolute;
-  top: 0;                    /* ngay đỉnh wrapper */
-  left: 100%;               /* bên phải button */
+  top: 0; /* ngay đỉnh wrapper */
+  left: 100%; /* bên phải button */
   margin-left: 4px;
   background: #2f2f2f;
   color: #fff;
   border-radius: 8px;
   padding: 4px 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   z-index: 100;
   /* tránh tin nhảy xuống */
-  min-width: 140px;        /* chiều rộng tối thiểu */
-  white-space: nowrap;     /* không wrap text bên trong menu */
+  min-width: 140px; /* chiều rộng tối thiểu */
+  white-space: nowrap; /* không wrap text bên trong menu */
 }
-
 
 .message-action-menu::before {
   content: "";
@@ -118,7 +115,7 @@
 }
 
 .message-action-menu li:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* --- nếu là tin mình (đã row-reverse), popup bên trái --- */
@@ -128,11 +125,9 @@
   margin-right: 4px;
 }
 
-
-.text-muted{
+.text-muted {
   color: gray;
 }
-
 
 .message-item.me .message-bubble.revoked,
 .message-item.other .message-bubble.revoked {
