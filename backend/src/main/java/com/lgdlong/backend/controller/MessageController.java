@@ -39,17 +39,22 @@ public class MessageController {
     }
 
     @PatchMapping("/{messageId}/revoke")
-    public RecallResponse revokeMessage(
+    public ResponseEntity<?> revokeMessage(
             @PathVariable Long messageId,
             Principal principal  // giả sử bạn cấu hình Spring Security, principal.getName() trả về userId
     ) {
-        Long currentUserId = Long.valueOf(principal.getName());
-        Message revoked = messageService.revokeMessage(messageId, currentUserId);
-        return new RecallResponse(
-                revoked.getId(),
-                revoked.getIsRevoked(),
-                revoked.getRevokedAt()
-        );
+        try {
+            Long currentUserId = Long.valueOf(principal.getName());
+            Message revoked = messageService.revokeMessage(messageId, currentUserId);
+            return ResponseEntity.ok(new RecallResponse(
+                    revoked.getId(),
+                    revoked.getIsRevoked(),
+                    revoked.getRevokedAt()
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.status(403)
+                    .body("❌ Cannot revoke message: " + e.getMessage());
+        }
     }
 
 
