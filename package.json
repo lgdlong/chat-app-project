@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@stomp/stompjs": "^7.1.1",
-    "react-bootstrap-icons": "^1.11.5",
+    "react-bootstrap-icons": "^1.11.6",
     "sockjs-client": "^1.6.1"
   }
 }
